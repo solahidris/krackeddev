@@ -25,7 +25,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     'nav.prayer': { en: 'Next Prayer (KL):', ms: 'Solat Seterusnya (KL):' },
     
     // Hero
-    'hero.title': { en: 'Be a 100x Kracked Dev', ms: 'Jadilah Kracked Dev 100x' },
+    'hero.title': { en: 'Want to be a Kracked Dev?', ms: 'Nak jadi Kracked Dev?' },
     'hero.subtitle': { en: 'A community of cracked developers who want to level up together.', ms: 'Komuniti pembangun hebat yang ingin maju bersama.' },
     'hero.cta_join': { en: 'Join Community', ms: 'Sertai Komuniti' },
     'hero.cta_explore': { en: 'Explore Bootcamps', ms: 'Lihat Bootcamp' },
@@ -42,7 +42,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     'bootcamp.feature3': { en: 'Earn "Cracked Dev" status', ms: 'Dapatkan status "Cracked Dev"' },
 
     // Talks
-    'talks.title': { en: 'Community Talks', ms: 'Bicara Komuniti' },
+    'talks.title': { en: 'Kracked Talks', ms: 'Kracked Talks' },
     'talks.subtitle': { en: 'Hear from key figures in the industry.', ms: 'Dengar daripada tokoh industri.' },
     'talks.card_title': { en: 'Vibe Code & Value', ms: 'Vibe Code & Nilai' },
     'talks.card_desc': { en: 'How non-coders can produce value with code.', ms: 'Bagaimana bukan pengekod boleh mencipta nilai dengan kod.' },
