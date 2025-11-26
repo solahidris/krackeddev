@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useLanguage } from '@/app/context/LanguageContext';
-import LanguageToggle from './LanguageToggle';
 import PrayerWidget from './PrayerWidget';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,7 +9,6 @@ import { Menu, X } from 'lucide-react';
 import { Button } from './ui/button';
 
 const Navbar = () => {
-  const { t } = useLanguage();
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -46,21 +43,18 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-8">
-          <NavLink href="/">{t('nav.home')}</NavLink>
-          <NavLink href="/talks">{t('nav.talks')}</NavLink>
-          <NavLink href="/hackathon">{t('nav.hackathon')}</NavLink>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/talks">Community Talks</NavLink>
+          <NavLink href="/hackathon">Hackathon</NavLink>
         </div>
 
         {/* Right Side (Desktop) */}
         <div className="hidden md:flex items-center gap-4">
           <PrayerWidget />
-          <div className="h-6 w-px bg-white/10" />
-          <LanguageToggle />
         </div>
 
         {/* Mobile Menu Toggle */}
         <div className="flex items-center gap-4 md:hidden">
-          <LanguageToggle />
           <Button
             variant="ghost"
             size="icon"
@@ -82,9 +76,9 @@ const Navbar = () => {
             className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl overflow-hidden"
           >
             <div className="container mx-auto px-4 py-6 space-y-4 flex flex-col">
-              <MobileNavLink href="/" onClick={() => setIsMobileMenuOpen(false)}>{t('nav.home')}</MobileNavLink>
-              <MobileNavLink href="/talks" onClick={() => setIsMobileMenuOpen(false)}>{t('nav.talks')}</MobileNavLink>
-              <MobileNavLink href="/hackathon" onClick={() => setIsMobileMenuOpen(false)}>{t('nav.hackathon')}</MobileNavLink>
+              <MobileNavLink href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</MobileNavLink>
+              <MobileNavLink href="/talks" onClick={() => setIsMobileMenuOpen(false)}>Community Talks</MobileNavLink>
+              <MobileNavLink href="/hackathon" onClick={() => setIsMobileMenuOpen(false)}>Hackathon</MobileNavLink>
               
               <div className="pt-4 border-t border-white/10 flex items-center justify-between">
                  <span className="text-sm text-muted-foreground">Prayer Times</span>

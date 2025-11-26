@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useLanguage } from '@/app/context/LanguageContext';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 
@@ -17,7 +16,6 @@ interface PrayerTimes {
 const PRAYER_ORDER = ['Fajr', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'] as const;
 
 const PrayerWidget = () => {
-  const { t } = useLanguage();
   const [nextPrayer, setNextPrayer] = useState<{ name: string; time: string } | null>(null);
   const [timings, setTimings] = useState<PrayerTimes | null>(null);
   const [open, setOpen] = useState(false);
@@ -78,7 +76,7 @@ const PrayerWidget = () => {
         aria-haspopup="true"
         aria-expanded={open}
       >
-        <span className="text-xs font-semibold opacity-70">{t('nav.prayer')}</span>
+        <span className="text-xs font-semibold opacity-70">Next Prayer (KL):</span>
         <span className="font-bold text-neon-purple">
           {nextPrayer.name} {nextPrayer.time}
         </span>

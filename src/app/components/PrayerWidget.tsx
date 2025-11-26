@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
 
 interface PrayerTimes {
   Fajr: string;
@@ -13,7 +12,6 @@ interface PrayerTimes {
 }
 
 const PrayerWidget = () => {
-  const { t } = useLanguage();
   const [nextPrayer, setNextPrayer] = useState<{ name: string; time: string } | null>(null);
 
   useEffect(() => {
@@ -63,7 +61,7 @@ const PrayerWidget = () => {
 
   return (
     <div className="badge badge-ghost gap-2 p-3 hidden sm:flex">
-      <span className="text-xs font-semibold opacity-70">{t('nav.prayer')}</span>
+      <span className="text-xs font-semibold opacity-70">Next Prayer (KL):</span>
       <span className="font-bold text-primary">{nextPrayer.name} {nextPrayer.time}</span>
     </div>
   );

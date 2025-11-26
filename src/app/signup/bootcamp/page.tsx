@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { useLanguage } from '@/app/context/LanguageContext';
 import PageHero from '@/components/PageHero';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -9,7 +8,6 @@ import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Terminal, Code } from 'lucide-react';
 
 export default function BootcampSignupPage() {
-  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -48,6 +46,7 @@ export default function BootcampSignupPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    window.open('https://x.com/i/communities/1983062242292822298', '_blank', 'noopener,noreferrer');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,7 +90,7 @@ export default function BootcampSignupPage() {
               <p className="text-lg mb-4 text-white">Thank you for your interest in the Vibe Code Bootcamp!</p>
               <p className="text-muted-foreground">Our team will contact you shortly with next steps.</p>
               <Button variant="cyberpunk" asChild className="w-full mt-6 border-neon-secondary text-neon-secondary hover:bg-neon-secondary/10">
-                <a href="/">Return to HQ</a>
+                <a href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Return to HQ</a>
               </Button>
             </CardContent>
           </Card>
@@ -103,11 +102,11 @@ export default function BootcampSignupPage() {
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
       <PageHero 
-        title={t('bootcamp.title')} 
+        title="Vibe Code Bootcamp" 
         subtitle="Sign up for the 28-day bootcamp"
       >
         <Badge variant="outline" className="text-lg py-2 px-6 border-neon-accent text-neon-accent shadow-[0_0_10px_rgba(240,240,240,0.3)]">
-          {t('bootcamp.price')}
+          RM 999 / 28 days
         </Badge>
       </PageHero>
 

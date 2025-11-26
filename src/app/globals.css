@@ -219,6 +219,11 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
   100% { clip: rect(30px, 9999px, 50px, 0); }
 }
 
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
 /* Button utilities */
 .btn-primary {
   padding: 1rem 2.5rem;
