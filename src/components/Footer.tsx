@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="col-span-1 md:col-span-2">
             <Link href="/" className="inline-block font-mono text-xl font-bold tracking-tighter text-foreground hover:text-neon-cyan transition-colors duration-300 mb-4">
-              &lt; Kracked Devs /&gt;
+              &lt;Kracked Devs /&gt;
             </Link>
             <p className="text-muted-foreground max-w-md mb-6">
               Building the future of tech, one line of code at a time. Join the elite community of developers pushing boundaries.

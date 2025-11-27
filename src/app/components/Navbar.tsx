@@ -19,7 +19,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link href="/" className="btn btn-ghost text-xl font-bold font-mono tracking-tighter">
-          &lt; Kracked Devs /&gt;
+          &lt;Kracked Devs /&gt;
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

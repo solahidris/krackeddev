@@ -37,7 +37,7 @@ const Navbar = () => {
         <Link href="/" className="group relative flex items-center gap-2" onClick={() => setIsMobileMenuOpen(false)}>
           <div className="absolute -inset-2 bg-neon-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           <span className="relative font-mono text-xl font-bold tracking-tighter text-foreground group-hover:text-neon-primary transition-colors duration-300">
-            &lt; Kracked Devs /&gt;
+            &lt;Kracked Devs /&gt;
           </span>
         </Link>
 
