@@ -82,7 +82,7 @@ export default function JoinCommunityPage() {
               <div className="w-16 h-16 rounded-full bg-neon-cyan/10 flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-neon-cyan" />
               </div>
-              <p className="text-2xl font-bold mb-4 text-white">Thank you for joining!</p>
+              <p className="text-2xl font-bold mb-4 text-zinc-50">Thank you for joining!</p>
               <p className="text-muted-foreground mb-6">We'll send you a welcome email with next steps and community access details.</p>
               <Button variant="cyberpunk" asChild className="w-full">
                 <a href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Return to Base</a>
@@ -129,7 +129,7 @@ export default function JoinCommunityPage() {
                       autoComplete="name"
                       autoCapitalize="words"
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-pink focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-pink focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="Enter your full name"
                     />
                   </div>
@@ -150,7 +150,7 @@ export default function JoinCommunityPage() {
                       autoComplete="email"
                       inputMode="email"
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-pink focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-pink focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -167,15 +167,15 @@ export default function JoinCommunityPage() {
                         onChange={handleChange}
                         autoComplete="off"
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-pink focus:bg-white/10 transition-all text-white appearance-none font-mono"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-pink focus:bg-white/10 transition-all text-zinc-50 appearance-none font-mono"
                       >
                         <option value="" className="bg-black text-muted-foreground">Select your experience level</option>
-                        <option value="beginner" className="bg-black text-white">Beginner</option>
-                        <option value="intermediate" className="bg-black text-white">Intermediate</option>
-                        <option value="advanced" className="bg-black text-white">Advanced</option>
-                        <option value="professional" className="bg-black text-white">Professional</option>
+                        <option value="beginner" className="bg-black text-zinc-50">Beginner</option>
+                        <option value="intermediate" className="bg-black text-zinc-50">Intermediate</option>
+                        <option value="advanced" className="bg-black text-zinc-50">Advanced</option>
+                        <option value="professional" className="bg-black text-zinc-50">Professional</option>
                       </select>
-                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/50">▼</div>
+                      <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-50/50">▼</div>
                     </div>
                   </div>
 
@@ -198,38 +198,38 @@ export default function JoinCommunityPage() {
               <CardContent className="px-0">
                 <ul className="space-y-6">
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-zinc-950 transition-colors">
                       <Zap className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-cyan transition-colors">Access to exclusive Discord community with 500+ developers</h4>
+                      <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-cyan transition-colors">Access to exclusive Discord community with 500+ developers</h4>
                       <p className="text-xs text-muted-foreground">Instant access to high-value projects.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-zinc-950 transition-colors">
                       <Zap className="w-4 h-4" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-cyan transition-colors">Weekly community talks and networking events</h4>
+                       <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-cyan transition-colors">Weekly community talks and networking events</h4>
                        <p className="text-xs text-muted-foreground">Network with elite developers.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-zinc-950 transition-colors">
                       <Zap className="w-4 h-4" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-cyan transition-colors">Share projects and get feedback from peers</h4>
+                       <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-cyan transition-colors">Share projects and get feedback from peers</h4>
                        <p className="text-xs text-muted-foreground">Mentorship from industry veterans.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-cyan flex items-center justify-center flex-shrink-0 bg-neon-cyan/10 group-hover:bg-neon-cyan group-hover:text-zinc-950 transition-colors">
                       <Zap className="w-4 h-4" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-cyan transition-colors">Early access to bootcamps and hackathons</h4>
+                       <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-cyan transition-colors">Early access to bootcamps and hackathons</h4>
                        <p className="text-xs text-muted-foreground">Earn while you learn.</p>
                     </div>
                   </li>

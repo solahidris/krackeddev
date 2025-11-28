@@ -8,42 +8,42 @@
   /* Minimal Green Neon Palette */
   --background: #050505;
   --background-secondary: #0a0f0a;
-  --foreground: #e0e0e0;
+  --foreground: #fafafa; /* zinc-50 - softer white */
   
   --card: #0a0f0a;
-  --card-foreground: #e0e0e0;
+  --card-foreground: #fafafa; /* zinc-50 */
   
   --popover: #0a0f0a;
-  --popover-foreground: #e0e0e0;
+  --popover-foreground: #fafafa; /* zinc-50 */
   
-  --primary: #00ff41; /* Lighter Neon Green */
-  --primary-foreground: #000000;
+  --primary: #15803d; /* green-700 */
+  --primary-foreground: #09090b; /* zinc-950 - softer black */
   
-  --secondary: #00ff41; /* Same green */
-  --secondary-foreground: #000000;
+  --secondary: #15803d; /* green-700 */
+  --secondary-foreground: #09090b; /* zinc-950 */
   
   --muted: #0a1f0a;
-  --muted-foreground: #00ff41;
+  --muted-foreground: #52525b; /* zinc-600 - dark gray for unimportant text */
   
-  --accent: #00ff41; /* Same green */
-  --accent-foreground: #000000;
+  --accent: #15803d; /* green-700 */
+  --accent-foreground: #09090b; /* zinc-950 */
   
   --destructive: #ff0000;
-  --destructive-foreground: #ffffff;
+  --destructive-foreground: #fafafa; /* zinc-50 */
   
   --border: #1a3f1a;
   --input: #0d260d;
-  --ring: #00ff41;
+  --ring: #15803d; /* green-700 */
   
   --radius: 0rem;
   
   /* Minimal Green Neon Palette */
-  --neon-primary: #00ff41;   /* Lighter Neon Green */
-  --neon-secondary: #00ff41; /* Same green */
-  --neon-accent: #00ff41;    /* Same green */
-  --neon-cyan: #00ff41;      /* Alias */
+  --neon-primary: #15803d;   /* green-700 */
+  --neon-secondary: #15803d; /* green-700 */
+  --neon-accent: #15803d;    /* green-700 */
+  --neon-cyan: #15803d;      /* green-700 */
   
-  --scanline-color: rgba(0, 255, 65, 0.05);
+  --scanline-color: rgba(21, 128, 61, 0.05);
 }
 
 @theme inline {
@@ -154,7 +154,7 @@ body {
   cursor: default;
   background-image: 
     linear-gradient(rgba(0, 20, 0, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-    linear-gradient(90deg, rgba(0, 255, 65, 0.03), rgba(0, 255, 65, 0.01), rgba(0, 255, 65, 0.03));
+    linear-gradient(90deg, rgba(21, 128, 61, 0.03), rgba(21, 128, 61, 0.01), rgba(21, 128, 61, 0.03));
   background-size: 100% 2px, 3px 100%;
   overflow-x: hidden;
   font-family: monospace; /* Enforce mono for hacker vibe */
@@ -163,7 +163,7 @@ body {
 /* Custom Selection Color */
 ::selection {
   background: var(--neon-primary);
-  color: #000000;
+  color: #09090b; /* zinc-950 */
 }
 
 /* White hand cursor for all clickable elements */
@@ -194,8 +194,8 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
 .glass-card {
   background: rgba(5, 15, 5, 0.7);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(0, 255, 65, 0.2);
-  box-shadow: 0 0 15px rgba(0, 255, 65, 0.05);
+  border: 1px solid rgba(21, 128, 61, 0.2);
+  box-shadow: 0 0 15px rgba(21, 128, 61, 0.05);
 }
 
 /* Cyberpunk Border */
@@ -263,7 +263,7 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
 .btn-primary {
   padding: 1rem 2.5rem;
   border: 1px solid var(--neon-primary);
-  background: rgba(0, 255, 65, 0.05);
+  background: rgba(21, 128, 61, 0.05);
   color: var(--neon-primary);
   font-weight: 600;
   font-size: 0.875rem;
@@ -275,8 +275,8 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
 }
 
 .btn-primary:hover {
-  background: rgba(0, 255, 65, 0.15);
-  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
+  background: rgba(21, 128, 61, 0.15);
+  box-shadow: 0 0 20px rgba(21, 128, 61, 0.4);
   text-shadow: 0 0 8px var(--neon-primary);
 }
 

@@ -16,7 +16,7 @@ export default function Game5Page() {
         <div className="mb-10 md:mb-12 flex items-center justify-between">
           <Link
             href="/game"
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-zinc-50/60 hover:text-zinc-50 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Games
@@ -34,7 +34,7 @@ export default function Game5Page() {
               <Lock className="w-12 h-12 text-neon-primary" />
               Game 5: Solah's Zone
             </CardTitle>
-            <p className="text-lg text-white/60">
+            <p className="text-lg text-zinc-50/60">
               Your experimental playground. Build anything you want here!
             </p>
           </CardHeader>
@@ -49,7 +49,7 @@ export default function Game5Page() {
                 <h2 className="text-3xl font-bold text-neon-primary">
                   Ready for Development
                 </h2>
-                <p className="text-lg text-white/60 max-w-md">
+                <p className="text-lg text-zinc-50/60 max-w-md">
                   This slot is ready for your code, Solah! Replace this content
                   with your game implementation.
                 </p>

@@ -50,7 +50,7 @@ export function JobCard({ job, onView }: JobCardProps) {
   const getTypeColor = (type: string) => {
     switch (type) {
       case 'Remote':
-        return 'text-green-400';
+        return 'text-zinc-600';
       case 'Full-time':
         return 'text-blue-400';
       case 'Part-time':
@@ -70,18 +70,18 @@ export function JobCard({ job, onView }: JobCardProps) {
       onClick={handleView}
       className="cursor-pointer"
     >
-      <Card className="border-neon-primary/20 bg-black/40 backdrop-blur-md hover:border-neon-primary/50 transition-all h-full flex flex-col">
+      <Card className="border-zinc-700/30 bg-black/40 backdrop-blur-md hover:border-zinc-600/40 transition-all h-full flex flex-col">
         <CardHeader className="pb-3">
           <div className="flex justify-between items-start mb-2">
             <div className="flex-1">
-              <h3 className="text-xl font-bold text-white mb-1">{job.title}</h3>
-              <p className="text-neon-primary font-mono text-sm">{job.company}</p>
+              <h3 className="text-xl font-bold text-zinc-50 mb-1">{job.title}</h3>
+              <p className="text-zinc-600 font-mono text-sm">{job.company}</p>
             </div>
             {viewed && (
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-neon-primary"
+                className="text-zinc-600"
               >
                 <Zap className="w-5 h-5" />
               </motion.div>
@@ -97,7 +97,7 @@ export function JobCard({ job, onView }: JobCardProps) {
               {job.type}
             </div>
             {job.salary && (
-              <div className="text-neon-secondary font-mono">{job.salary}</div>
+              <div className="text-zinc-600 font-mono">{job.salary}</div>
             )}
           </div>
         </CardHeader>

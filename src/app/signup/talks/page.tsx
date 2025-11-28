@@ -82,7 +82,7 @@ export default function TalksSignupPage() {
                <div className="w-16 h-16 rounded-full bg-neon-accent/10 flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-neon-accent" />
               </div>
-              <p className="text-lg mb-4 text-white">Thank you for registering!</p>
+              <p className="text-lg mb-4 text-zinc-50">Thank you for registering!</p>
               <p className="text-muted-foreground">We'll send you updates about upcoming talks and events.</p>
               <Button variant="cyberpunk" asChild className="w-full mt-6 border-neon-accent text-neon-accent hover:bg-neon-accent/10">
                 <a href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Return to Hub</a>
@@ -132,7 +132,7 @@ export default function TalksSignupPage() {
                       autoComplete="name"
                       autoCapitalize="words"
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-secondary focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-secondary focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="ENTER NAME"
                     />
                   </div>
@@ -153,7 +153,7 @@ export default function TalksSignupPage() {
                       autoComplete="email"
                       inputMode="email"
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-secondary focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-secondary focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="ENTER EMAIL"
                     />
                   </div>
@@ -170,15 +170,15 @@ export default function TalksSignupPage() {
                         onChange={handleChange}
                         autoComplete="off"
                         required
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-secondary focus:bg-white/10 transition-all text-white appearance-none font-mono"
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-secondary focus:bg-white/10 transition-all text-zinc-50 appearance-none font-mono"
                       >
                         <option value="" className="bg-black text-muted-foreground">SELECT TOPIC</option>
-                        <option value="math-engineering" className="bg-black text-white">Math & Engineering</option>
-                        <option value="automation" className="bg-black text-white">Automation</option>
-                        <option value="business-value" className="bg-black text-white">Business Value</option>
-                        <option value="all" className="bg-black text-white">All Topics</option>
+                        <option value="math-engineering" className="bg-black text-zinc-50">Math & Engineering</option>
+                        <option value="automation" className="bg-black text-zinc-50">Automation</option>
+                        <option value="business-value" className="bg-black text-zinc-50">Business Value</option>
+                        <option value="all" className="bg-black text-zinc-50">All Topics</option>
                       </select>
-                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-white/50">▼</div>
+                       <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-50/50">▼</div>
                     </div>
                   </div>
 
@@ -201,29 +201,29 @@ export default function TalksSignupPage() {
               <CardContent className="px-0">
                 <ul className="space-y-6">
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-accent flex items-center justify-center flex-shrink-0 bg-neon-accent/10 group-hover:bg-neon-accent group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-accent flex items-center justify-center flex-shrink-0 bg-neon-accent/10 group-hover:bg-neon-accent group-hover:text-zinc-950 transition-colors">
                       <Lightbulb className="w-4 h-4" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-accent transition-colors">Expert Insights</h4>
+                      <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-accent transition-colors">Expert Insights</h4>
                       <p className="text-xs text-muted-foreground">Learn directly from industry leaders.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-accent flex items-center justify-center flex-shrink-0 bg-neon-accent/10 group-hover:bg-neon-accent group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-accent flex items-center justify-center flex-shrink-0 bg-neon-accent/10 group-hover:bg-neon-accent group-hover:text-zinc-950 transition-colors">
                       <Users className="w-4 h-4" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-accent transition-colors">Network</h4>
+                       <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-accent transition-colors">Network</h4>
                        <p className="text-xs text-muted-foreground">Connect with other cracked developers.</p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4 group">
-                    <div className="h-8 w-8 rounded-none border border-neon-accent flex items-center justify-center flex-shrink-0 bg-neon-accent/10 group-hover:bg-neon-accent group-hover:text-black transition-colors">
+                    <div className="h-8 w-8 rounded-none border border-neon-accent flex items-center justify-center flex-shrink-0 bg-neon-accent/10 group-hover:bg-neon-accent group-hover:text-zinc-950 transition-colors">
                       <Radio className="w-4 h-4" />
                     </div>
                     <div>
-                       <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-accent transition-colors">Real Projects</h4>
+                       <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-accent transition-colors">Real Projects</h4>
                        <p className="text-xs text-muted-foreground">Case studies on real-world business value.</p>
                     </div>
                   </li>

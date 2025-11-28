@@ -515,13 +515,13 @@ export default function Game1Page() {
         <header className="relative flex items-center justify-between mb-4">
           <Link
             href="/game"
-            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors z-10"
+            className="flex items-center gap-2 text-zinc-50/70 hover:text-zinc-50 transition-colors z-10"
           >
             <ArrowLeft className="w-5 h-5" />
             <span className="text-sm font-medium">Back to Games</span>
           </Link>
 
-          <h1 className="absolute left-1/2 -translate-x-1/2 text-xl md:text-2xl font-bold text-white whitespace-nowrap">
+          <h1 className="absolute left-1/2 -translate-x-1/2 text-xl md:text-2xl font-bold text-zinc-50 whitespace-nowrap">
             💰 Money Runner
           </h1>
 
@@ -542,13 +542,13 @@ export default function Game1Page() {
             {/* In-Game UI Overlay */}
             <div className="absolute inset-0 pointer-events-none">
               {/* Money Counter - Top Right */}
-              <div className="absolute top-4 right-4 flex items-center gap-2 text-green-400 bg-black/60 px-4 py-2 rounded-xl backdrop-blur-sm border border-green-500/30">
+              <div className="absolute top-4 right-4 flex items-center gap-2 text-zinc-600 bg-black/60 px-4 py-2 rounded-xl backdrop-blur-sm border border-green-700/30">
                 <span className="font-bold text-2xl">RM {tokens}</span>
               </div>
 
               {/* Controls Hint - Bottom Left */}
               <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-                <p className="text-white/60 text-xs">
+                <p className="text-zinc-50/60 text-xs">
                   <span className="text-cyan-400 font-mono">WASD</span> move ·{" "}
                   <span className="text-cyan-400 font-mono">SPACE</span> jump
                 </p>
@@ -559,14 +559,14 @@ export default function Game1Page() {
                 onClick={() => {
                   window.location.reload();
                 }}
-                className="absolute bottom-4 right-4 pointer-events-auto bg-white/10 hover:bg-white/20 text-white/70 hover:text-white text-sm font-medium py-2 px-4 rounded-xl transition-colors border border-white/10"
+                className="absolute bottom-4 right-4 pointer-events-auto bg-white/10 hover:bg-white/20 text-zinc-50/70 hover:text-zinc-50 text-sm font-medium py-2 px-4 rounded-xl transition-colors border border-white/10"
               >
                 Restart
               </button>
 
               {/* Bills Collected Counter - Top Left */}
               <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-                <p className="text-white/80 text-sm font-medium">
+                <p className="text-zinc-50/80 text-sm font-medium">
                   💵 {collectedIds.size} / 25 bills
                 </p>
               </div>

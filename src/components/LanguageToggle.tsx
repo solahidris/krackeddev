@@ -31,8 +31,8 @@ const ToggleButton = ({ isActive, onClick, children }: { isActive: boolean; onCl
     className={cn(
       "px-3 py-1 text-xs font-bold transition-all duration-300 rounded relative overflow-hidden",
       isActive 
-        ? "text-black shadow-[0_0_10px_var(--neon-cyan)]" 
-        : "text-muted-foreground hover:text-white hover:bg-white/10"
+        ? "text-zinc-950 shadow-[0_0_10px_var(--neon-cyan)]" 
+        : "text-muted-foreground hover:text-zinc-50 hover:bg-white/10"
     )}
   >
     {isActive && (

@@ -40,12 +40,12 @@ export default function ContactPage() {
           subtitle="We'll get back to you soon."
         />
         <div className="container mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16 lg:mt-20">
-          <Card className="max-w-md mx-auto border-neon-primary/50 bg-black/80 shadow-[0_0_30px_rgba(0,255,65,0.1)]">
+          <Card className="max-w-md mx-auto border-green-700/50 bg-black/80 shadow-[0_0_30px_rgba(21,128,61,0.1)]">
             <CardContent className="pt-12 pb-12 md:pt-16 md:pb-16 text-center flex flex-col items-center">
               <div className="w-16 h-16 rounded-full bg-neon-primary/10 flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-neon-primary" />
               </div>
-              <p className="text-2xl font-bold mb-4 text-white">Thank you!</p>
+              <p className="text-2xl font-bold mb-4 text-zinc-50">Thank you!</p>
               <p className="text-muted-foreground mb-6">We've received your message and will respond as soon as possible.</p>
             </CardContent>
           </Card>
@@ -83,7 +83,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="Your name"
                     />
                   </div>
@@ -99,7 +99,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="your.email@example.com"
                     />
                   </div>
@@ -115,7 +115,7 @@ export default function ContactPage() {
                       value={formData.subject}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono"
                       placeholder="What's this about?"
                     />
                   </div>
@@ -131,7 +131,7 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       rows={6}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white placeholder:text-white/20 font-mono resize-none"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-none focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 placeholder:text-zinc-50/20 font-mono resize-none"
                       placeholder="Tell us what's on your mind..."
                     />
                   </div>
@@ -156,11 +156,11 @@ export default function ContactPage() {
               <CardContent className="px-0">
                 <div className="space-y-6">
                   <div className="flex items-start gap-4 group">
-                    <div className="h-10 w-10 rounded-none border border-neon-primary flex items-center justify-center flex-shrink-0 bg-neon-primary/10 group-hover:bg-neon-primary group-hover:text-black transition-colors">
+                    <div className="h-10 w-10 rounded-none border border-neon-primary flex items-center justify-center flex-shrink-0 bg-neon-primary/10 group-hover:bg-neon-primary group-hover:text-zinc-950 transition-colors">
                       <Mail className="w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="font-bold text-white text-sm mb-1 group-hover:text-neon-primary transition-colors">Email</h4>
+                      <h4 className="font-bold text-zinc-50 text-sm mb-1 group-hover:text-neon-primary transition-colors">Email</h4>
                       <p className="text-xs text-muted-foreground">contact@krackeddevs.com</p>
                     </div>
                   </div>

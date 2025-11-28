@@ -39,7 +39,7 @@ export default function AboutPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground group-hover:text-white/90 transition-colors">
+              <p className="text-muted-foreground group-hover:text-zinc-50/90 transition-colors">
                 We believe in shipping over talking. Real projects, real deployments, real value.
               </p>
             </CardContent>
@@ -53,7 +53,7 @@ export default function AboutPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground group-hover:text-white/90 transition-colors">
+              <p className="text-muted-foreground group-hover:text-zinc-50/90 transition-colors">
                 Together we level up. Share knowledge, collaborate on projects, and grow as a team.
               </p>
             </CardContent>
@@ -67,7 +67,7 @@ export default function AboutPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground group-hover:text-white/90 transition-colors">
+              <p className="text-muted-foreground group-hover:text-zinc-50/90 transition-colors">
                 Move fast, break things, learn faster. No bureaucracy, just results.
               </p>
             </CardContent>
@@ -81,7 +81,7 @@ export default function AboutPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground group-hover:text-white/90 transition-colors">
+              <p className="text-muted-foreground group-hover:text-zinc-50/90 transition-colors">
                 Every line of code should solve a problem. Every project should create value.
               </p>
             </CardContent>

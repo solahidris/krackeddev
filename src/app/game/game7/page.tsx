@@ -220,7 +220,7 @@ export default function Game7Page() {
         <div className="mb-10 md:mb-12 flex items-center justify-between">
           <Link
             href="/game"
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-zinc-50/60 hover:text-zinc-50 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Games
@@ -237,7 +237,7 @@ export default function Game7Page() {
               <Gamepad2 className="w-12 h-12 text-neon-secondary" />
               Retro Playground
             </CardTitle>
-            <p className="text-lg text-white/60">
+            <p className="text-lg text-zinc-50/60">
               A simple retro-style playground. Move around with WASD!
             </p>
           </CardHeader>
@@ -255,7 +255,7 @@ export default function Game7Page() {
 
         <Card className="mt-6 border-white/10 bg-black/40 backdrop-blur-md">
           <CardContent className="py-4">
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-white/60">
+            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-zinc-50/60">
               <div className="flex items-center gap-2">
                 <kbd className="px-2 py-1 bg-white/10 rounded border border-white/20 font-mono">W</kbd>
                 <span>Up</span>

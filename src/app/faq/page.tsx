@@ -32,19 +32,19 @@ export default function FAQPage() {
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-primary">
-              <h3 className="font-bold text-white mb-2 font-mono">Do I need experience to participate?</h3>
+              <h3 className="font-bold text-zinc-50 mb-2 font-mono">Do I need experience to participate?</h3>
               <p className="text-sm text-muted-foreground">No! The hackathon is open to developers of all skill levels. Beginners are welcome and can learn from the community.</p>
             </div>
             <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-secondary">
-              <h3 className="font-bold text-white mb-2 font-mono">How long does it take?</h3>
+              <h3 className="font-bold text-zinc-50 mb-2 font-mono">How long does it take?</h3>
               <p className="text-sm text-muted-foreground">Each bug bounty has its own timeline. Most challenges can be completed in 1-2 weeks, but you can work at your own pace.</p>
             </div>
             <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-accent">
-              <h3 className="font-bold text-white mb-2 font-mono">What if I don't win?</h3>
+              <h3 className="font-bold text-zinc-50 mb-2 font-mono">What if I don't win?</h3>
               <p className="text-sm text-muted-foreground">Even if you don't win, you'll gain valuable experience, build your portfolio, and network with industry professionals. Participation points still count!</p>
             </div>
             <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-primary">
-              <h3 className="font-bold text-white mb-2 font-mono">How are winners selected?</h3>
+              <h3 className="font-bold text-zinc-50 mb-2 font-mono">How are winners selected?</h3>
               <p className="text-sm text-muted-foreground">Winners are selected based on code quality, innovation, and impact. Points are multiplied by ranking multipliers for final scores.</p>
             </div>
           </CardContent>

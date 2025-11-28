@@ -31,7 +31,7 @@ export default function HomeClient() {
               variant="outline" 
               size="lg" 
               asChild 
-              className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-neon-secondary/50 text-neon-secondary bg-neon-secondary/5 hover:bg-neon-secondary/10 hover:border-neon-secondary hover:text-white hover:shadow-[0_0_20px_rgba(43,138,26,0.6)] transition-all font-mono uppercase tracking-widest relative overflow-hidden"
+              className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-green-700/50 text-green-700 bg-green-700/5 hover:bg-green-700/10 hover:border-green-700 hover:text-zinc-50 hover:shadow-[0_0_20px_rgba(21,128,61,0.6)] transition-all font-mono uppercase tracking-widest relative overflow-hidden"
             >
               <Link href="/hackathon">
                 <Trophy className="w-4 h-4 mr-2" />
@@ -52,11 +52,11 @@ export default function HomeClient() {
                   return (
                     <span
                       key={i}
-                      className="absolute left-1/2 bottom-0 text-2xl font-bold text-neon-secondary"
+                      className="absolute left-1/2 bottom-0 text-2xl font-bold text-green-700"
                       style={{
                         animation: `money-pop-up 1.2s ease-out ${delay}s forwards`,
                         transformOrigin: 'center bottom',
-                        filter: 'drop-shadow(0 0 10px rgba(43, 138, 26, 1))',
+                        filter: 'drop-shadow(0 0 10px rgba(21, 128, 61, 1))',
                         '--final-x': `${horizontalSpread}px`,
                         '--final-y': `${upwardDistance}px`,
                       } as React.CSSProperties & { [key: string]: string }}
@@ -72,7 +72,7 @@ export default function HomeClient() {
             variant="outline" 
             size="lg" 
             asChild 
-            className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-neon-accent/50 text-neon-accent bg-neon-accent/5 hover:bg-neon-accent/10 hover:border-neon-accent hover:text-white hover:shadow-[0_0_20px_rgba(240,240,240,0.4)] transition-all font-mono uppercase tracking-widest"
+            className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-green-700/50 text-green-700 bg-green-700/5 hover:bg-green-700/10 hover:border-green-700 hover:text-zinc-50 hover:shadow-[0_0_20px_rgba(21,128,61,0.4)] transition-all font-mono uppercase tracking-widest"
           >
             <Link href="/game">
               <Gamepad2 className="w-4 h-4 mr-2" />
@@ -137,15 +137,15 @@ export default function HomeClient() {
              <Card className="border-neon-primary/30 bg-black/60 backdrop-blur-sm hover:border-neon-primary/50 transition-colors relative overflow-hidden group">
                 <div className="absolute inset-0 bg-neon-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 <CardHeader className="pb-2">
-                  <CardTitle className="text-neon-primary flex items-center gap-2 text-lg">
+                  <CardTitle className="text-zinc-600 flex items-center gap-2 text-lg">
                     <CheckCircle2 className="w-5 h-5" />
                     <span className="font-mono tracking-tighter">SYSTEM_STATUS: ONLINE</span>
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="opacity-90 mb-4 text-sm font-mono">Shipping apps. Solving problems. Getting paid.</p>
-                  <div className="rounded border border-neon-primary/20 bg-black/40 p-4 font-mono text-xs text-neon-primary shadow-[0_0_10px_rgba(0,255,65,0.05)] overflow-x-auto">
-                    <pre className="text-neon-primary">Success: Deployment complete</pre>
+                  <div className="rounded border border-green-700/20 bg-black/40 p-4 font-mono text-xs text-zinc-600 shadow-[0_0_10px_rgba(21,128,61,0.05)] overflow-x-auto">
+                    <pre className="text-zinc-600">Success: Deployment complete</pre>
                     <pre>{`const skills = ['Fullstack', 'AI', 'Auto'];`}</pre>
                     <pre>{`const income = 5000; // MYR`}</pre>
                   </div>

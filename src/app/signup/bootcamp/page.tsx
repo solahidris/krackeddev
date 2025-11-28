@@ -87,7 +87,7 @@ export default function BootcampSignupPage() {
                <div className="w-16 h-16 rounded-full bg-neon-secondary/10 flex items-center justify-center mb-6">
                 <CheckCircle className="w-8 h-8 text-neon-secondary" />
               </div>
-              <p className="text-lg mb-4 text-white">Thank you for your interest in the Vibe Code Bootcamp!</p>
+              <p className="text-lg mb-4 text-zinc-50">Thank you for your interest in the Vibe Code Bootcamp!</p>
               <p className="text-muted-foreground">Our team will contact you shortly with next steps.</p>
               <Button variant="cyberpunk" asChild className="w-full mt-6 border-neon-secondary text-neon-secondary hover:bg-neon-secondary/10">
                 <a href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Return to HQ</a>
@@ -117,7 +117,7 @@ export default function BootcampSignupPage() {
           <div>
              <div className="flex items-center gap-3 mb-6">
                <Terminal className="w-6 h-6 text-neon-primary" />
-               <h2 className="text-2xl font-bold text-white font-mono uppercase">28-Day Protocol</h2>
+               <h2 className="text-2xl font-bold text-zinc-50 font-mono uppercase">28-Day Protocol</h2>
              </div>
              
              <div className="space-y-6">
@@ -125,8 +125,8 @@ export default function BootcampSignupPage() {
                 <Card className="bg-black/40 border-white/10 hover:border-neon-primary/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <Badge className="bg-neon-primary text-black font-bold hover:bg-neon-primary/80">Week 1</Badge>
-                      <h3 className="font-semibold text-lg text-white">Foundation & First Projects</h3>
+                      <Badge className="bg-neon-primary text-zinc-950 font-bold hover:bg-neon-primary/80">Week 1</Badge>
+                      <h3 className="font-semibold text-lg text-zinc-50">Foundation & First Projects</h3>
                     </div>
                     <ul className="space-y-3 ml-2 text-sm text-muted-foreground font-mono">
                       <li className="flex items-start gap-3">
@@ -149,8 +149,8 @@ export default function BootcampSignupPage() {
                 <Card className="bg-black/40 border-white/10 hover:border-neon-secondary/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <Badge className="bg-neon-secondary text-white font-bold hover:bg-neon-secondary/80">Week 2</Badge>
-                      <h3 className="font-semibold text-lg text-white">Full-Stack Applications</h3>
+                      <Badge className="bg-neon-secondary text-zinc-50 font-bold hover:bg-neon-secondary/80">Week 2</Badge>
+                      <h3 className="font-semibold text-lg text-zinc-50">Full-Stack Applications</h3>
                     </div>
                     <ul className="space-y-3 ml-2 text-sm text-muted-foreground font-mono">
                       <li className="flex items-start gap-3">
@@ -173,8 +173,8 @@ export default function BootcampSignupPage() {
                 <Card className="bg-black/40 border-white/10 hover:border-neon-accent/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <Badge className="bg-neon-accent text-black font-bold hover:bg-neon-accent/80">Week 3</Badge>
-                      <h3 className="font-semibold text-lg text-white">AI & Automation</h3>
+                      <Badge className="bg-neon-accent text-zinc-950 font-bold hover:bg-neon-accent/80">Week 3</Badge>
+                      <h3 className="font-semibold text-lg text-zinc-50">AI & Automation</h3>
                     </div>
                     <ul className="space-y-3 ml-2 text-sm text-muted-foreground font-mono">
                       <li className="flex items-start gap-3">
@@ -197,8 +197,8 @@ export default function BootcampSignupPage() {
                 <Card className="bg-black/40 border-white/10 hover:border-white/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
-                      <Badge variant="outline" className="border-white text-white font-bold">Week 4</Badge>
-                      <h3 className="font-semibold text-lg text-white">Capstone & Portfolio</h3>
+                      <Badge variant="outline" className="border-white text-zinc-50 font-bold">Week 4</Badge>
+                      <h3 className="font-semibold text-lg text-zinc-50">Capstone & Portfolio</h3>
                     </div>
                     <ul className="space-y-3 ml-2 text-sm text-muted-foreground font-mono">
                       <li className="flex items-start gap-3">
@@ -214,7 +214,7 @@ export default function BootcampSignupPage() {
           {/* Form Column */}
           <div>
             <div className="sticky top-24">
-               <Card className="border-neon-primary/30 bg-black/80 backdrop-blur-xl shadow-[0_0_50px_rgba(0,255,65,0.05)]">
+               <Card className="border-green-700/30 bg-black/80 backdrop-blur-xl shadow-[0_0_50px_rgba(21,128,61,0.05)]">
                 <CardHeader>
                   <CardTitle className="text-2xl font-mono uppercase tracking-widest text-neon-primary flex items-center gap-2">
                     <Code className="w-5 h-5" />
@@ -240,7 +240,7 @@ export default function BootcampSignupPage() {
                           autoComplete="name"
                           autoCapitalize="words"
                           required
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white font-mono placeholder:text-white/20"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 font-mono placeholder:text-zinc-50/20"
                           placeholder="ENTER NAME"
                         />
                       </div>
@@ -261,7 +261,7 @@ export default function BootcampSignupPage() {
                           autoComplete="email"
                           inputMode="email"
                           required
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white font-mono placeholder:text-white/20"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 font-mono placeholder:text-zinc-50/20"
                           placeholder="ENTER EMAIL"
                         />
                       </div>
@@ -282,13 +282,13 @@ export default function BootcampSignupPage() {
                           autoComplete="tel"
                           inputMode="tel"
                           required
-                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-white font-mono placeholder:text-white/20"
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-sm focus:outline-none focus:border-neon-primary focus:bg-white/10 transition-all text-zinc-50 font-mono placeholder:text-zinc-50/20"
                           placeholder="+60"
                         />
                       </div>
                     </div>
 
-                    <Button type="submit" size="lg" variant="cyberpunk" className="w-full h-12 text-lg shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_30px_rgba(0,255,65,0.4)]">
+                    <Button type="submit" size="lg" variant="cyberpunk" className="w-full h-12 text-lg shadow-[0_0_20px_rgba(21,128,61,0.2)] hover:shadow-[0_0_30px_rgba(21,128,61,0.4)]">
                       Confirm Enrollment
                     </Button>
                     

@@ -99,7 +99,7 @@ export default function HackathonPage() {
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
       <PageHero 
-        title="Want to be a Kracked Dev?" 
+        title="Kracked Hackathon" 
         subtitle="A community of cracked developers who want to level up together."
       >
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
@@ -107,7 +107,7 @@ export default function HackathonPage() {
             size="lg" 
             variant="cyberpunk" 
             asChild
-            className="font-mono uppercase tracking-widest border-neon-primary text-neon-primary hover:bg-neon-primary hover:text-black"
+            className="font-mono uppercase tracking-widest border-zinc-700/50 text-zinc-600 hover:bg-zinc-800/30 hover:text-zinc-50"
           >
             <a href={twitterUrls.joinHackathon} target="_blank" rel="noopener noreferrer">
               Join Community
@@ -117,7 +117,7 @@ export default function HackathonPage() {
             size="lg" 
             variant="cyberpunk" 
             asChild
-            className="font-mono uppercase tracking-widest border-neon-secondary text-neon-secondary hover:bg-neon-secondary hover:text-black"
+            className="font-mono uppercase tracking-widest border-zinc-700/50 text-zinc-600 hover:bg-zinc-800/30 hover:text-zinc-50"
           >
             <a href="#bug-bounties">
               Bug Bounties
@@ -130,26 +130,26 @@ export default function HackathonPage() {
       <div id="bug-bounties" className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <Card className="border border-neon-primary/20 bg-black/60 hover:border-neon-primary/30 shadow-[0_0_10px_rgba(0,255,65,0.1)] group relative opacity-75">
+          <Card className="h-full group transition-all duration-300 border-white/5 hover:border-white/20 hover:bg-white/5 relative opacity-75 flex flex-col">
             <div className="absolute top-2 right-2">
-              <Badge className="bg-green-600 text-white font-mono text-xs">FINISHED</Badge>
+              <Badge className="bg-zinc-700 text-zinc-50 font-mono text-xs">FINISHED</Badge>
             </div>
             <CardHeader>
-              <CardTitle className="text-neon-primary/70 flex items-center gap-2 text-xl">
-                <Code2 className="w-6 h-6" />
+              <CardTitle className="text-xl mb-2 text-zinc-50 flex items-center gap-2">
+                <Code2 className="w-6 h-6 text-zinc-50/70" />
                 Bug Bounty #001
               </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-white/80 font-semibold mb-2 transition-colors">Creative Web Design & Frontend</p>
-              <p className="text-sm text-muted-foreground mb-4">Showcase your creativity! Build innovative web designs and frontend implementations. Be bold and creative to win RM 100.</p>
-              <div className="flex gap-2 mb-4">
-                <Badge variant="outline" className="border-neon-primary/50 text-neon-primary/70 text-xs">RM 100</Badge>
-                <Badge variant="outline" className="border-neon-primary/50 text-neon-primary/70 text-xs">Top 10 Bonus</Badge>
+              <div className="flex items-center gap-2 text-sm text-zinc-50/70">
+                <span>Creative Web Design & Frontend</span>
               </div>
+            </CardHeader>
+            <CardContent className="flex-1">
+              <p className="mb-4 transition-colors text-muted-foreground group-hover:text-zinc-50/90">
+                Showcase your creativity! Build innovative web designs and frontend implementations. Be bold and creative!
+              </p>
             </CardContent>
-            <CardFooter className="flex gap-2">
-              <Button variant="cyberpunk" size="lg" asChild className="flex-1 border-neon-primary/50 text-neon-primary/70 hover:bg-neon-primary/20 hover:text-neon-primary/80 hover:shadow-[0_0_10px_var(--neon-primary)] font-mono uppercase">
+            <CardFooter className="flex gap-2 mt-auto">
+              <Button variant="cyberpunk" size="lg" asChild className="flex-1 border-zinc-600/50 text-zinc-50 hover:bg-zinc-800/30 hover:text-zinc-50 font-mono uppercase">
                 <a href="https://x.com/masterofnone/status/1992914421883248878?s=20" target="_blank" rel="noopener noreferrer">
                   FINISHED
                 </a>
@@ -157,19 +157,28 @@ export default function HackathonPage() {
             </CardFooter>
           </Card>
 
-          <Card className="border-2 border-neon-secondary bg-black/90 hover:border-neon-secondary shadow-[0_0_50px_rgba(43,138,26,0.6)] hover:shadow-[0_0_70px_rgba(43,138,26,0.8)] group relative flex flex-col h-full">
+          <Card className="h-full group transition-all duration-300 border-2 border-green-700 bg-black/90 hover:border-green-600 shadow-[0_0_50px_rgba(21,128,61,0.6)] hover:shadow-[0_0_70px_rgba(21,128,61,0.8)] relative flex flex-col">
             <div className="absolute top-2 right-2">
-              <Badge className="bg-neon-secondary text-white font-mono text-xs shadow-[0_0_10px_rgba(43,138,26,0.8)]">ACTIVE</Badge>
+              <Badge className="bg-green-700 text-zinc-50 font-mono text-xs shadow-[0_0_10px_rgba(34,197,94,0.2)]">ACTIVE</Badge>
             </div>
             <CardHeader>
-              <CardTitle className="text-neon-secondary flex items-center gap-2 text-xl drop-shadow-[0_0_8px_rgba(43,138,26,0.8)]">
-                <Briefcase className="w-6 h-6" />
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="outline" className="border-green-700 text-green-700 shadow-[0_0_10px_rgba(34,197,94,0.2)]">
+                  RM 150
+                </Badge>
+              </div>
+              <CardTitle className="text-xl mb-2 text-green-700 flex items-center gap-2">
+                <Briefcase className="w-6 h-6 text-green-700/70" />
                 Bug Bounty #002
-               </CardTitle>
+              </CardTitle>
+              <div className="flex items-center gap-2 text-sm text-zinc-50/70">
+                <span><span className="text-green-700">Kracked</span> Jobs</span>
+              </div>
             </CardHeader>
             <CardContent className="flex-1">
-              <p className="text-white font-semibold mb-2 group-hover:text-neon-secondary transition-colors drop-shadow-[0_0_4px_rgba(43,138,26,0.5)]">Gamified Tech Job Board</p>
-              <p className="text-sm text-muted-foreground mb-4">Community voted for a "Gamified Tech Job Board" theme. Winner gets RM150! Build something epic & submit your PR 🌟</p>
+              <p className="mb-4 transition-colors text-zinc-50 font-semibold group-hover:text-green-700">
+                Community voted for a "<span className="text-green-700">Kracked</span> Jobs" theme. Winner gets RM150! Build something epic & submit your PR 🌟
+              </p>
             </CardContent>
             <CardFooter className="flex gap-2 mt-auto">
               <Button 
@@ -177,7 +186,7 @@ export default function HackathonPage() {
                 size="lg" 
                 asChild
                 onClick={() => window.open('https://x.com/solahidris_/status/1993586176419414145?s=20', '_blank')}
-                className="flex-1 border-2 border-neon-secondary text-neon-secondary bg-neon-secondary/10 hover:bg-neon-secondary hover:text-black hover:shadow-[0_0_30px_var(--neon-secondary)] font-mono uppercase font-bold shadow-[0_0_20px_rgba(43,138,26,0.6)]"
+                className="flex-1 border-2 border-green-700 text-green-700 bg-green-700/10 hover:bg-green-700/20 hover:text-zinc-50 font-mono uppercase font-bold"
               >
                 <a href="https://x.com/solahidris_/status/1993586176419414145?s=20" target="_blank" rel="noopener noreferrer">
                   Start Bug Bounty #002
@@ -186,23 +195,32 @@ export default function HackathonPage() {
             </CardFooter>
           </Card>
 
-          <Card className="border-neon-accent/30 bg-black/60 hover:border-neon-accent/50 group opacity-75">
+          <Card className="h-full group transition-all duration-300 border-white/5 hover:border-white/20 hover:bg-white/5 relative opacity-75 flex flex-col">
             <CardHeader>
-              <CardTitle className="text-neon-accent flex items-center gap-2">
-                <Gamepad2 className="w-5 h-5" />
+              <div className="flex items-center justify-between mb-2">
+                <Badge variant="outline" className="border-zinc-600/50 text-zinc-50 text-xs">
+                  TBA
+                </Badge>
+              </div>
+              <CardTitle className="text-xl mb-2 text-zinc-50 flex items-center gap-2">
+                <Gamepad2 className="w-5 h-5 text-zinc-50/70" />
                 Bug Bounty #003
-               </CardTitle>
+              </CardTitle>
+              <div className="flex items-center gap-2 text-sm text-zinc-50/70">
+                <span>Game Dev Design</span>
+              </div>
             </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground group-hover:text-foreground transition-colors mb-2">Game Dev Design</p>
-              <p className="text-xs text-muted-foreground">Coming soon. Game development projects and creative challenges.</p>
+            <CardContent className="flex-1">
+              <p className="mb-4 transition-colors text-muted-foreground group-hover:text-zinc-50/90">
+                Coming soon. Game development projects and creative challenges.
+              </p>
             </CardContent>
-            <CardFooter className="justify-end">
+            <CardFooter className="justify-end mt-auto">
               <Button 
                 variant="cyberpunk" 
                 size="sm" 
                 onClick={() => setComingSoonBounty(3)} 
-                className="border-neon-accent text-neon-accent hover:bg-neon-accent/10 hover:shadow-[0_0_15px_var(--neon-accent)]"
+                className="border-zinc-700/50 text-zinc-50 hover:bg-zinc-800/20"
               >
                 Coming Soon
               </Button>
@@ -213,42 +231,42 @@ export default function HackathonPage() {
       </div>
 
       {/* How It Works Section */}
-      <div className="min-h-screen flex items-center justify-center relative z-10">
+      <div id="how-it-works" className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <Card className="border-white/10 bg-black/80 backdrop-blur-xl">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-700 via-green-600 to-green-700" />
           <CardHeader>
-            <CardTitle className="text-center text-2xl font-mono uppercase tracking-widest">How It Works</CardTitle>
+            <CardTitle className="text-center text-2xl font-mono uppercase tracking-widest text-green-700">How It Works</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
               <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-primary flex items-center justify-center mx-auto mb-4 bg-neon-primary/10 text-neon-primary font-mono text-2xl font-bold">
+                <div className="w-16 h-16 rounded-none border-2 border-green-700 flex items-center justify-center mx-auto mb-4 bg-green-700/20 text-green-700 font-mono text-2xl font-bold shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                   1
                 </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Register & Join</h3>
-                <p className="text-sm text-muted-foreground">Sign up for free and join the hackathon community</p>
+                <h3 className="font-bold text-green-700 mb-2 font-mono">Register & Join</h3>
+                <p className="text-sm text-zinc-50/80">Sign up for free and join the hackathon community</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-secondary flex items-center justify-center mx-auto mb-4 bg-neon-secondary/10 text-neon-secondary font-mono text-2xl font-bold">
+                <div className="w-16 h-16 rounded-none border-2 border-green-700 flex items-center justify-center mx-auto mb-4 bg-green-700/20 text-green-700 font-mono text-2xl font-bold shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                   2
                 </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Choose Bug Bounty</h3>
-                <p className="text-sm text-muted-foreground">Pick a challenge that matches your skills</p>
+                <h3 className="font-bold text-green-700 mb-2 font-mono">Choose Bug Bounty</h3>
+                <p className="text-sm text-zinc-50/80">Pick a challenge that matches your skills</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-accent flex items-center justify-center mx-auto mb-4 bg-neon-accent/10 text-neon-accent font-mono text-2xl font-bold">
+                <div className="w-16 h-16 rounded-none border-2 border-green-700 flex items-center justify-center mx-auto mb-4 bg-green-700/20 text-green-700 font-mono text-2xl font-bold shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                   3
                 </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Build & Submit</h3>
-                <p className="text-sm text-muted-foreground">Create your solution and submit for review</p>
+                <h3 className="font-bold text-green-700 mb-2 font-mono">Build & Submit</h3>
+                <p className="text-sm text-zinc-50/80">Create your solution and submit for review</p>
               </div>
               <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-primary flex items-center justify-center mx-auto mb-4 bg-neon-primary/10 text-neon-primary font-mono text-2xl font-bold">
+                <div className="w-16 h-16 rounded-none border-2 border-green-700 flex items-center justify-center mx-auto mb-4 bg-green-700/20 text-green-700 font-mono text-2xl font-bold shadow-[0_0_10px_rgba(34,197,94,0.3)]">
                   4
                 </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Win Prizes</h3>
-                <p className="text-sm text-muted-foreground">Earn credits, get hired, and level up</p>
+                <h3 className="font-bold text-green-700 mb-2 font-mono">Win Prizes</h3>
+                <p className="text-sm text-zinc-50/80">Earn credits, get hired, and level up</p>
               </div>
             </div>
           </CardContent>
@@ -303,14 +321,14 @@ export default function HackathonPage() {
               </div>
               <div className="flex flex-col items-center text-center">
                 <div className="w-24 h-24 rounded-full border-2 border-white/40 flex items-center justify-center mb-4 bg-gradient-to-br from-white/20 to-white/5 shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all">
-                  <Rocket className="w-10 h-10 text-white" />
+                  <Rocket className="w-10 h-10 text-zinc-50" />
                 </div>
-                <div className="text-base font-bold text-white mb-1">Early Submission</div>
+                <div className="text-base font-bold text-zinc-50 mb-1">Early Submission</div>
                 <div className="text-xs text-muted-foreground">+10% bonus for early submissions</div>
               </div>
             </div>
             <div className="p-4 bg-gradient-to-r from-neon-primary/10 via-neon-secondary/10 to-neon-accent/10 border-l-2 border-neon-primary rounded-none">
-              <p className="text-sm font-mono text-white">
+              <p className="text-sm font-mono text-zinc-50">
                 <strong className="text-neon-primary">How it works:</strong> Complete bounties to earn base points, then stack bonuses for creativity, technical quality, community help, and early submissions. Multiple ways to win!
               </p>
             </div>
@@ -357,12 +375,12 @@ export default function HackathonPage() {
       <div className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <Card className="border-white/10 bg-black/80 backdrop-blur-xl overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-700 via-green-600 to-green-700" />
           <CardHeader>
             <div className="text-center text-2xl font-mono uppercase tracking-widest flex items-center justify-center gap-3">
-              <Code2 className="w-6 h-6 text-neon-primary" />
-              <CardTitle>Leaderboard</CardTitle>
-              <Code2 className="w-6 h-6 text-neon-primary" />
+              <Code2 className="w-6 h-6 text-green-700" />
+              <CardTitle className="text-green-700">Leaderboard</CardTitle>
+              <Code2 className="w-6 h-6 text-green-700" />
             </div>
           </CardHeader>
           <CardContent>
@@ -370,11 +388,11 @@ export default function HackathonPage() {
               <Table className="w-full">
                 <TableHeader>
                   <TableRow className="border-b border-white/10 hover:bg-white/5">
-                    <TableHead className="w-[100px] text-neon-primary font-mono">Rank</TableHead>
-                    <TableHead className="text-neon-primary font-mono">Name</TableHead>
-                    <TableHead className="text-neon-primary font-mono">Project</TableHead>
-                    <TableHead className="text-neon-primary font-mono">Focus</TableHead>
-                    <TableHead className="text-right text-neon-primary font-mono">Points</TableHead>
+                    <TableHead className="w-[100px] text-green-700 font-mono">Rank</TableHead>
+                    <TableHead className="text-green-700 font-mono">Name</TableHead>
+                    <TableHead className="text-green-700 font-mono">Project</TableHead>
+                    <TableHead className="text-green-700 font-mono">Focus</TableHead>
+                    <TableHead className="text-right text-green-700 font-mono">Points</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -386,22 +404,30 @@ export default function HackathonPage() {
                     { rank: 5, name: "Rajiv K.", project: "Math Solver Bot", focus: "Education", points: "690" },
                   ].map((row) => (
                     <TableRow key={row.rank} className="border-b border-white/5 hover:bg-white/5 transition-colors font-mono text-sm">
-                      <TableCell className="font-bold text-neon-secondary">#{row.rank}</TableCell>
-                      <TableCell className="font-bold text-foreground">{row.name}</TableCell>
-                      <TableCell className="text-muted-foreground">{row.project}</TableCell>
-                      <TableCell><Badge variant="secondary" className="bg-white/10 text-white border border-white/20 text-sm font-medium px-3 py-1 rounded-none">{row.focus}</Badge></TableCell>
-                      <TableCell className="text-right font-bold text-neon-accent">{row.points}</TableCell>
+                      <TableCell className="font-bold text-green-700">#{row.rank}</TableCell>
+                      <TableCell className="font-bold text-zinc-50">{row.name}</TableCell>
+                      <TableCell className="text-zinc-50/80">{row.project}</TableCell>
+                      <TableCell><Badge variant="secondary" className="bg-green-700/20 text-green-700 border border-green-700/40 text-sm font-medium px-3 py-1 rounded-none">{row.focus}</Badge></TableCell>
+                      <TableCell className="text-right font-bold text-green-700">{row.points}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </div>
             <div className="mt-6 text-center">
-              <p className="text-muted-foreground mb-4 font-mono">Want to see your name here?</p>
-              <Button size="lg" variant="cyberpunk" asChild className="font-mono uppercase tracking-widest">
-                <a href={twitterUrls.joinLeaderboard} target="_blank" rel="noopener noreferrer">
-                  Join Now <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+              <p className="text-zinc-50/80 mb-4 font-mono">Want to see your name here?</p>
+              <Button 
+                size="lg" 
+                variant="cyberpunk" 
+                onClick={() => {
+                  const element = document.getElementById('bug-bounties');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="font-mono uppercase tracking-widest border-green-700 text-green-700 hover:bg-green-700/20 hover:text-green-600"
+              >
+                Join Now <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </div>
           </CardContent>
@@ -413,23 +439,41 @@ export default function HackathonPage() {
       <div className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <div className="relative overflow-hidden w-full">
-          <div className="absolute inset-0 bg-gradient-to-r from-neon-primary/20 via-neon-secondary/20 to-neon-accent/20 blur-3xl" />
-          <Card className="relative border-2 border-neon-primary/50 bg-black/90 backdrop-blur-xl">
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-green-700/20 via-green-600/20 to-green-700/20 blur-3xl" />
+          <Card className="relative border-2 border-green-700/50 bg-black/90 backdrop-blur-xl">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-green-700 via-green-600 to-green-700" />
             <CardContent className="p-12 text-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4 font-mono uppercase tracking-widest">
+              <h2 className="text-3xl md:text-4xl font-bold text-green-700 mb-4 font-mono uppercase tracking-widest">
                 Ready to Level Up?
               </h2>
-              <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-xl text-zinc-50/90 mb-8 max-w-2xl mx-auto">
                 Join the hackathon and compete for RM 1,200 + job opportunities with partner companies
               </p>
               <div className="flex flex-wrap justify-center gap-4">
-                <Button size="lg" variant="cyberpunk" asChild className="h-14 px-10 text-lg font-mono uppercase tracking-widest">
-                  <a href={twitterUrls.registerFinal} target="_blank" rel="noopener noreferrer">
-                    Register for Hackathon <ArrowRight className="ml-2 w-5 h-5" />
-                  </a>
+                <Button 
+                  size="lg" 
+                  variant="cyberpunk" 
+                  onClick={() => {
+                    const element = document.getElementById('bug-bounties');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="h-14 px-10 text-lg font-mono uppercase tracking-widest border-green-700 text-green-700 hover:bg-green-700/20 hover:text-green-600"
+                >
+                  Register for Hackathon <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
-                <Button variant="ghost" size="lg" onClick={() => setIsRulesOpen(true)} className="h-14 px-10 text-lg border border-white/10 hover:bg-white/5">
+                <Button 
+                  variant="ghost" 
+                  size="lg" 
+                  onClick={() => {
+                    const element = document.getElementById('how-it-works');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                  }}
+                  className="h-14 px-10 text-lg border border-green-700/50 text-green-700 hover:bg-green-700/10 hover:text-green-600"
+                >
                   Learn More
                 </Button>
               </div>
@@ -452,7 +496,7 @@ export default function HackathonPage() {
           <div className="space-y-6 mt-4 font-mono text-sm">
             {/* Concept Section */}
             <div>
-              <h3 className="text-lg font-semibold mb-3 text-white border-b border-neon-primary/30 pb-1 flex items-center gap-2">
+              <h3 className="text-lg font-semibold mb-3 text-zinc-50 border-b border-neon-primary/30 pb-1 flex items-center gap-2">
                 <Zap className="w-5 h-5 text-neon-primary" />
                 The Concept
               </h3>
@@ -465,7 +509,7 @@ export default function HackathonPage() {
 
             {/* Rewards Section */}
             <div>
-              <h3 className="text-lg font-semibold mb-3 text-white border-b border-neon-primary/30 pb-1 flex items-center gap-2">
+              <h3 className="text-lg font-semibold mb-3 text-zinc-50 border-b border-neon-primary/30 pb-1 flex items-center gap-2">
                 <Trophy className="w-5 h-5 text-neon-primary" />
                 How You Get Rewarded
               </h3>
@@ -480,13 +524,13 @@ export default function HackathonPage() {
                 <div className="p-4 bg-neon-secondary/10 rounded-none border-l-2 border-neon-secondary">
                   <h4 className="font-semibold text-neon-secondary mb-2">Cash Rewards</h4>
                   <p className="text-sm text-muted-foreground">
-                    Top performers earn real money! Bug Bounty #001 offers RM 100 prize. More bounties = more opportunities to win.
+                    Top performers earn real money! More bounties = more opportunities to win.
                   </p>
                 </div>
                 <div className="p-4 bg-neon-accent/10 rounded-none border-l-2 border-neon-accent">
                   <h4 className="font-semibold text-neon-accent mb-2">Company Visibility</h4>
                   <p className="text-sm text-muted-foreground">
-                    Top 10 participants get <strong className="text-white">automatic interviews</strong> with partner companies. 
+                    Top 10 participants get <strong className="text-zinc-50">automatic interviews</strong> with partner companies. 
                     Your work will be showcased to industry leaders and potential employers.
                   </p>
                 </div>
@@ -495,22 +539,22 @@ export default function HackathonPage() {
 
             {/* How It Works */}
             <div>
-              <h3 className="text-lg font-semibold mb-3 text-white border-b border-neon-primary/30 pb-1 flex items-center gap-2">
+              <h3 className="text-lg font-semibold mb-3 text-zinc-50 border-b border-neon-primary/30 pb-1 flex items-center gap-2">
                 <Code2 className="w-5 h-5 text-neon-primary" />
                 The Process
               </h3>
               <ol className="space-y-3 list-decimal list-inside text-muted-foreground">
-                <li className="pl-2"><strong className="text-white">Bounties are released</strong> - We'll announce new challenges regularly</li>
-                <li className="pl-2"><strong className="text-white">You choose your challenge</strong> - Pick bounties that match your skills and interests</li>
-                <li className="pl-2"><strong className="text-white">Be creative and build</strong> - Go wild! The crazier and more innovative, the better</li>
-                <li className="pl-2"><strong className="text-white">Submit your work</strong> - Show us what you've built</li>
-                <li className="pl-2"><strong className="text-white">Get rewarded</strong> - Earn points, win money, and get noticed by companies</li>
+                <li className="pl-2"><strong className="text-zinc-50">Bounties are released</strong> - We'll announce new challenges regularly</li>
+                <li className="pl-2"><strong className="text-zinc-50">You choose your challenge</strong> - Pick bounties that match your skills and interests</li>
+                <li className="pl-2"><strong className="text-zinc-50">Be creative and build</strong> - Go wild! The crazier and more innovative, the better</li>
+                <li className="pl-2"><strong className="text-zinc-50">Submit your work</strong> - Show us what you've built</li>
+                <li className="pl-2"><strong className="text-zinc-50">Get rewarded</strong> - Earn points, win money, and get noticed by companies</li>
               </ol>
             </div>
 
             {/* Key Points */}
             <div className="pt-4 border-t border-white/10">
-              <h3 className="text-lg font-semibold mb-3 text-white">Key Points</h3>
+              <h3 className="text-lg font-semibold mb-3 text-zinc-50">Key Points</h3>
               <ul className="space-y-2 text-muted-foreground">
                 <li className="flex items-start gap-2">
                   <span className="text-neon-primary mt-1">✓</span>
@@ -542,7 +586,7 @@ export default function HackathonPage() {
                     setIsRulesOpen(false);
                     setTimeout(() => setIsScopeOpen(true), 300);
                   }}
-                  className="border-neon-primary text-neon-primary hover:bg-neon-primary hover:text-black font-mono uppercase"
+                  className="border-neon-primary text-neon-primary hover:bg-neon-primary hover:text-zinc-950 font-mono uppercase"
                 >
                   View Bug Bounty #001 Details
                 </Button>
@@ -563,20 +607,9 @@ export default function HackathonPage() {
           </DialogHeader>
           
           <div className="space-y-6 mt-4 font-mono text-sm">
-            {/* Rewards Section */}
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-white border-b border-white/10 pb-1">Reward & Payout</h3>
-              <div className="p-6 bg-gradient-to-r from-neon-primary/20 via-neon-secondary/20 to-neon-accent/20 rounded-none border-2 border-neon-primary/50">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-neon-primary mb-2 font-mono">RM 100</div>
-                  <p className="text-sm text-muted-foreground">Winner takes all! The most creative and well-executed submission wins the full prize.</p>
-                </div>
-              </div>
-            </div>
-
             {/* Scope Section */}
             <div>
-              <h3 className="text-lg font-semibold mb-3 text-white border-b border-white/10 pb-1">What We're Looking For</h3>
+              <h3 className="text-lg font-semibold mb-3 text-zinc-50 border-b border-white/10 pb-1">What We're Looking For</h3>
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-neon-primary mb-2 flex items-center gap-2">
@@ -615,7 +648,7 @@ export default function HackathonPage() {
 
             <div className="pt-4 border-t border-white/10">
               <p className="text-xs text-muted-foreground uppercase tracking-wider">
-                <strong>System Note:</strong> RM 100 reward is paid in cash or AI credits equivalent. Winner will be selected based on creativity, technical execution, and overall impact. Verification and code review required.
+                <strong>System Note:</strong> Winner will be selected based on creativity, technical execution, and overall impact. Verification and code review required.
               </p>
             </div>
           </div>
@@ -630,7 +663,7 @@ export default function HackathonPage() {
               Bug Bounty #{comingSoonBounty}
             </DialogTitle>
             <DialogDescription className="text-center text-muted-foreground">
-              {comingSoonBounty === 2 && "Gamified Tech Job Board"}
+              {comingSoonBounty === 2 && <span><span className="text-green-700">Kracked</span> Jobs</span>}
               {comingSoonBounty === 3 && "Game Dev Design"}
             </DialogDescription>
           </DialogHeader>
@@ -646,9 +679,9 @@ export default function HackathonPage() {
             <div>
               {comingSoonBounty === 2 ? (
                 <>
-                  <h3 className="text-xl font-bold text-white mb-2 font-mono">Active Now!</h3>
+                  <h3 className="text-xl font-bold text-zinc-50 mb-2 font-mono">Active Now!</h3>
                   <p className="text-muted-foreground mb-4">
-                    Community voted for a "Gamified Tech Job Board" theme. Winner gets RM150! Build something epic & submit your PR 🌟
+                    Community voted for a "<span className="text-green-700">Kracked</span> Jobs" theme. Winner gets RM150! Build something epic & submit your PR 🌟
                   </p>
                   <Button
                     variant="cyberpunk"
@@ -664,7 +697,7 @@ export default function HackathonPage() {
                 </>
               ) : (
                 <>
-                  <h3 className="text-xl font-bold text-white mb-2 font-mono">Coming Soon</h3>
+                  <h3 className="text-xl font-bold text-zinc-50 mb-2 font-mono">Coming Soon</h3>
                   <p className="text-muted-foreground">
                     {comingSoonBounty === 3 && "Game development projects and creative challenges are coming soon. Get ready!"}
                   </p>

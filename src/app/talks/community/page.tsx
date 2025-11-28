@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import PageHero from '@/components/PageHero';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Calendar, Mic2, Users, CheckCircle2 } from 'lucide-react';
+import { Calendar, Mic2, Users, CheckCircle2, Clock } from 'lucide-react';
 
 export default function CommunityTalksPage() {
   const [speakerFormData, setSpeakerFormData] = useState({
@@ -28,6 +28,38 @@ export default function CommunityTalksPage() {
   });
   const [eventFormErrors, setEventFormErrors] = useState<Record<string, string>>({});
   const [eventFormSuccess, setEventFormSuccess] = useState(false);
+  const [countdown, setCountdown] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
+  useEffect(() => {
+    const calculateCountdown = () => {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const eventDate = new Date(`${currentYear}-12-05T00:00:00`);
+      
+      // If Dec 5 has passed this year, target next year
+      if (eventDate < now) {
+        eventDate.setFullYear(currentYear + 1);
+      }
+      
+      const diff = eventDate.getTime() - now.getTime();
+      
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        setCountdown({ days, hours, minutes, seconds });
+      } else {
+        setCountdown({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateCountdown();
+    const interval = setInterval(calculateCountdown, 1000);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   const upcomingTalks = [
     {
@@ -217,50 +249,88 @@ ${speakerFormData.description}
       {/* Upcoming Community Talks Section */}
       <section className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
-          <h2 className="text-3xl font-bold mb-12 text-center font-mono uppercase tracking-widest text-white/80 flex items-center justify-center gap-3">
+          <h2 className="text-3xl font-bold mb-12 text-center font-mono uppercase tracking-widest text-zinc-50/80 flex items-center justify-center gap-3">
             <Calendar className="w-6 h-6 text-neon-primary" />
             Upcoming Community Talks
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {upcomingTalks.map((talk, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <Card className="h-full group hover:bg-white/5 transition-all duration-300 border-white/5 hover:border-white/20">
-                  <CardHeader>
-                    <div className="flex items-center justify-between mb-2">
-                      <Badge 
-                        variant="outline" 
-                        className={
-                          talk.color === 'neon-accent' 
-                            ? 'border-neon-accent text-neon-accent shadow-[0_0_10px_rgba(240,240,240,0.2)]' 
-                            : talk.color === 'neon-primary' 
-                            ? 'border-neon-primary text-neon-primary shadow-[0_0_10px_rgba(0,255,65,0.2)]'
-                            : 'border-neon-secondary text-neon-secondary shadow-[0_0_10px_rgba(0,143,17,0.2)]'
-                        }
-                      >
-                        {talk.date}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-xl mb-2">{talk.title}</CardTitle>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Mic2 className="w-4 h-4" />
-                      <span>{talk.speaker}</span>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground group-hover:text-white/90 transition-colors">
-                      {talk.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
+            {upcomingTalks.map((talk, index) => {
+              const isDec5Event = talk.date === "Dec 5";
+              
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                >
+                  <Card className={`h-full group transition-all duration-300 ${
+                    isDec5Event 
+                      ? 'border-2 border-green-700 bg-black/90 hover:border-green-700 shadow-[0_0_50px_rgba(21,128,61,0.6)] hover:shadow-[0_0_70px_rgba(21,128,61,0.8)] relative flex flex-col' 
+                      : 'border-white/5 hover:border-white/20 hover:bg-white/5'
+                  }`}>
+                    <CardHeader>
+                      <div className="flex items-center justify-between mb-2">
+                        <Badge 
+                          variant="outline" 
+                          className={
+                            talk.color === 'neon-accent' 
+                              ? 'border-neon-accent text-neon-accent shadow-[0_0_10px_rgba(240,240,240,0.2)]' 
+                              : talk.color === 'neon-primary' 
+                              ? 'border-green-700 text-green-700 shadow-[0_0_10px_rgba(21,128,61,0.2)]'
+                              : 'border-green-700 text-green-700 shadow-[0_0_10px_rgba(21,128,61,0.2)]'
+                          }
+                        >
+                          {talk.date}
+                        </Badge>
+                      </div>
+                      <CardTitle className={`text-xl mb-2 ${isDec5Event ? 'text-green-700 drop-shadow-[0_0_8px_rgba(21,128,61,0.8)]' : ''}`}>{talk.title}</CardTitle>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        <Mic2 className="w-4 h-4" />
+                        <span>{talk.speaker}</span>
+                      </div>
+                    </CardHeader>
+                    <CardContent className={isDec5Event ? 'flex-1' : ''}>
+                      <p className={`mb-4 transition-colors ${
+                        isDec5Event 
+                          ? 'text-zinc-50 font-semibold group-hover:text-green-700 drop-shadow-[0_0_4px_rgba(21,128,61,0.5)]' 
+                          : 'text-muted-foreground group-hover:text-zinc-50/90'
+                      }`}>
+                        {talk.description}
+                      </p>
+                      {isDec5Event && (
+                        <div className="mt-4 pt-4 border-t border-neon-primary/30">
+                          <div className="flex items-center gap-2 mb-3">
+                            <Clock className="w-4 h-4 text-neon-primary" />
+                            <span className="text-sm font-semibold text-neon-primary uppercase tracking-wider">Countdown</span>
+                          </div>
+                          <div className="grid grid-cols-4 gap-2">
+                            <div className="text-center p-2 bg-black/40 rounded border border-neon-primary/30">
+                              <div className="text-lg font-bold text-neon-primary font-mono">{countdown.days}</div>
+                              <div className="text-xs text-muted-foreground uppercase">Days</div>
+                            </div>
+                            <div className="text-center p-2 bg-black/40 rounded border border-neon-primary/30">
+                              <div className="text-lg font-bold text-neon-primary font-mono">{countdown.hours}</div>
+                              <div className="text-xs text-muted-foreground uppercase">Hours</div>
+                            </div>
+                            <div className="text-center p-2 bg-black/40 rounded border border-neon-primary/30">
+                              <div className="text-lg font-bold text-neon-primary font-mono">{countdown.minutes}</div>
+                              <div className="text-xs text-muted-foreground uppercase">Mins</div>
+                            </div>
+                            <div className="text-center p-2 bg-black/40 rounded border border-neon-primary/30">
+                              <div className="text-lg font-bold text-neon-primary font-mono">{countdown.seconds}</div>
+                              <div className="text-xs text-muted-foreground uppercase">Secs</div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -301,7 +371,7 @@ ${speakerFormData.description}
                     autoComplete="name"
                     value={speakerFormData.name}
                     onChange={(e) => setSpeakerFormData({ ...speakerFormData, name: e.target.value })}
-                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
+                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
                   />
                   {speakerFormErrors.name && (
                     <p className="mt-1 text-sm text-red-500">{speakerFormErrors.name}</p>
@@ -319,7 +389,7 @@ ${speakerFormData.description}
                     autoComplete="email"
                     value={speakerFormData.email}
                     onChange={(e) => setSpeakerFormData({ ...speakerFormData, email: e.target.value })}
-                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
+                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
                   />
                   {speakerFormErrors.email && (
                     <p className="mt-1 text-sm text-red-500">{speakerFormErrors.email}</p>
@@ -336,7 +406,7 @@ ${speakerFormData.description}
                     type="text"
                     value={speakerFormData.talkTitle}
                     onChange={(e) => setSpeakerFormData({ ...speakerFormData, talkTitle: e.target.value })}
-                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
+                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
                   />
                   {speakerFormErrors.talkTitle && (
                     <p className="mt-1 text-sm text-red-500">{speakerFormErrors.talkTitle}</p>
@@ -353,7 +423,7 @@ ${speakerFormData.description}
                     rows={4}
                     value={speakerFormData.description}
                     onChange={(e) => setSpeakerFormData({ ...speakerFormData, description: e.target.value })}
-                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary resize-none"
+                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary resize-none"
                   />
                   {speakerFormErrors.description && (
                     <p className="mt-1 text-sm text-red-500">{speakerFormErrors.description}</p>
@@ -369,7 +439,7 @@ ${speakerFormData.description}
                     name="format"
                     value={speakerFormData.format}
                     onChange={(e) => setSpeakerFormData({ ...speakerFormData, format: e.target.value })}
-                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
+                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
                   >
                     <option value="">Select a format</option>
                     <option value="workshop">Workshop</option>
@@ -397,7 +467,7 @@ ${speakerFormData.description}
       <section className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,65,0.15)_0%,transparent_70%)] pointer-events-none" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(21,128,61,0.15)_0%,transparent_70%)] pointer-events-none" />
             <CardContent className="pt-12 pb-12 relative z-10">
               <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60">
                 Tell Us What Events You Want
@@ -430,7 +500,7 @@ ${speakerFormData.description}
                       autoComplete="name"
                       value={eventFormData.name}
                       onChange={(e) => setEventFormData({ ...eventFormData, name: e.target.value })}
-                      className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
+                      className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
                     />
                   </div>
 
@@ -445,7 +515,7 @@ ${speakerFormData.description}
                       autoComplete="email"
                       value={eventFormData.email}
                       onChange={(e) => setEventFormData({ ...eventFormData, email: e.target.value })}
-                      className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
+                      className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary"
                     />
                     {eventFormErrors.email && (
                       <p className="mt-1 text-sm text-red-500">{eventFormErrors.email}</p>
@@ -465,7 +535,7 @@ ${speakerFormData.description}
                         onClick={() => toggleEventType(type)}
                         className={`px-4 py-2 rounded-lg border transition-all ${
                           eventFormData.eventTypes.includes(type)
-                            ? 'bg-neon-primary/20 border-neon-primary text-neon-primary shadow-[0_0_10px_rgba(0,255,65,0.3)]'
+                            ? 'bg-green-700/20 border-green-700 text-green-700 shadow-[0_0_10px_rgba(21,128,61,0.3)]'
                             : 'bg-black/40 border-white/10 text-muted-foreground hover:border-white/20'
                         }`}
                       >
@@ -485,7 +555,7 @@ ${speakerFormData.description}
                     rows={4}
                     value={eventFormData.suggestion}
                     onChange={(e) => setEventFormData({ ...eventFormData, suggestion: e.target.value })}
-                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-white focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary resize-none"
+                    className="w-full px-4 py-2 bg-black/40 border border-white/10 rounded-lg text-zinc-50 focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary resize-none"
                     placeholder="Share your ideas for future events..."
                   />
                 </div>

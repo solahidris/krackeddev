@@ -51,7 +51,7 @@ export function Leaderboard() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="text-sm font-bold text-neon-primary font-mono">{entry.xp}</div>
+                <div className="text-sm font-bold text-zinc-600 font-mono">{entry.xp}</div>
                 <div className="text-xs text-muted-foreground">XP</div>
               </div>
             </div>
