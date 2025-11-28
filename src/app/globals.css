@@ -8,28 +8,28 @@
   /* Minimal Green Neon Palette */
   --background: #050505;
   --background-secondary: #0a0f0a;
-  --foreground: #e0e0e0;
+  --foreground: #fafafa; /* zinc-50 - softer white */
   
   --card: #0a0f0a;
-  --card-foreground: #e0e0e0;
+  --card-foreground: #fafafa; /* zinc-50 */
   
   --popover: #0a0f0a;
-  --popover-foreground: #e0e0e0;
+  --popover-foreground: #fafafa; /* zinc-50 */
   
   --primary: #00ff41; /* Lighter Neon Green */
-  --primary-foreground: #000000;
+  --primary-foreground: #09090b; /* zinc-950 - softer black */
   
   --secondary: #00ff41; /* Same green */
-  --secondary-foreground: #000000;
+  --secondary-foreground: #09090b; /* zinc-950 */
   
   --muted: #0a1f0a;
-  --muted-foreground: #00ff41;
+  --muted-foreground: #52525b; /* zinc-600 - dark gray for unimportant text */
   
   --accent: #00ff41; /* Same green */
-  --accent-foreground: #000000;
+  --accent-foreground: #09090b; /* zinc-950 */
   
   --destructive: #ff0000;
-  --destructive-foreground: #ffffff;
+  --destructive-foreground: #fafafa; /* zinc-50 */
   
   --border: #1a3f1a;
   --input: #0d260d;
@@ -163,7 +163,7 @@ body {
 /* Custom Selection Color */
 ::selection {
   background: var(--neon-primary);
-  color: #000000;
+  color: #09090b; /* zinc-950 */
 }
 
 /* White hand cursor for all clickable elements */
