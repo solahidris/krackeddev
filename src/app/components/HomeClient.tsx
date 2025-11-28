@@ -1,36 +1,45 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
-import PageHero from '@/components/PageHero';
-import InfoPanel from '@/components/InfoPanel';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Trophy, Gamepad2 } from 'lucide-react';
+import React, { useState } from "react";
+import Link from "next/link";
+import PageHero from "@/components/PageHero";
+import InfoPanel from "@/components/InfoPanel";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Trophy, Gamepad2 } from "lucide-react";
 
 export default function HomeClient() {
   const [isHoveringBounties, setIsHoveringBounties] = useState(false);
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
       {/* Hero Section */}
-      <PageHero 
-        title="Want to be a Kracked Dev?" 
+      <PageHero
+        title="Want to be a Kracked Dev?"
         subtitle="A community of cracked developers who want to level up together."
       >
         <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-6 w-full">
-          <Button size="lg" variant="cyberpunk" asChild className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto font-mono uppercase tracking-widest">
-            <Link href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">
+          <Button
+            size="lg"
+            variant="default"
+            asChild
+            className="text-white saturate-150 h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto font-mono uppercase tracking-widest"
+          >
+            <Link
+              href="https://x.com/i/communities/1983062242292822298"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               Join Community <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
-          <div 
+          <div
             className="relative w-full sm:w-auto"
             onMouseEnter={() => setIsHoveringBounties(true)}
             onMouseLeave={() => setIsHoveringBounties(false)}
           >
-            <Button 
-              variant="outline" 
-              size="lg" 
-              asChild 
+            <Button
+              variant="outline"
+              size="lg"
+              asChild
               className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-green-700/50 text-green-700 bg-green-700/5 hover:bg-green-700/10 hover:border-green-700 hover:text-zinc-50 hover:shadow-[0_0_20px_rgba(21,128,61,0.6)] transition-all font-mono uppercase tracking-widest relative overflow-hidden"
             >
               <Link href="/hackathon">
@@ -46,20 +55,31 @@ export default function HomeClient() {
                   const horizontalSpread = (i - 3.5) * 20; // Spread from -70px to +70px
                   const upwardDistance = -120; // Negative Y means upward
                   const delay = i * 0.04;
-                  const symbols = ['💰', '💵', '💴', '💶', '💷', '💸', '$', 'RM'];
+                  const symbols = [
+                    "💰",
+                    "💵",
+                    "💴",
+                    "💶",
+                    "💷",
+                    "💸",
+                    "$",
+                    "RM",
+                  ];
                   const symbol = symbols[i % symbols.length];
-                  
+
                   return (
                     <span
                       key={i}
                       className="absolute left-1/2 bottom-0 text-2xl font-bold text-green-700"
-                      style={{
-                        animation: `money-pop-up 1.2s ease-out ${delay}s forwards`,
-                        transformOrigin: 'center bottom',
-                        filter: 'drop-shadow(0 0 10px rgba(21, 128, 61, 1))',
-                        '--final-x': `${horizontalSpread}px`,
-                        '--final-y': `${upwardDistance}px`,
-                      } as React.CSSProperties & { [key: string]: string }}
+                      style={
+                        {
+                          animation: `money-pop-up 1.2s ease-out ${delay}s forwards`,
+                          transformOrigin: "center bottom",
+                          filter: "drop-shadow(0 0 10px rgba(21, 128, 61, 1))",
+                          "--final-x": `${horizontalSpread}px`,
+                          "--final-y": `${upwardDistance}px`,
+                        } as React.CSSProperties & { [key: string]: string }
+                      }
                     >
                       {symbol}
                     </span>
@@ -68,10 +88,10 @@ export default function HomeClient() {
               </div>
             )}
           </div>
-          <Button 
-            variant="outline" 
-            size="lg" 
-            asChild 
+          <Button
+            variant="outline"
+            size="lg"
+            asChild
             className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-green-700/50 text-green-700 bg-green-700/5 hover:bg-green-700/10 hover:border-green-700 hover:text-zinc-50 hover:shadow-[0_0_20px_rgba(21,128,61,0.4)] transition-all font-mono uppercase tracking-widest"
           >
             <Link href="/game">
@@ -157,4 +177,3 @@ export default function HomeClient() {
     </main>
   );
 }
-
