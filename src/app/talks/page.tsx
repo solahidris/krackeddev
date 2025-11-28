@@ -2,43 +2,15 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import PageHero from '@/components/PageHero';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
-import { Mic2, Calendar, Radio, CheckCircle2 } from 'lucide-react';
+import { Mic2, Calendar, CheckCircle2 } from 'lucide-react';
 
 export default function TalksPage() {
-  const [activeTab, setActiveTab] = useState<'featured' | 'community' | 'speaker' | 'events'>('featured');
-
-  const speakers = [
-    {
-      date: "Oct 12",
-      name: "Sarah Jenkins",
-      role: 'Senior Engineer',
-      desc: "Engineering maths into profit. How I used simple calculus to optimize logistics for a Grab competitor.",
-      color: "neon-accent",
-      image: "https://ui-avatars.com/api/?name=Sarah+Jenkins&size=200&background=random&color=fff&bold=true"
-    },
-    {
-      date: "Oct 26",
-      name: "Ahmad Razak",
-      role: 'Tech Lead',
-      desc: "Automation is not just scripts. Building enterprise workflows with zero-code and low-code solutions.",
-      color: "neon-primary",
-      image: "https://ui-avatars.com/api/?name=Ahmad+Razak&size=200&background=random&color=fff&bold=true"
-    },
-    {
-      date: "Nov 15",
-      name: "Jessica Lee",
-      role: 'Founder',
-      desc: 'The "Vibe Code" philosophy. Selling the feeling, not just the functionality.',
-      color: "neon-secondary",
-      image: "https://ui-avatars.com/api/?name=Jessica+Lee&size=200&background=random&color=fff&bold=true"
-    },
-  ];
+  const [activeTab, setActiveTab] = useState<'community' | 'speaker' | 'events'>('community');
 
   const [speakerFormData, setSpeakerFormData] = useState({
     name: '',
@@ -253,16 +225,6 @@ ${speakerFormData.description}
         <div className="mb-16 md:mb-20 flex justify-center border-b border-white/10 overflow-x-auto">
           <div className="flex gap-2 min-w-max">
             <button
-              onClick={() => setActiveTab('featured')}
-              className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
-                activeTab === 'featured'
-                  ? 'text-neon-primary border-b-2 border-neon-primary'
-                  : 'text-muted-foreground hover:text-white'
-              }`}
-            >
-              Featured Speakers
-            </button>
-            <button
               onClick={() => setActiveTab('community')}
               className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
                 activeTab === 'community'
@@ -294,72 +256,6 @@ ${speakerFormData.description}
             </button>
           </div>
         </div>
-
-        {/* Featured Speakers Tab */}
-        {activeTab === 'featured' && (
-          <div>
-            <h3 className="text-3xl font-bold mb-16 md:mb-20 text-center font-mono uppercase tracking-widest text-white/80 flex items-center justify-center gap-3">
-              <Radio className="w-6 h-6 text-red-500 animate-pulse" />
-              Featured Speakers
-            </h3>
-            
-            <div className="flex flex-col gap-12 max-w-4xl mx-auto relative">
-               {/* Vertical Line */}
-               <div className="absolute left-[19px] md:left-8 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent" />
-               
-               {speakers.map((speaker, index) => (
-                 <motion.div 
-                   key={index} 
-                   className="relative flex flex-col md:flex-row gap-6 md:pl-24 pl-12"
-                   initial={{ opacity: 0, x: -20 }}
-                   whileInView={{ opacity: 1, x: 0 }}
-                   viewport={{ once: true }}
-                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                 >
-                   {/* Dot */}
-                   <div className={`absolute left-[15px] md:left-[27px] top-8 h-2 w-2 rounded-full bg-${speaker.color === 'neon-accent' ? 'neon-accent' : speaker.color === 'neon-primary' ? 'neon-primary' : 'neon-secondary'} shadow-[0_0_10px_var(--${speaker.color})] ring-4 ring-black`} />
-                   
-                   <div className="md:w-32 flex-shrink-0 pt-1 md:text-right">
-                      <div className={`font-mono font-bold text-lg text-${speaker.color === 'neon-accent' ? 'neon-accent' : speaker.color === 'neon-primary' ? 'neon-primary' : 'neon-secondary'} flex items-center md:justify-end gap-2`}>
-                        <Calendar className="w-4 h-4 md:hidden" />
-                        {speaker.date}
-                      </div>
-                   </div>
-                   
-                   <Card className="flex-grow group hover:bg-white/5 transition-all duration-300 border-white/5 hover:border-white/20">
-                      <CardHeader>
-                         <div className="flex justify-between items-start gap-4">
-                            <div className="flex-shrink-0">
-                               <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-lg overflow-hidden border-2 border-white/10 group-hover:border-white/30 transition-colors">
-                                 <Image
-                                   src={speaker.image}
-                                   alt={speaker.name}
-                                   fill
-                                   className="object-cover"
-                                   sizes="(max-width: 768px) 80px, 96px"
-                                 />
-                               </div>
-                            </div>
-                            <div className="flex-grow">
-                               <CardTitle className="text-2xl flex items-center gap-2">
-                                 {speaker.name}
-                                 <Mic2 className="w-4 h-4 text-muted-foreground group-hover:text-white transition-colors" />
-                               </CardTitle>
-                               <div className="text-sm font-semibold text-white/60 mt-1 uppercase tracking-wider">{speaker.role}</div>
-                            </div>
-                         </div>
-                      </CardHeader>
-                      <CardContent>
-                         <p className="text-lg text-muted-foreground group-hover:text-white/90 transition-colors leading-relaxed">
-                           {speaker.desc}
-                         </p>
-                      </CardContent>
-                   </Card>
-                 </motion.div>
-               ))}
-            </div>
-          </div>
-        )}
 
         {/* Community Talks Tab */}
         {activeTab === 'community' && (
