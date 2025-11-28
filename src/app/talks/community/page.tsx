@@ -214,9 +214,9 @@ ${speakerFormData.description}
         subtitle="Join upcoming community-led talks and share your expertise."
       />
 
-      <div className="container mx-auto px-4 py-10 relative z-10">
-        {/* Upcoming Community Talks Section */}
-        <section className="mb-16">
+      {/* Upcoming Community Talks Section */}
+      <section className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <h2 className="text-3xl font-bold mb-12 text-center font-mono uppercase tracking-widest text-white/80 flex items-center justify-center gap-3">
             <Calendar className="w-6 h-6 text-neon-primary" />
             Upcoming Community Talks
@@ -262,10 +262,12 @@ ${speakerFormData.description}
               </motion.div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Request to be a Speaker Form */}
-        <section className="mb-16">
+      {/* Request to be a Speaker Form */}
+      <section className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,143,17,0.15)_0%,transparent_70%)] pointer-events-none" />
             <CardContent className="pt-12 pb-12 relative z-10">
@@ -388,10 +390,12 @@ ${speakerFormData.description}
               </form>
             </CardContent>
           </Card>
-        </section>
+        </div>
+      </section>
 
-        {/* Tell Us What Events You Want Form */}
-        <section>
+      {/* Tell Us What Events You Want Form */}
+      <section className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,65,0.15)_0%,transparent_70%)] pointer-events-none" />
             <CardContent className="pt-12 pb-12 relative z-10">
@@ -498,10 +502,12 @@ ${speakerFormData.description}
               </form>
             </CardContent>
           </Card>
-        </section>
+        </div>
+      </section>
 
-        {/* Back to Talks Link */}
-        <div className="mt-12 text-center">
+      {/* Back to Talks Link */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 text-center">
           <Button variant="outline" asChild>
             <Link href="/talks">← Back to Kracked Talks</Link>
           </Button>

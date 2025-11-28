@@ -220,46 +220,51 @@ ${speakerFormData.description}
         </Button>
       </PageHero>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
-        {/* Tabs */}
-        <div className="mb-16 md:mb-20 flex justify-center border-b border-white/10 overflow-x-auto">
-          <div className="flex gap-2 min-w-max">
-            <button
-              onClick={() => setActiveTab('community')}
-              className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
-                activeTab === 'community'
-                  ? 'text-neon-primary border-b-2 border-neon-primary'
-                  : 'text-muted-foreground hover:text-white'
-              }`}
-            >
-              Community Talks
-            </button>
-            <button
-              onClick={() => setActiveTab('speaker')}
-              className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
-                activeTab === 'speaker'
-                  ? 'text-neon-primary border-b-2 border-neon-primary'
-                  : 'text-muted-foreground hover:text-white'
-              }`}
-            >
-              Request Speaker
-            </button>
-            <button
-              onClick={() => setActiveTab('events')}
-              className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
-                activeTab === 'events'
-                  ? 'text-neon-primary border-b-2 border-neon-primary'
-                  : 'text-muted-foreground hover:text-white'
-              }`}
-            >
-              Event Feedback
-            </button>
+      {/* Tabs Navigation */}
+      <div className="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8">
+          <div className="flex justify-center overflow-x-auto">
+            <div className="flex gap-2 min-w-max">
+              <button
+                onClick={() => setActiveTab('community')}
+                className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
+                  activeTab === 'community'
+                    ? 'text-neon-primary border-b-2 border-neon-primary'
+                    : 'text-muted-foreground hover:text-white'
+                }`}
+              >
+                Community Talks
+              </button>
+              <button
+                onClick={() => setActiveTab('speaker')}
+                className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
+                  activeTab === 'speaker'
+                    ? 'text-neon-primary border-b-2 border-neon-primary'
+                    : 'text-muted-foreground hover:text-white'
+                }`}
+              >
+                Request Speaker
+              </button>
+              <button
+                onClick={() => setActiveTab('events')}
+                className={`px-4 md:px-6 py-3 font-mono text-xs md:text-sm uppercase tracking-wider transition-all relative whitespace-nowrap ${
+                  activeTab === 'events'
+                    ? 'text-neon-primary border-b-2 border-neon-primary'
+                    : 'text-muted-foreground hover:text-white'
+                }`}
+              >
+                Event Feedback
+              </button>
+            </div>
           </div>
         </div>
+      </div>
 
-        {/* Community Talks Tab */}
-        {activeTab === 'community' && (
-          <div className="space-y-20 md:space-y-24">
+      {/* Community Talks Tab */}
+      {activeTab === 'community' && (
+        <div className="min-h-screen flex items-center justify-center relative z-10">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
+            <div className="space-y-20 md:space-y-24">
             {/* Upcoming Community Talks Section */}
             <section>
               <h2 className="text-3xl font-bold mb-16 md:mb-20 text-center font-mono uppercase tracking-widest text-white/80 flex items-center justify-center gap-3">
@@ -308,12 +313,15 @@ ${speakerFormData.description}
                 ))}
               </div>
             </section>
+            </div>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Request to be a Speaker Tab */}
-        {activeTab === 'speaker' && (
-          <div>
+      {/* Request to be a Speaker Tab */}
+      {activeTab === 'speaker' && (
+        <div className="min-h-screen flex items-center justify-center relative z-10">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
             <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,143,17,0.15)_0%,transparent_70%)] pointer-events-none" />
               <CardContent className="pt-16 pb-16 md:pt-20 md:pb-20 relative z-10">
@@ -437,11 +445,13 @@ ${speakerFormData.description}
               </CardContent>
             </Card>
           </div>
-        )}
+        </div>
+      )}
 
-        {/* Tell Us What Events You Want Tab */}
-        {activeTab === 'events' && (
-          <div>
+      {/* Tell Us What Events You Want Tab */}
+      {activeTab === 'events' && (
+        <div className="min-h-screen flex items-center justify-center relative z-10">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
             <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,255,65,0.15)_0%,transparent_70%)] pointer-events-none" />
               <CardContent className="pt-16 pb-16 md:pt-20 md:pb-20 relative z-10">
@@ -549,8 +559,8 @@ ${speakerFormData.description}
               </CardContent>
             </Card>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </main>
   );
 }

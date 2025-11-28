@@ -118,25 +118,29 @@ export default function GamesPage() {
         subtitle="Experimental games built by Kracked Devs. Test, play, and break things."
       />
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12 md:py-16 lg:py-20 relative z-10">
-        {/* Intro Section */}
-        <Card className="mb-16 md:mb-20 border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,143,17,0.15)_0%,transparent_70%)] pointer-events-none" />
-          <CardContent className="pt-16 pb-16 md:pt-20 md:pb-20 relative z-10">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 text-center">
-              🎮 Dev Playground
-            </h2>
-            <p className="text-lg md:text-xl opacity-80 max-w-3xl mx-auto text-center font-light text-blue-100 leading-relaxed">
-              Welcome to our experimental game development zone! Each game is a
-              sandbox for testing new ideas, learning game mechanics, and
-              shipping interactive experiences. Click on any game to play or
-              view the code.
-            </p>
-          </CardContent>
-        </Card>
+      {/* Dev Playground Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
+          <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,143,17,0.15)_0%,transparent_70%)] pointer-events-none" />
+            <CardContent className="pt-16 pb-16 md:pt-20 md:pb-20 relative z-10">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-white/60 text-center">
+                🎮 Dev Playground
+              </h2>
+              <p className="text-lg md:text-xl opacity-80 max-w-3xl mx-auto text-center font-light text-blue-100 leading-relaxed">
+                Welcome to our experimental game development zone! Each game is a
+                sandbox for testing new ideas, learning game mechanics, and
+                shipping interactive experiences. Click on any game to play or
+                view the code.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
-        {/* Solah's Games Section */}
-        <div className="mb-16 md:mb-20">
+      {/* Solah's Games Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
           <div className="flex items-center gap-3 mb-8 md:mb-10">
             <User className="w-8 h-8 text-neon-primary" />
             <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-primary to-white">
@@ -208,9 +212,11 @@ export default function GamesPage() {
             })}
           </div>
         </div>
+      </div>
 
-        {/* Nabil's Games Section */}
-        <div className="mb-16 md:mb-20">
+      {/* Nabil's Games Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
           <div className="flex items-center gap-3 mb-8 md:mb-10">
             <User className="w-8 h-8 text-neon-secondary" />
             <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-secondary to-white">
@@ -282,9 +288,12 @@ export default function GamesPage() {
             })}
           </div>
         </div>
+      </div>
 
-        {/* Dev Notes Section */}
-        <Card className="border-white/10 bg-black/60 backdrop-blur-md">
+      {/* Dev Notes Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
+          <Card className="border-white/10 bg-black/60 backdrop-blur-md">
           <CardHeader>
             <CardTitle className="text-2xl text-center">
               🛠️ Developer Notes
@@ -316,6 +325,7 @@ export default function GamesPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
       </div>
     </main>
   );
