@@ -25,7 +25,7 @@ export function UserStats() {
         <div>
           <div className="flex justify-between items-center mb-2">
             <span className="text-sm text-muted-foreground">Level {stats.level}</span>
-            <span className="text-xs text-neon-primary font-mono">
+            <span className="text-xs text-zinc-600 font-mono">
               {xpProgress}/100 XP
             </span>
           </div>
@@ -45,17 +45,17 @@ export function UserStats() {
         {/* Stats Grid */}
         <div className="grid grid-cols-2 gap-3">
           <div className="flex items-center gap-2 p-2 bg-black/30 border border-neon-primary/10">
-            <Zap className="w-4 h-4 text-neon-primary" />
+            <Zap className="w-4 h-4 text-zinc-600" />
             <div>
               <div className="text-xs text-muted-foreground">Total XP</div>
-              <div className="text-lg font-bold text-neon-primary font-mono">{stats.xp}</div>
+              <div className="text-lg font-bold text-zinc-600 font-mono">{stats.xp}</div>
             </div>
           </div>
           <div className="flex items-center gap-2 p-2 bg-black/30 border border-neon-primary/10">
-            <Target className="w-4 h-4 text-neon-secondary" />
+            <Target className="w-4 h-4 text-zinc-600" />
             <div>
               <div className="text-xs text-muted-foreground">Jobs Viewed</div>
-              <div className="text-lg font-bold text-neon-secondary font-mono">{stats.jobsViewed}</div>
+              <div className="text-lg font-bold text-zinc-600 font-mono">{stats.jobsViewed}</div>
             </div>
           </div>
           <div className="flex items-center gap-2 p-2 bg-black/30 border border-neon-primary/10">
