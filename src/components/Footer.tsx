@@ -32,6 +32,7 @@ const Footer = () => {
               <FooterLink href="/about">About Us</FooterLink>
               <FooterLink href="/contact">Contact</FooterLink>
               <FooterLink href="/jobs">Jobs</FooterLink>
+              <FooterLink href="/faq">FAQ</FooterLink>
             </ul>
           </div>
           

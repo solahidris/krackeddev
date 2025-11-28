@@ -20,7 +20,7 @@ import {
   TableHeader, 
   TableRow 
 } from '@/components/ui/table';
-import { Trophy, Bug, Star, Code2, Globe, Gamepad2, Award, ArrowRight, Users, Briefcase, FileCode, CheckCircle2, Clock, Zap, HelpCircle, Sparkles, Code, Heart, Rocket } from 'lucide-react';
+import { Trophy, Bug, Star, Code2, Globe, Gamepad2, Award, ArrowRight, Users, Briefcase, FileCode, CheckCircle2, Clock, Zap, Sparkles, Code, Heart, Rocket } from 'lucide-react';
 
 export default function HackathonPage() {
   const [isScopeOpen, setIsScopeOpen] = useState(false);
@@ -99,72 +99,37 @@ export default function HackathonPage() {
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
       <PageHero 
-        title="Kracked Hackathon" 
-        subtitle="Go crazy. Win AI credits."
+        title="Want to be a Kracked Dev?" 
+        subtitle="A community of cracked developers who want to level up together."
       >
-        <div className="flex flex-col items-center gap-4 w-full">
-        <div className="relative inline-flex items-center justify-center text-lg py-3 px-8 rounded-none border border-neon-primary text-neon-primary bg-neon-primary/5 shadow-[0_0_20px_rgba(0,255,65,0.3)] animate-pulse hover:bg-neon-primary/10 hover:shadow-[0_0_30px_rgba(0,255,65,0.5)] transition-all cursor-default font-mono uppercase tracking-widest group">
-          <span className="mr-2 animate-spin-slow"><Trophy className="w-5 h-5" /></span>
-          Grand Prize: RM 1,200 in AI Credits
-          <div className="absolute top-0 right-0 w-2 h-2 bg-neon-primary shadow-[0_0_5px_var(--neon-primary)]" />
-          <div className="absolute bottom-0 left-0 w-2 h-2 bg-neon-primary shadow-[0_0_5px_var(--neon-primary)]" />
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <Button size="lg" variant="cyberpunk" asChild className="h-12 px-8 text-base font-mono uppercase tracking-widest">
-              <a href={twitterUrls.joinHackathon} target="_blank" rel="noopener noreferrer">
-                Join Hackathon Now <ArrowRight className="ml-2 w-5 h-5" />
-              </a>
-            </Button>
-            <Button variant="ghost" size="lg" onClick={() => setIsRulesOpen(true)} className="h-12 px-8 text-base border border-white/10 hover:bg-white/5">
-              View Rules
-            </Button>
-          </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
+          <Button 
+            size="lg" 
+            variant="cyberpunk" 
+            asChild
+            className="font-mono uppercase tracking-widest border-neon-primary text-neon-primary hover:bg-neon-primary hover:text-black"
+          >
+            <a href={twitterUrls.joinHackathon} target="_blank" rel="noopener noreferrer">
+              Join Community
+            </a>
+          </Button>
+          <Button 
+            size="lg" 
+            variant="cyberpunk" 
+            asChild
+            className="font-mono uppercase tracking-widest border-neon-secondary text-neon-secondary hover:bg-neon-secondary hover:text-black"
+          >
+            <a href="#bug-bounties">
+              Bug Bounties
+            </a>
+          </Button>
         </div>
       </PageHero>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 relative z-10">
-        {/* How It Works Section */}
-        <Card className="border-white/10 bg-black/80 backdrop-blur-xl mb-16 md:mb-20 mt-16 md:mt-20 lg:mt-24">
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
-          <CardHeader>
-            <CardTitle className="text-center text-2xl font-mono uppercase tracking-widest">How It Works</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-primary flex items-center justify-center mx-auto mb-4 bg-neon-primary/10 text-neon-primary font-mono text-2xl font-bold">
-                  1
-                </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Register & Join</h3>
-                <p className="text-sm text-muted-foreground">Sign up for free and join the hackathon community</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-secondary flex items-center justify-center mx-auto mb-4 bg-neon-secondary/10 text-neon-secondary font-mono text-2xl font-bold">
-                  2
-                </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Choose Bug Bounty</h3>
-                <p className="text-sm text-muted-foreground">Pick a challenge that matches your skills</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-accent flex items-center justify-center mx-auto mb-4 bg-neon-accent/10 text-neon-accent font-mono text-2xl font-bold">
-                  3
-                </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Build & Submit</h3>
-                <p className="text-sm text-muted-foreground">Create your solution and submit for review</p>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-none border-2 border-neon-primary flex items-center justify-center mx-auto mb-4 bg-neon-primary/10 text-neon-primary font-mono text-2xl font-bold">
-                  4
-                </div>
-                <h3 className="font-bold text-white mb-2 font-mono">Win Prizes</h3>
-                <p className="text-sm text-muted-foreground">Earn credits, get hired, and level up</p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Bug Bounty Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
+      {/* Bug Bounty Cards Section */}
+      <div id="bug-bounties" className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           <Card className="border border-neon-primary/20 bg-black/60 hover:border-neon-primary/30 shadow-[0_0_10px_rgba(0,255,65,0.1)] group relative opacity-75">
             <div className="absolute top-2 right-2">
               <Badge className="bg-green-600 text-white font-mono text-xs">FINISHED</Badge>
@@ -243,10 +208,56 @@ export default function HackathonPage() {
               </Button>
             </CardFooter>
           </Card>
+          </div>
         </div>
+      </div>
+
+      {/* How It Works Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
+          <Card className="border-white/10 bg-black/80 backdrop-blur-xl">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
+          <CardHeader>
+            <CardTitle className="text-center text-2xl font-mono uppercase tracking-widest">How It Works</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mt-6">
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-none border-2 border-neon-primary flex items-center justify-center mx-auto mb-4 bg-neon-primary/10 text-neon-primary font-mono text-2xl font-bold">
+                  1
+                </div>
+                <h3 className="font-bold text-white mb-2 font-mono">Register & Join</h3>
+                <p className="text-sm text-muted-foreground">Sign up for free and join the hackathon community</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-none border-2 border-neon-secondary flex items-center justify-center mx-auto mb-4 bg-neon-secondary/10 text-neon-secondary font-mono text-2xl font-bold">
+                  2
+                </div>
+                <h3 className="font-bold text-white mb-2 font-mono">Choose Bug Bounty</h3>
+                <p className="text-sm text-muted-foreground">Pick a challenge that matches your skills</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-none border-2 border-neon-accent flex items-center justify-center mx-auto mb-4 bg-neon-accent/10 text-neon-accent font-mono text-2xl font-bold">
+                  3
+                </div>
+                <h3 className="font-bold text-white mb-2 font-mono">Build & Submit</h3>
+                <p className="text-sm text-muted-foreground">Create your solution and submit for review</p>
+              </div>
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-none border-2 border-neon-primary flex items-center justify-center mx-auto mb-4 bg-neon-primary/10 text-neon-primary font-mono text-2xl font-bold">
+                  4
+                </div>
+                <h3 className="font-bold text-white mb-2 font-mono">Win Prizes</h3>
+                <p className="text-sm text-muted-foreground">Earn credits, get hired, and level up</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        </div>
+      </div>
 
         {/* Scoring Method */}
-        <Card className="border-neon-primary/30 bg-black/60 mb-16 md:mb-20">
+        {/* <Card className="border-neon-primary/30 bg-black/60 mb-16 md:mb-20">
           <CardHeader>
             <CardTitle className="text-neon-primary flex items-center gap-2">
               <Award className="w-5 h-5" />
@@ -309,10 +320,10 @@ export default function HackathonPage() {
               </p>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
         {/* Social Proof Section */}
-        <Card className="border-neon-secondary/30 bg-black/60 mb-16 md:mb-20">
+        {/* <Card className="border-neon-secondary/30 bg-black/60 mb-16 md:mb-20">
           <CardHeader>
             <CardTitle className="text-neon-secondary flex items-center gap-2">
               <Users className="w-5 h-5" />
@@ -340,10 +351,12 @@ export default function HackathonPage() {
               </p>
             </div>
           </CardContent>
-        </Card>
+        </Card> */}
 
-        {/* Leaderboard */}
-        <Card className="border-white/10 bg-black/80 backdrop-blur-xl overflow-hidden mb-16 md:mb-20">
+      {/* Leaderboard Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
+          <Card className="border-white/10 bg-black/80 backdrop-blur-xl overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
           <CardHeader>
             <div className="text-center text-2xl font-mono uppercase tracking-widest flex items-center justify-center gap-3">
@@ -393,44 +406,13 @@ export default function HackathonPage() {
             </div>
           </CardContent>
         </Card>
+        </div>
+      </div>
 
-        {/* FAQ Section */}
-        <Card className="border-white/10 bg-black/80 backdrop-blur-xl mb-16 md:mb-20">
-          <CardHeader>
-            <CardTitle className="text-center text-2xl font-mono uppercase tracking-widest flex items-center justify-center gap-2">
-              <HelpCircle className="w-6 h-6 text-neon-primary" />
-              Frequently Asked Questions
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-primary">
-              <h3 className="font-bold text-white mb-2 font-mono">Do I need experience to participate?</h3>
-              <p className="text-sm text-muted-foreground">No! The hackathon is open to developers of all skill levels. Beginners are welcome and can learn from the community.</p>
-            </div>
-            <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-secondary">
-              <h3 className="font-bold text-white mb-2 font-mono">How long does it take?</h3>
-              <p className="text-sm text-muted-foreground">Each bug bounty has its own timeline. Most challenges can be completed in 1-2 weeks, but you can work at your own pace.</p>
-            </div>
-            <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-accent">
-              <h3 className="font-bold text-white mb-2 font-mono">What if I don't win?</h3>
-              <p className="text-sm text-muted-foreground">Even if you don't win, you'll gain valuable experience, build your portfolio, and network with industry professionals. Participation points still count!</p>
-            </div>
-            <div className="p-4 bg-white/5 rounded-none border-l-2 border-neon-primary">
-              <h3 className="font-bold text-white mb-2 font-mono">How are winners selected?</h3>
-              <p className="text-sm text-muted-foreground">Winners are selected based on code quality, innovation, and impact. Points are multiplied by ranking multipliers for final scores.</p>
-            </div>
-          </CardContent>
-          <CardFooter className="justify-center">
-            <Button variant="ghost" asChild className="border border-white/10 hover:bg-white/5">
-              <a href={twitterUrls.contactUs} target="_blank" rel="noopener noreferrer">
-                Still have questions? Contact Us
-              </a>
-            </Button>
-          </CardFooter>
-        </Card>
-
-        {/* Final CTA Section */}
-        <div className="relative overflow-hidden mb-16 md:mb-20">
+      {/* Final CTA Section */}
+      <div className="min-h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
+          <div className="relative overflow-hidden w-full">
           <div className="absolute inset-0 bg-gradient-to-r from-neon-primary/20 via-neon-secondary/20 to-neon-accent/20 blur-3xl" />
           <Card className="relative border-2 border-neon-primary/50 bg-black/90 backdrop-blur-xl">
             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-neon-primary via-neon-secondary to-neon-accent" />
@@ -453,6 +435,7 @@ export default function HackathonPage() {
               </div>
             </CardContent>
           </Card>
+          </div>
         </div>
       </div>
 

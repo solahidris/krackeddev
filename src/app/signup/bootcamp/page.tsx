@@ -1,130 +1,119 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PageHero from '@/components/PageHero';
-import { Card, CardContent } from '@/components/ui/card';
-// import { useState, useRef, useEffect } from 'react';
-// import { CardHeader, CardTitle } from '@/components/ui/card';
-// import { Button } from '@/components/ui/button';
-// import { Badge } from '@/components/ui/badge';
-// import { CheckCircle, Terminal, Code } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { CheckCircle, Terminal, Code } from 'lucide-react';
 
 export default function BootcampSignupPage() {
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   email: '',
-  //   phone: '',
-  // });
-  // const [submitted, setSubmitted] = useState(false);
-  // const nameRef = useRef<HTMLInputElement>(null);
-  // const emailRef = useRef<HTMLInputElement>(null);
-  // const phoneRef = useRef<HTMLInputElement>(null);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const phoneRef = useRef<HTMLInputElement>(null);
 
-  // // Handle browser autofill
-  // useEffect(() => {
-  //   const checkAutofill = () => {
-  //     if (nameRef.current && nameRef.current.value !== formData.name) {
-  //       setFormData(prev => ({ ...prev, name: nameRef.current?.value || '' }));
-  //     }
-  //     if (emailRef.current && emailRef.current.value !== formData.email) {
-  //       setFormData(prev => ({ ...prev, email: emailRef.current?.value || '' }));
-  //     }
-  //     if (phoneRef.current && phoneRef.current.value !== formData.phone) {
-  //       setFormData(prev => ({ ...prev, phone: phoneRef.current?.value || '' }));
-  //     }
-  //   };
+  // Handle browser autofill
+  useEffect(() => {
+    const checkAutofill = () => {
+      if (nameRef.current && nameRef.current.value !== formData.name) {
+        setFormData(prev => ({ ...prev, name: nameRef.current?.value || '' }));
+      }
+      if (emailRef.current && emailRef.current.value !== formData.email) {
+        setFormData(prev => ({ ...prev, email: emailRef.current?.value || '' }));
+      }
+      if (phoneRef.current && phoneRef.current.value !== formData.phone) {
+        setFormData(prev => ({ ...prev, phone: phoneRef.current?.value || '' }));
+      }
+    };
 
-  //   const timer1 = setTimeout(checkAutofill, 100);
-  //   const timer2 = setTimeout(checkAutofill, 500);
-  //   const timer3 = setTimeout(checkAutofill, 1000);
+    const timer1 = setTimeout(checkAutofill, 100);
+    const timer2 = setTimeout(checkAutofill, 500);
+    const timer3 = setTimeout(checkAutofill, 1000);
 
-  //   return () => {
-  //     clearTimeout(timer1);
-  //     clearTimeout(timer2);
-  //     clearTimeout(timer3);
-  //   };
-  // }, []);
+    return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
+    };
+  }, []);
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setSubmitted(true);
-  //   window.open('https://x.com/i/communities/1983062242292822298', '_blank', 'noopener,noreferrer');
-  // };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    window.open('https://x.com/i/communities/1983062242292822298', '_blank', 'noopener,noreferrer');
+  };
 
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-  // const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
-  //   const input = e.currentTarget;
-  //   setFormData(prev => ({
-  //     ...prev,
-  //     [input.name]: input.value,
-  //   }));
-  // };
+  const handleInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const input = e.currentTarget;
+    setFormData(prev => ({
+      ...prev,
+      [input.name]: input.value,
+    }));
+  };
 
-  // const handleAnimationStart = (e: React.AnimationEvent<HTMLInputElement>) => {
-  //   if (e.animationName === 'onAutoFillStart') {
-  //     const input = e.currentTarget;
-  //     setFormData(prev => ({
-  //       ...prev,
-  //       [input.name]: input.value,
-  //     }));
-  //   }
-  // };
+  const handleAnimationStart = (e: React.AnimationEvent<HTMLInputElement>) => {
+    if (e.animationName === 'onAutoFillStart') {
+      const input = e.currentTarget;
+      setFormData(prev => ({
+        ...prev,
+        [input.name]: input.value,
+      }));
+    }
+  };
 
-  // if (submitted) {
-  //   return (
-  //     <main className="min-h-screen pb-20">
-  //       <PageHero 
-  //         title="Registration Submitted!" 
-  //         subtitle="We'll be in touch soon."
-  //       />
-  //       <div className="container mx-auto px-4 mt-10">
-  //         <Card className="max-w-md mx-auto border-neon-secondary/50 bg-black/80 shadow-[0_0_30px_rgba(0,143,17,0.1)]">
-  //           <CardContent className="pt-8 text-center flex flex-col items-center">
-  //              <div className="w-16 h-16 rounded-full bg-neon-secondary/10 flex items-center justify-center mb-6">
-  //               <CheckCircle className="w-8 h-8 text-neon-secondary" />
-  //             </div>
-  //             <p className="text-lg mb-4 text-white">Thank you for signing up for the Vibe Code Bootcamp!</p>
-  //             <p className="text-muted-foreground">We'll be in touch shortly with your enrollment details and next steps.</p>
-  //             <Button variant="cyberpunk" asChild className="w-full mt-6 border-neon-secondary text-neon-secondary hover:bg-neon-secondary/10">
-  //               <a href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Return to HQ</a>
-  //             </Button>
-  //           </CardContent>
-  //         </Card>
-  //       </div>
-  //     </main>
-  //   );
-  // }
+  if (submitted) {
+    return (
+      <main className="min-h-screen pb-20">
+        <PageHero 
+          title="Registration Submitted!" 
+          subtitle="We'll be in touch soon."
+        />
+        <div className="container mx-auto px-4 mt-10">
+          <Card className="max-w-md mx-auto border-neon-secondary/50 bg-black/80 shadow-[0_0_30px_rgba(0,143,17,0.1)]">
+            <CardContent className="pt-8 text-center flex flex-col items-center">
+               <div className="w-16 h-16 rounded-full bg-neon-secondary/10 flex items-center justify-center mb-6">
+                <CheckCircle className="w-8 h-8 text-neon-secondary" />
+              </div>
+              <p className="text-lg mb-4 text-white">Thank you for your interest in the Vibe Code Bootcamp!</p>
+              <p className="text-muted-foreground">Our team will contact you shortly with next steps.</p>
+              <Button variant="cyberpunk" asChild className="w-full mt-6 border-neon-secondary text-neon-secondary hover:bg-neon-secondary/10">
+                <a href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Return to HQ</a>
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
       <PageHero 
         title="Vibe Code Bootcamp" 
-        subtitle="Coming Soon"
-      />
+        subtitle="Sign up for the 28-day bootcamp"
+      >
+        <Badge variant="outline" className="text-lg py-2 px-6 border-neon-accent text-neon-accent shadow-[0_0_10px_rgba(240,240,240,0.3)]">
+          RM 999 / 28 days
+        </Badge>
+      </PageHero>
 
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16 lg:mt-20 relative z-10">
-        <div className="max-w-2xl mx-auto">
-          <Card className="border-neon-primary/30 bg-black/80 backdrop-blur-xl shadow-[0_0_50px_rgba(0,255,65,0.05)]">
-            <CardContent className="pt-16 pb-16 md:pt-20 md:pb-20 text-center">
-              <h2 className="text-3xl font-mono uppercase tracking-widest text-neon-primary mb-4">
-                Coming Soon
-              </h2>
-              <p className="text-muted-foreground text-lg">
-                We're preparing something amazing. Stay tuned!
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Commented out curriculum and form sections */}
-        {/* <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+      <div className="container mx-auto px-4 mt-10 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
           
+          {/* Curriculum Column */}
           <div>
              <div className="flex items-center gap-3 mb-6">
                <Terminal className="w-6 h-6 text-neon-primary" />
@@ -132,6 +121,7 @@ export default function BootcampSignupPage() {
              </div>
              
              <div className="space-y-6">
+                {/* Week 1 */}
                 <Card className="bg-black/40 border-white/10 hover:border-neon-primary/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
@@ -155,6 +145,7 @@ export default function BootcampSignupPage() {
                   </CardContent>
                 </Card>
 
+                {/* Week 2 */}
                 <Card className="bg-black/40 border-white/10 hover:border-neon-secondary/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
@@ -178,6 +169,7 @@ export default function BootcampSignupPage() {
                   </CardContent>
                 </Card>
 
+                {/* Week 3 */}
                 <Card className="bg-black/40 border-white/10 hover:border-neon-accent/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
@@ -201,7 +193,8 @@ export default function BootcampSignupPage() {
                   </CardContent>
                 </Card>
 
-                 <Card className="bg-black/40 border-white/10 hover:border-white/30 transition-colors">
+                 {/* Week 4 */}
+                <Card className="bg-black/40 border-white/10 hover:border-white/30 transition-colors">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-4">
                       <Badge variant="outline" className="border-white text-white font-bold">Week 4</Badge>
@@ -218,6 +211,7 @@ export default function BootcampSignupPage() {
              </div>
           </div>
 
+          {/* Form Column */}
           <div>
             <div className="sticky top-24">
                <Card className="border-neon-primary/30 bg-black/80 backdrop-blur-xl shadow-[0_0_50px_rgba(0,255,65,0.05)]">
@@ -295,11 +289,11 @@ export default function BootcampSignupPage() {
                     </div>
 
                     <Button type="submit" size="lg" variant="cyberpunk" className="w-full h-12 text-lg shadow-[0_0_20px_rgba(0,255,65,0.2)] hover:shadow-[0_0_30px_rgba(0,255,65,0.4)]">
-                      Sign Up Now — RM999 / 28 days
+                      Confirm Enrollment
                     </Button>
                     
                     <p className="text-xs text-center text-muted-foreground mt-4 font-mono">
-                      Limited spots available. Secure your spot today.
+                      Limited spots available for the next cohort.
                     </p>
                   </form>
                 </CardContent>
@@ -307,7 +301,7 @@ export default function BootcampSignupPage() {
             </div>
           </div>
           
-        </div> */}
+        </div>
       </div>
     </main>
   );

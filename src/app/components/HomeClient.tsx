@@ -1,15 +1,14 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import InfoPanel from '@/components/InfoPanel';
-import StatCard from '@/components/StatCard';
 import { Button } from '@/components/ui/button';
-import { Card, CardHeader, CardContent, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Terminal, CheckCircle2, XCircle } from 'lucide-react';
+import { ArrowRight, Trophy, Gamepad2 } from 'lucide-react';
 
 export default function HomeClient() {
+  const [isHoveringBounties, setIsHoveringBounties] = useState(false);
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
       {/* Hero Section */}
@@ -18,21 +17,74 @@ export default function HomeClient() {
         subtitle="A community of cracked developers who want to level up together."
       >
         <div className="flex flex-wrap justify-center gap-4 md:gap-6 pt-6 w-full">
-          <Button size="lg" variant="cyberpunk" asChild className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto">
+          <Button size="lg" variant="cyberpunk" asChild className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto font-mono uppercase tracking-widest">
             <Link href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">
               Join Community <ArrowRight className="ml-2 w-4 h-4" />
             </Link>
           </Button>
-          <Button variant="ghost" size="lg" asChild className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 border border-white/10 hover:bg-white/5 w-full sm:w-auto">
-            <Link href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Explore Bootcamps</Link>
+          <div 
+            className="relative w-full sm:w-auto"
+            onMouseEnter={() => setIsHoveringBounties(true)}
+            onMouseLeave={() => setIsHoveringBounties(false)}
+          >
+            <Button 
+              variant="outline" 
+              size="lg" 
+              asChild 
+              className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-neon-secondary/50 text-neon-secondary bg-neon-secondary/5 hover:bg-neon-secondary/10 hover:border-neon-secondary hover:text-white hover:shadow-[0_0_20px_rgba(43,138,26,0.6)] transition-all font-mono uppercase tracking-widest relative overflow-hidden"
+            >
+              <Link href="/hackathon">
+                <Trophy className="w-4 h-4 mr-2" />
+                Bug Bounties
+              </Link>
+            </Button>
+            {/* Money Kaching Effect */}
+            {isHoveringBounties && (
+              <div className="absolute inset-0 pointer-events-none overflow-visible z-10">
+                {[...Array(8)].map((_, i) => {
+                  // Spread horizontally a bit, but all go upward
+                  const horizontalSpread = (i - 3.5) * 20; // Spread from -70px to +70px
+                  const upwardDistance = -120; // Negative Y means upward
+                  const delay = i * 0.04;
+                  const symbols = ['💰', '💵', '💴', '💶', '💷', '💸', '$', 'RM'];
+                  const symbol = symbols[i % symbols.length];
+                  
+                  return (
+                    <span
+                      key={i}
+                      className="absolute left-1/2 bottom-0 text-2xl font-bold text-neon-secondary"
+                      style={{
+                        animation: `money-pop-up 1.2s ease-out ${delay}s forwards`,
+                        transformOrigin: 'center bottom',
+                        filter: 'drop-shadow(0 0 10px rgba(43, 138, 26, 1))',
+                        '--final-x': `${horizontalSpread}px`,
+                        '--final-y': `${upwardDistance}px`,
+                      } as React.CSSProperties & { [key: string]: string }}
+                    >
+                      {symbol}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+          <Button 
+            variant="outline" 
+            size="lg" 
+            asChild 
+            className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 w-full sm:w-auto border-2 border-neon-accent/50 text-neon-accent bg-neon-accent/5 hover:bg-neon-accent/10 hover:border-neon-accent hover:text-white hover:shadow-[0_0_20px_rgba(240,240,240,0.4)] transition-all font-mono uppercase tracking-widest"
+          >
+            <Link href="/game">
+              <Gamepad2 className="w-4 h-4 mr-2" />
+              Explore Games
+            </Link>
           </Button>
         </div>
       </PageHero>
 
       {/* Bootcamp Section */}
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16 lg:mt-20 relative z-20">
+      {/* <div className="container mx-auto px-4 md:px-6 lg:px-8 mt-12 md:mt-16 lg:mt-20 relative z-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-          {/* Program Info */}
           <InfoPanel title="Vibe Code Bootcamp">
             <p className="text-base md:text-lg mb-6 text-muted-foreground leading-relaxed">Turn random vibes into real output in 28 days. No CS degree, just cracked execution.</p>
             <div className="flex flex-col gap-4 mb-6">
@@ -63,9 +115,7 @@ export default function HomeClient() {
             </div>
           </InfoPanel>
 
-          {/* Before/After Vibe Check */}
           <div className="flex flex-col gap-6">
-             {/* Before Card - Glitch/Error Vibe */}
              <Card className="border-red-500/30 bg-red-950/10 backdrop-blur-sm hover:border-red-500/50 transition-colors group">
                 <CardHeader className="pb-2">
                   <CardTitle className="text-red-500 flex items-center gap-2 text-lg">
@@ -84,7 +134,6 @@ export default function HomeClient() {
                 </CardContent>
              </Card>
 
-             {/* After Card - Success/Online Vibe */}
              <Card className="border-neon-primary/30 bg-black/60 backdrop-blur-sm hover:border-neon-primary/50 transition-colors relative overflow-hidden group">
                 <div className="absolute inset-0 bg-neon-primary/5 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
                 <CardHeader className="pb-2">
@@ -104,32 +153,7 @@ export default function HomeClient() {
              </Card>
           </div>
         </div>
-
-        {/* Stats/Proof */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16 md:mt-20">
-           <StatCard 
-             label="Operatives" 
-             value="500+" 
-             desc="Active cracked devs" 
-             icon={<Terminal className="w-4 h-4" />}
-             index={0}
-           />
-           <StatCard 
-             label="Deployments" 
-             value="120+" 
-             desc="Shipped to production" 
-             icon={<ArrowRight className="w-4 h-4 -rotate-45" />}
-             index={1}
-           />
-           <StatCard 
-             label="Total Bounty" 
-             value="RM 50k+" 
-             desc="Community total this month" 
-             icon={<span className="text-neon-primary">$</span>}
-             index={2}
-           />
-        </div>
-      </div>
+      </div> */}
     </main>
   );
 }
