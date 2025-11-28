@@ -252,8 +252,9 @@ export class RunnerScene extends Phaser.Scene {
 
     if (spawnFlying) {
       const droneY = groundY - 45; // Head height, requires duck or perfect jump
-      const drone = this.add.rectangle(width + 20, droneY, 20, 12, 0xff00ff, 0.9) as unknown as Obstacle;
-      drone.setStrokeStyle(2, 0xff88ff);
+      const droneRect = this.add.rectangle(width + 20, droneY, 20, 12, 0xff00ff, 0.9);
+      droneRect.setStrokeStyle(2, 0xff88ff);
+      const drone = droneRect as unknown as Obstacle;
       drone.obstacleType = this.flyingObstacleName;
       
       this.physics.add.existing(drone);
@@ -280,15 +281,16 @@ export class RunnerScene extends Phaser.Scene {
 
     // Create ground obstacle
     const obstacleType = Phaser.Math.RND.pick(this.obstacleNames);
-    const obstacle = this.add.rectangle(
+    const obstacleRect = this.add.rectangle(
       width + 20,
       groundY - 16,
       16,
       24,
       0xff0000,
       0.9
-    ) as unknown as Obstacle;
-    obstacle.setStrokeStyle(2, 0xff6666);
+    );
+    obstacleRect.setStrokeStyle(2, 0xff6666);
+    const obstacle = obstacleRect as unknown as Obstacle;
     obstacle.obstacleType = obstacleType;
 
     this.physics.add.existing(obstacle);
@@ -318,15 +320,16 @@ export class RunnerScene extends Phaser.Scene {
     const pickupType = Phaser.Math.RND.pick(this.pickupNames);
     const value = pickupType === "Offer Letter" ? 100 : pickupType === "Feature Shipped" ? 50 : 25;
 
-    const pickup = this.add.rectangle(
+    const pickupRect = this.add.rectangle(
       width + 20,
       pickupY,
       12,
       12,
       0x00ffff,
       0.9
-    ) as unknown as Pickup;
-    pickup.setStrokeStyle(2, 0x00aaff);
+    );
+    pickupRect.setStrokeStyle(2, 0x00aaff);
+    const pickup = pickupRect as unknown as Pickup;
     pickup.pickupType = pickupType;
     pickup.value = value;
 
@@ -565,7 +568,7 @@ export class RunnerScene extends Phaser.Scene {
     if (this.textures.exists("bg-mid")) this.textures.remove("bg-mid");
 
     // --- Far Layer (Slow, Tall Skyline) ---
-    const farGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+    const farGraphics = this.make.graphics();
     farGraphics.fillStyle(0x151525); // Dark silhouette
     
     let currentX = 0;
@@ -583,7 +586,7 @@ export class RunnerScene extends Phaser.Scene {
     this.backgroundLayers.push({ sprite: farLayer, speedFactor: 0.1 });
 
     // --- Mid Layer (Faster, detailed, neon accents) ---
-    const midGraphics = this.make.graphics({ x: 0, y: 0, add: false });
+    const midGraphics = this.make.graphics();
     midGraphics.fillStyle(0x2a2a4a); // Lighter purple/blue
     
     currentX = 0;
