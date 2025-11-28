@@ -24,7 +24,7 @@ export default function HomeClient() {
             </Link>
           </Button>
           <Button variant="ghost" size="lg" asChild className="h-12 md:h-14 text-sm md:text-base px-6 md:px-8 border border-white/10 hover:bg-white/5 w-full sm:w-auto">
-            <Link href="https://x.com/i/communities/1983062242292822298" target="_blank" rel="noopener noreferrer">Explore Bootcamps</Link>
+            <Link href="/game">Explore Games</Link>
           </Button>
         </div>
       </PageHero>
