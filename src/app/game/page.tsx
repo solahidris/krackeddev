@@ -118,9 +118,9 @@ export default function GamesPage() {
         subtitle="Experimental games built by Kracked Devs. Test, play, and break things."
       />
 
-      {/* Dev Playground Section */}
-      <div className="min-h-screen flex items-center justify-center relative z-10">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full">
+      {/* Dev Playground Section - Full Page Centered */}
+      <section className="h-screen flex items-center justify-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full max-w-4xl">
           <Card className="border-white/10 bg-gradient-to-b from-black/80 to-transparent backdrop-blur-md overflow-hidden">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,143,17,0.15)_0%,transparent_70%)] pointer-events-none" />
             <CardContent className="pt-16 pb-16 md:pt-20 md:pb-20 relative z-10">
@@ -136,7 +136,7 @@ export default function GamesPage() {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </section>
 
       {/* Solah's Games Section */}
       <div className="min-h-screen flex items-center justify-center relative z-10">
