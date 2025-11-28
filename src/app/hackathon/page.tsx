@@ -157,7 +157,7 @@ export default function HackathonPage() {
             </CardFooter>
           </Card>
 
-          <Card className="h-full group transition-all duration-300 border-2 border-green-700 bg-black/90 hover:border-green-600 shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] relative flex flex-col">
+          <Card className="h-full group transition-all duration-300 border-2 border-green-700 bg-black/90 hover:border-green-600 shadow-[0_0_50px_rgba(21,128,61,0.6)] hover:shadow-[0_0_70px_rgba(21,128,61,0.8)] relative flex flex-col">
             <div className="absolute top-2 right-2">
               <Badge className="bg-green-700 text-zinc-50 font-mono text-xs shadow-[0_0_10px_rgba(34,197,94,0.2)]">ACTIVE</Badge>
             </div>
