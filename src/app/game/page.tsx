@@ -36,12 +36,12 @@ export default function GamesPage() {
     },
     {
       id: "game3",
-      title: "Game 3",
-      description: "Coming soon - Locked",
-      status: "Locked",
+      title: "Not po-kemong",
+      description: "Not po-kemong game",
+      status: "Play Now",
       color: "gray-500",
-      icon: Lock,
-      enabled: false,
+      icon: Gamepad2,
+      enabled: true,
     },
     {
       id: "game4",

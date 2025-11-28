@@ -279,13 +279,3 @@ export default function Game7Page() {
     </main>
   );
 }
-<<<<<<< Updated upstream
-=======
-
-
-
-
-
-
-
->>>>>>> Stashed changes
