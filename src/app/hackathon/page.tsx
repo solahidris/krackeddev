@@ -416,10 +416,18 @@ export default function HackathonPage() {
             </div>
             <div className="mt-6 text-center">
               <p className="text-zinc-50/80 mb-4 font-mono">Want to see your name here?</p>
-              <Button size="lg" variant="cyberpunk" asChild className="font-mono uppercase tracking-widest border-green-700 text-green-700 hover:bg-green-700/20 hover:text-green-600">
-                <a href={twitterUrls.joinLeaderboard} target="_blank" rel="noopener noreferrer">
-                  Join Now <ArrowRight className="ml-2 w-5 h-5" />
-                </a>
+              <Button 
+                size="lg" 
+                variant="cyberpunk" 
+                onClick={() => {
+                  const element = document.getElementById('bug-bounties');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className="font-mono uppercase tracking-widest border-green-700 text-green-700 hover:bg-green-700/20 hover:text-green-600"
+              >
+                Join Now <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
             </div>
           </CardContent>
