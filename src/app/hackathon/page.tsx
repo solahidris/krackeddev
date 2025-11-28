@@ -130,7 +130,7 @@ export default function HackathonPage() {
       <div id="bug-bounties" className="min-h-screen flex items-center justify-center relative z-10">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          <Card className="h-full group transition-all duration-300 border-white/5 hover:border-white/20 hover:bg-white/5 relative opacity-75">
+          <Card className="h-full group transition-all duration-300 border-white/5 hover:border-white/20 hover:bg-white/5 relative opacity-75 flex flex-col">
             <div className="absolute top-2 right-2">
               <Badge className="bg-zinc-700 text-zinc-50 font-mono text-xs">FINISHED</Badge>
             </div>
@@ -143,12 +143,12 @@ export default function HackathonPage() {
                 <span>Creative Web Design & Frontend</span>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1">
               <p className="mb-4 transition-colors text-muted-foreground group-hover:text-zinc-50/90">
                 Showcase your creativity! Build innovative web designs and frontend implementations. Be bold and creative!
               </p>
             </CardContent>
-            <CardFooter className="flex gap-2">
+            <CardFooter className="flex gap-2 mt-auto">
               <Button variant="cyberpunk" size="lg" asChild className="flex-1 border-zinc-600/50 text-zinc-50 hover:bg-zinc-800/30 hover:text-zinc-50 font-mono uppercase">
                 <a href="https://x.com/masterofnone/status/1992914421883248878?s=20" target="_blank" rel="noopener noreferrer">
                   FINISHED
@@ -195,7 +195,7 @@ export default function HackathonPage() {
             </CardFooter>
           </Card>
 
-          <Card className="h-full group transition-all duration-300 border-white/5 hover:border-white/20 hover:bg-white/5 relative opacity-75">
+          <Card className="h-full group transition-all duration-300 border-white/5 hover:border-white/20 hover:bg-white/5 relative opacity-75 flex flex-col">
             <CardHeader>
               <div className="flex items-center justify-between mb-2">
                 <Badge variant="outline" className="border-zinc-600/50 text-zinc-50 text-xs">
@@ -210,12 +210,12 @@ export default function HackathonPage() {
                 <span>Game Dev Design</span>
               </div>
             </CardHeader>
-            <CardContent>
+            <CardContent className="flex-1">
               <p className="mb-4 transition-colors text-muted-foreground group-hover:text-zinc-50/90">
                 Coming soon. Game development projects and creative challenges.
               </p>
             </CardContent>
-            <CardFooter className="justify-end">
+            <CardFooter className="justify-end mt-auto">
               <Button 
                 variant="cyberpunk" 
                 size="sm" 
