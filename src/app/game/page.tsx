@@ -143,7 +143,7 @@ export default function GamesPage() {
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12 md:py-16 lg:py-20">
           <div className="flex items-center gap-3 mb-8 md:mb-10">
             <User className="w-8 h-8 text-neon-primary" />
-            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-primary to-white">
+            <h2 className="text-3xl font-bold text-neon-primary">
               Solah's Games
             </h2>
           </div>
@@ -219,7 +219,7 @@ export default function GamesPage() {
         <div className="container mx-auto px-4 md:px-6 lg:px-8 w-full py-12 md:py-16 lg:py-20">
           <div className="flex items-center gap-3 mb-8 md:mb-10">
             <User className="w-8 h-8 text-neon-secondary" />
-            <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-neon-secondary to-white">
+            <h2 className="text-3xl font-bold text-neon-secondary">
               Nabil's Games
             </h2>
           </div>
