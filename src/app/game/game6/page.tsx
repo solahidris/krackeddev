@@ -52,7 +52,7 @@ export default function Game6Page() {
         <div className="mb-10 md:mb-12 flex items-center justify-between">
           <Link
             href="/game"
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-zinc-50/60 hover:text-zinc-50 transition-colors"
           >
             <ArrowLeft className="w-5 h-5" />
             Back to Games
@@ -70,7 +70,7 @@ export default function Game6Page() {
               <Zap className="w-10 h-10 text-neon-secondary" />
               Kracked Dev Sprint
             </CardTitle>
-            <p className="text-base text-white/60">
+            <p className="text-base text-zinc-50/60">
               Survive the sprint. Ship features. Avoid burnout.
             </p>
           </CardHeader>
@@ -106,7 +106,7 @@ export default function Game6Page() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0 pb-4">
-                <ul className="space-y-2 text-sm text-white/70">
+                <ul className="space-y-2 text-sm text-zinc-50/70">
                   <li className="flex items-center gap-2">
                     <kbd className="px-2 py-1 bg-white/10 rounded text-xs font-mono">
                       SPACE
@@ -144,7 +144,7 @@ export default function Game6Page() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0 pb-4">
-                <ul className="space-y-2 text-sm text-white/70">
+                <ul className="space-y-2 text-sm text-zinc-50/70">
                   <li className="flex items-start gap-2">
                     <span className="text-red-400 mt-0.5">■</span>
                     <span>
@@ -174,7 +174,7 @@ export default function Game6Page() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="pt-0 pb-4">
-                <p className="text-sm text-white/60">
+                <p className="text-sm text-zinc-50/60">
                   Each run simulates a dev sprint. Survive as many days as you can while shipping features
                   and avoiding burnout triggers like legacy bugs and merge conflicts!
                 </p>

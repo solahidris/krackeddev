@@ -1355,7 +1355,7 @@ export default function Game2Page() {
       <header className="flex items-center justify-between px-2 sm:px-3 py-1.5 sm:py-2 bg-black/40 backdrop-blur-sm border-b border-white/10">
         <Link
           href="/game"
-          className="flex items-center gap-1 sm:gap-2 text-white/70 hover:text-white transition-colors"
+          className="flex items-center gap-1 sm:gap-2 text-zinc-50/70 hover:text-zinc-50 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
           <span className="text-xs sm:text-sm font-medium">Back</span>
@@ -1367,7 +1367,7 @@ export default function Game2Page() {
 
         <button
           onClick={() => setSoundEnabled(!soundEnabled)}
-          className="p-1.5 sm:p-2 text-white/70 hover:text-white transition-colors"
+          className="p-1.5 sm:p-2 text-zinc-50/70 hover:text-zinc-50 transition-colors"
         >
           {soundEnabled ? (
             <Volume2 className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -1380,10 +1380,10 @@ export default function Game2Page() {
       {/* Stats Bar */}
       <div className="flex items-center justify-between px-2 sm:px-4 py-1.5 sm:py-2 bg-black/30">
         <div className="flex items-center gap-1.5 sm:gap-3 flex-wrap">
-          <span className="text-green-400 font-bold text-xs sm:text-base">
+          <span className="text-zinc-600 font-bold text-xs sm:text-base">
             RM {money}
           </span>
-          <span className="text-white/60 text-[10px] sm:text-sm">
+          <span className="text-zinc-50/60 text-[10px] sm:text-sm">
             💵 {collected}/{totalBills}
           </span>
           <div className="flex items-center gap-0.5">
@@ -1432,12 +1432,12 @@ export default function Game2Page() {
               <h2 className="text-4xl font-bold text-red-500 mb-2">
                 GAME OVER
               </h2>
-              <p className="text-white/80 text-lg mb-4">
+              <p className="text-zinc-50/80 text-lg mb-4">
                 You collected: RM {money}
               </p>
               <button
                 onClick={restartGame}
-                className="px-6 py-3 bg-linear-to-r from-red-500 to-orange-500 text-white font-bold rounded-xl hover:scale-105 transition-transform"
+                className="px-6 py-3 bg-linear-to-r from-red-500 to-orange-500 text-zinc-50 font-bold rounded-xl hover:scale-105 transition-transform"
               >
                 Try Again
               </button>
@@ -1451,10 +1451,10 @@ export default function Game2Page() {
               <h2 className="text-4xl font-bold text-yellow-400 mb-2">
                 YOU WIN!
               </h2>
-              <p className="text-white/80 text-lg mb-4">Total: RM {money}</p>
+              <p className="text-zinc-50/80 text-lg mb-4">Total: RM {money}</p>
               <button
                 onClick={restartGame}
-                className="px-6 py-3 bg-linear-to-r from-green-500 to-emerald-500 text-white font-bold rounded-xl hover:scale-105 transition-transform"
+                className="px-6 py-3 bg-linear-to-r from-green-500 to-emerald-500 text-zinc-50 font-bold rounded-xl hover:scale-105 transition-transform"
               >
                 Play Again
               </button>
@@ -1480,7 +1480,7 @@ export default function Game2Page() {
               </button>
               <button
                 onClick={restartGame}
-                className="px-2 py-1 bg-white/10 text-white/80 text-[10px] rounded-lg border border-white/10"
+                className="px-2 py-1 bg-white/10 text-zinc-50/80 text-[10px] rounded-lg border border-white/10"
               >
                 Restart
               </button>
@@ -1491,13 +1491,13 @@ export default function Game2Page() {
         {/* Desktop Hint - CSS hidden on small screens */}
         {!gameOver && !gameWon && (
           <div className="mt-4 hidden md:flex items-center gap-4">
-            <span className="text-white/40 text-sm">
+            <span className="text-zinc-50/40 text-sm">
               <span className="text-cyan-400 font-mono">WASD</span> move ·{" "}
               <span className="text-orange-400 font-mono">SPACE</span> bomb
             </span>
             <button
               onClick={restartGame}
-              className="px-4 py-2 bg-white/10 text-white/80 text-sm rounded-xl border border-white/10"
+              className="px-4 py-2 bg-white/10 text-zinc-50/80 text-sm rounded-xl border border-white/10"
             >
               Restart
             </button>
