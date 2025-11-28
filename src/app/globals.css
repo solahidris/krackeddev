@@ -5,7 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Razer Green Theme */
+  /* Minimal Green Neon Palette */
   --background: #050505;
   --background-secondary: #0a0f0a;
   --foreground: #e0e0e0;
@@ -16,33 +16,34 @@
   --popover: #0a0f0a;
   --popover-foreground: #e0e0e0;
   
-  --primary: #44d62c; /* Razer Green */
+  --primary: #00ff41; /* Lighter Neon Green */
   --primary-foreground: #000000;
   
-  --secondary: #2b8a1a; /* Darker Razer Green */
-  --secondary-foreground: #ffffff;
+  --secondary: #00ff41; /* Same green */
+  --secondary-foreground: #000000;
   
   --muted: #0a1f0a;
-  --muted-foreground: #60a060;
+  --muted-foreground: #00ff41;
   
-  --accent: #1a5c10; /* Deep Green */
-  --accent-foreground: #ffffff;
+  --accent: #00ff41; /* Same green */
+  --accent-foreground: #000000;
   
   --destructive: #ff0000;
   --destructive-foreground: #ffffff;
   
   --border: #1a3f1a;
   --input: #0d260d;
-  --ring: #44d62c;
+  --ring: #00ff41;
   
   --radius: 0rem;
   
-  /* Semantic Neon Vars */
-  --neon-primary: #44d62c;   /* Razer Green */
-  --neon-secondary: #2b8a1a; /* Darker Green */
-  --neon-accent: #f0f0f0;    /* White/Silver */
+  /* Minimal Green Neon Palette */
+  --neon-primary: #00ff41;   /* Lighter Neon Green */
+  --neon-secondary: #00ff41; /* Same green */
+  --neon-accent: #00ff41;    /* Same green */
+  --neon-cyan: #00ff41;      /* Alias */
   
-  --scanline-color: rgba(68, 214, 44, 0.05);
+  --scanline-color: rgba(0, 255, 65, 0.05);
 }
 
 @theme inline {
@@ -74,6 +75,7 @@
   --color-neon-primary: var(--neon-primary);
   --color-neon-secondary: var(--neon-secondary);
   --color-neon-accent: var(--neon-accent);
+  --color-neon-cyan: var(--neon-cyan);
 
   /* Animations */
   --animate-gradient: gradient 8s ease infinite;
@@ -124,7 +126,7 @@ body {
   cursor: default;
   background-image: 
     linear-gradient(rgba(0, 20, 0, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
-    linear-gradient(90deg, rgba(68, 214, 44, 0.03), rgba(68, 214, 44, 0.01), rgba(68, 214, 44, 0.03));
+    linear-gradient(90deg, rgba(0, 255, 65, 0.03), rgba(0, 255, 65, 0.01), rgba(0, 255, 65, 0.03));
   background-size: 100% 2px, 3px 100%;
   overflow-x: hidden;
   font-family: monospace; /* Enforce mono for hacker vibe */
@@ -164,8 +166,8 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
 .glass-card {
   background: rgba(5, 15, 5, 0.7);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(68, 214, 44, 0.2);
-  box-shadow: 0 0 15px rgba(68, 214, 44, 0.05);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.05);
 }
 
 /* Cyberpunk Border */
@@ -233,7 +235,7 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
 .btn-primary {
   padding: 1rem 2.5rem;
   border: 1px solid var(--neon-primary);
-  background: rgba(68, 214, 44, 0.05);
+  background: rgba(0, 255, 65, 0.05);
   color: var(--neon-primary);
   font-weight: 600;
   font-size: 0.875rem;
@@ -245,8 +247,8 @@ label, select, summary, [tabindex]:not([tabindex="-1"]) {
 }
 
 .btn-primary:hover {
-  background: rgba(68, 214, 44, 0.15);
-  box-shadow: 0 0 20px rgba(68, 214, 44, 0.4);
+  background: rgba(0, 255, 65, 0.15);
+  box-shadow: 0 0 20px rgba(0, 255, 65, 0.4);
   text-shadow: 0 0 8px var(--neon-primary);
 }
 
