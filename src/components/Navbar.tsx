@@ -21,14 +21,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
         isScrolled || isMobileMenuOpen
-          ? "bg-background/80 backdrop-blur-lg border-white/10 shadow-[0_0_20px_rgba(21,128,61,0.1)]" 
+          ? "bg-background/80 backdrop-blur-lg border-white/10 shadow-[0_0_20px_rgba(21,128,61,0.1)]"
           : "bg-transparent"
       )}
     >
@@ -47,6 +47,8 @@ const Navbar = () => {
           <NavLink href="/game">Games</NavLink>
           <NavLink href="/talks">Talks</NavLink>
           <NavLink href="/hackathon">Hackathon</NavLink>
+
+          <NavLink href="/jobs">Jobs</NavLink>
           <NavLink href="/forum">Forum</NavLink>
         </div>
 
@@ -67,7 +69,7 @@ const Navbar = () => {
           </Button>
         </div>
       </div>
-      
+
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -82,11 +84,13 @@ const Navbar = () => {
               <MobileNavLink href="/game" onClick={() => setIsMobileMenuOpen(false)}>Games</MobileNavLink>
               <MobileNavLink href="/talks" onClick={() => setIsMobileMenuOpen(false)}>Talks</MobileNavLink>
               <MobileNavLink href="/hackathon" onClick={() => setIsMobileMenuOpen(false)}>Hackathon</MobileNavLink>
+
+              <MobileNavLink href="/jobs" onClick={() => setIsMobileMenuOpen(false)}>Jobs</MobileNavLink>
               <MobileNavLink href="/forum" onClick={() => setIsMobileMenuOpen(false)}>Forum</MobileNavLink>
-              
+
               <div className="pt-4 border-t border-white/10 flex items-center justify-between">
-                 <span className="text-sm text-muted-foreground">Prayer Times</span>
-                 <PrayerWidget />
+                <span className="text-sm text-muted-foreground">Prayer Times</span>
+                <PrayerWidget />
               </div>
             </div>
           </motion.div>
@@ -103,8 +107,8 @@ const Navbar = () => {
 };
 
 const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
-  <Link 
-    href={href} 
+  <Link
+    href={href}
     className="relative text-sm font-medium text-zinc-50 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:text-neon-primary transition-colors duration-300 py-2 group"
   >
     {children}
@@ -113,8 +117,8 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
 );
 
 const MobileNavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick: () => void }) => (
-  <Link 
-    href={href} 
+  <Link
+    href={href}
     onClick={onClick}
     className="text-lg font-medium text-zinc-50 drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] hover:text-neon-primary hover:pl-2 transition-all duration-300 border-l-2 border-transparent hover:border-neon-primary py-2"
   >
