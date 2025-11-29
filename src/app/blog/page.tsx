@@ -50,6 +50,7 @@ export default function BlogPage() {
       {Object.entries(sectionLabels).map(([key, { label, icon: Icon }]) => {
         const sectionKey = key as BlogSection;
         const isActive = selectedSection === sectionKey;
+        const IconComponent = Icon as React.ElementType;
         return (
           <button
             key={key}
@@ -63,7 +64,7 @@ export default function BlogPage() {
                 : "text-zinc-50/70 hover:text-zinc-50 hover:bg-white/5 border-l-4 border-transparent"
             }`}
           >
-            <Icon className="w-5 h-5" />
+            {React.createElement(IconComponent, { className: "w-5 h-5" })}
             <span className="font-medium">{label}</span>
           </button>
         );
@@ -137,14 +138,16 @@ export default function BlogPage() {
               {filteredPosts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                   {filteredPosts.map((post) => {
-                    const SectionIcon = sectionLabels[post.section].icon;
+                    const SectionIcon = sectionLabels[post.section].icon as React.ElementType;
                     return (
                       <Link key={post.id} href={`/blog/${post.slug}`}>
                         <Card className="backdrop-blur-sm transition-all duration-300 h-full relative flex flex-col border-2 border-green-700/30 bg-black/90 hover:border-green-600 shadow-[0_0_20px_rgba(21,128,61,0.2)] hover:shadow-[0_0_30px_rgba(21,128,61,0.4)] cursor-pointer hover:scale-[1.02] group">
                           <CardHeader>
                             <div className="flex items-start justify-between mb-4">
                               <div className="flex items-center gap-3">
-                                <SectionIcon className="w-6 h-6 text-green-700 group-hover:text-green-600 group-hover:scale-110 transition-transform" />
+                                {React.createElement(SectionIcon, {
+                                  className: "w-6 h-6 text-green-700 group-hover:text-green-600 group-hover:scale-110 transition-transform",
+                                })}
                                 <CardTitle className="text-xl text-green-700 group-hover:text-green-600">
                                   {post.title}
                                 </CardTitle>

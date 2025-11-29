@@ -174,7 +174,6 @@ export default function BlogPostPage() {
     );
   }
 
-  const SectionIcon = sectionLabels[post.section].icon;
 
   return (
     <main className="min-h-screen pb-20 overflow-hidden">
@@ -232,7 +231,9 @@ export default function BlogPostPage() {
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3 flex-1">
-                      <SectionIcon className="w-6 h-6 text-green-700 flex-shrink-0" />
+                      {React.createElement(sectionLabels[post.section].icon, {
+                        className: "w-6 h-6 text-green-700 flex-shrink-0",
+                      })}
                       <CardTitle className="text-3xl md:text-4xl text-green-700">
                         {post.title}
                       </CardTitle>
