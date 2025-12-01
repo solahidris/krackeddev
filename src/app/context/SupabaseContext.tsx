@@ -1,8 +1,19 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { supabase } from '@/lib/supabase';
-import type { User, Session, SupabaseClient } from '@supabase/supabase-js';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from "react";
+import { supabase } from "@/lib/supabase";
+import type {
+  User,
+  Session,
+  SupabaseClient,
+  AuthChangeEvent,
+} from "@supabase/supabase-js";
 
 interface SupabaseContextType {
   supabase: SupabaseClient;
@@ -14,7 +25,9 @@ interface SupabaseContextType {
   signOut: () => Promise<void>;
 }
 
-const SupabaseContext = createContext<SupabaseContextType | undefined>(undefined);
+const SupabaseContext = createContext<SupabaseContextType | undefined>(
+  undefined
+);
 
 export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -22,14 +35,22 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Skip if supabase is not available (e.g., during build)
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
+
     // Get initial session
     const initializeAuth = async () => {
       try {
-        const { data: { session: initialSession } } = await supabase.auth.getSession();
+        const {
+          data: { session: initialSession },
+        } = await supabase.auth.getSession();
         setSession(initialSession);
         setUser(initialSession?.user ?? null);
       } catch (error) {
-        console.error('Error getting initial session:', error);
+        console.error("Error getting initial session:", error);
       } finally {
         setLoading(false);
       }
@@ -38,9 +59,11 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
     initializeAuth();
 
     // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, currentSession) => {
-        console.log('Auth state changed:', event);
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(
+      async (event: AuthChangeEvent, currentSession: Session | null) => {
+        console.log("Auth state changed:", event);
         setSession(currentSession);
         setUser(currentSession?.user ?? null);
         setLoading(false);
@@ -53,6 +76,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const signIn = async (email: string, password: string) => {
+    if (!supabase) throw new Error("Supabase not initialized");
     const { error } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -61,6 +85,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signUp = async (email: string, password: string) => {
+    if (!supabase) throw new Error("Supabase not initialized");
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -69,6 +94,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
+    if (!supabase) throw new Error("Supabase not initialized");
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
   };
@@ -93,8 +119,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
 export const useSupabase = () => {
   const context = useContext(SupabaseContext);
   if (!context) {
-    throw new Error('useSupabase must be used within a SupabaseProvider');
+    throw new Error("useSupabase must be used within a SupabaseProvider");
   }
   return context;
 };
-
