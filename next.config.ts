@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: 'export',
-  reactCompiler: true,
   images: {
     unoptimized: true,
     remotePatterns: [
@@ -12,6 +11,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Disable features incompatible with static export
+  poweredByHeader: false,
+  compress: true,
 };
 
 export default nextConfig;
