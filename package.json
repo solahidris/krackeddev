@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && cp -r .next/static .next/standalone/.next/static 2>/dev/null || true",
+    "build": "next build",
+    "postbuild": "echo 'Build completed. Output directory: out'",
     "start": "next start",
     "lint": "eslint"
   },
