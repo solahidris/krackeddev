@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import PrayerWidget from './PrayerWidget';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -11,6 +12,8 @@ import { Button } from './ui/button';
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const isHomepage = pathname === '/';
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -42,15 +45,17 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          <NavLink href="/">Home</NavLink>
-          <NavLink href="/game">Games</NavLink>
-          <NavLink href="/talks">Talks</NavLink>
-          <NavLink href="/hackathon">Hackathon</NavLink>
+        {!isHomepage && (
+          <div className="hidden md:flex items-center gap-8">
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/game">Games</NavLink>
+            <NavLink href="/talks">Talks</NavLink>
+            <NavLink href="/hackathon">Hackathon</NavLink>
 
-          <NavLink href="/jobs">Jobs</NavLink>
-          <NavLink href="/forum">Forum</NavLink>
-        </div>
+            <NavLink href="/jobs">Jobs</NavLink>
+            <NavLink href="/forum">Forum</NavLink>
+          </div>
+        )}
 
         {/* Right Side (Desktop) */}
         <div className="hidden md:flex items-center gap-4">
@@ -58,21 +63,23 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        <div className="flex items-center gap-4 md:hidden">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-foreground hover:text-neon-primary"
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </Button>
-        </div>
+        {!isHomepage && (
+          <div className="flex items-center gap-4 md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-foreground hover:text-neon-primary"
+            >
+              {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </Button>
+          </div>
+        )}
       </div>
 
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {isMobileMenuOpen && !isHomepage && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
