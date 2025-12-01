@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
+import MusicPlayer from "./MusicPlayer";
 
 export const metadata: Metadata = {
   title: "Kracked Jobs",
-  description: "Level up your career with Kracked Jobs. Earn XP, unlock badges, climb the leaderboard, and find your dream tech job. Search and filter jobs by tech stack, location, and type.",
+  description:
+    "Level up your career with Kracked Jobs. Earn XP, unlock badges, climb the leaderboard, and find your dream tech job. Search and filter jobs by tech stack, location, and type.",
   openGraph: {
     title: "Kracked Jobs | Kracked Devs",
-    description: "Level up your career with Kracked Jobs. Earn XP, unlock badges, and find your dream tech job.",
+    description:
+      "Level up your career with Kracked Jobs. Earn XP, unlock badges, and find your dream tech job.",
     url: "/jobs",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "Kracked Jobs",
-    description: "Level up your career. Earn XP, unlock badges, and climb the leaderboard!",
+    description:
+      "Level up your career. Earn XP, unlock badges, and climb the leaderboard!",
   },
   robots: {
     index: true,
@@ -25,7 +29,11 @@ export default function JobsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return (
+    <>
+      {/* Background music for /jobs */}
+      <MusicPlayer />
+      {children}
+    </>
+  );
 }
-
-
