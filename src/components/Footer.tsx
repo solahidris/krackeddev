@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 
 const Footer = () => {
+  // Footer can remain visible on all pages
 
   return (
     <footer className="relative border-t border-white/5 bg-background/50 backdrop-blur-sm pt-20 md:pt-24 pb-12 md:pb-16 overflow-hidden">

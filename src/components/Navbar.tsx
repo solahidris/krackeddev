@@ -14,6 +14,11 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
   const isHomepage = pathname === '/';
+  
+  // Hide navigation links (middle section) on game pages and job detail pages, but keep header visible
+  const gamePages = ['/blog', '/new-jobs', '/code', '/profile', '/whitepaper'];
+  const isJobDetailPage = pathname?.startsWith('/jobs/');
+  const shouldHideNavLinks = isHomepage || gamePages.includes(pathname) || isJobDetailPage;
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -45,7 +50,7 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Nav */}
-        {!isHomepage && (
+        {!shouldHideNavLinks && (
           <div className="hidden md:flex items-center gap-8">
             <NavLink href="/">Home</NavLink>
             <NavLink href="/game">Games</NavLink>
@@ -63,7 +68,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Toggle */}
-        {!isHomepage && (
+        {!shouldHideNavLinks && (
           <div className="flex items-center gap-4 md:hidden">
             <Button
               variant="ghost"
@@ -79,7 +84,7 @@ const Navbar = () => {
 
       {/* Mobile Menu Dropdown */}
       <AnimatePresence>
-        {isMobileMenuOpen && !isHomepage && (
+        {isMobileMenuOpen && !shouldHideNavLinks && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
