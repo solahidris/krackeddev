@@ -16,7 +16,7 @@ import type {
 } from "@supabase/supabase-js";
 
 interface SupabaseContextType {
-  supabase: SupabaseClient;
+  supabase: SupabaseClient | null;
   user: User | null;
   session: Session | null;
   loading: boolean;
@@ -36,7 +36,8 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     // Skip if supabase is not available (e.g., during build)
-    if (!supabase) {
+    const supabaseClient = supabase;
+    if (!supabaseClient) {
       setLoading(false);
       return;
     }
@@ -46,7 +47,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
       try {
         const {
           data: { session: initialSession },
-        } = await supabase.auth.getSession();
+        } = await supabaseClient.auth.getSession();
         setSession(initialSession);
         setUser(initialSession?.user ?? null);
       } catch (error) {
@@ -61,7 +62,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
     // Listen for auth changes
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(
+    } = supabaseClient.auth.onAuthStateChange(
       async (event: AuthChangeEvent, currentSession: Session | null) => {
         console.log("Auth state changed:", event);
         setSession(currentSession);
