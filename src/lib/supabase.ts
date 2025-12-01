@@ -5,23 +5,25 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 let supabaseInstance: SupabaseClient | null = null;
 
-function getSupabaseClient() {
+function getSupabaseClient(): SupabaseClient | null {
   // Return existing instance if available
   if (supabaseInstance) {
     return supabaseInstance;
   }
 
-  // Check if we're in a browser environment or have the env vars
+  // Check if we have the env vars
   if (!supabaseUrl || !supabaseAnonKey) {
-    // During build time, return a mock client that won't be used
+    // During build time or when env vars are missing, return null
     if (typeof window === "undefined") {
       console.warn(
         "Supabase environment variables not available during build time"
       );
-      // Return a mock that won't actually be called during build
-      return null as any;
+    } else {
+      console.warn(
+        "Supabase environment variables are missing. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY"
+      );
     }
-    throw new Error("Missing Supabase environment variables");
+    return null;
   }
 
   supabaseInstance = createClient(supabaseUrl, supabaseAnonKey, {
