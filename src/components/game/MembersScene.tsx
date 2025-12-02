@@ -210,11 +210,6 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
                   ))}
                 </div>
               </div>
-              {!isMobile && (
-                <div className="p-4 border-t border-black text-center">
-                  <p className="text-gray-500 text-sm">Press ESC to close</p>
-                </div>
-              )}
             </div>
           </div>
           </div>
@@ -242,11 +237,6 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
                   ))}
                 </div>
               </div>
-              {!isMobile && (
-                <div className="p-4 border-t border-green-500 text-center">
-                  <p className="text-gray-500 text-sm">Press ESC to close</p>
-                </div>
-              )}
             </div>
           </div>
           </div>

@@ -6,7 +6,6 @@ import { TILE_EMPTY, TILE_WALL, TILE_JOBS, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEI
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { BuildingConfig } from '@/lib/game/types';
 import { generateQuests, type Quest } from '@/lib/jobs';
-import { EscapeButton } from './EscapeButton';
 
 interface NewJobsSceneProps {
   onBack: () => void;
@@ -160,7 +159,6 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
         <>
           {/* Backdrop - Desktop only */}
           {!isMobile && <div className="fixed inset-0 bg-black/50 z-30" />}
-          <EscapeButton onClose={() => setShowJobScreen(false)} />
           <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
           <div className="pointer-events-auto">
           <div className="bg-gray-900 border-4 border-blue-500 max-w-4xl w-full max-h-[60vh] md:max-h-[80vh] overflow-y-auto p-6 mb-20 md:mb-0">
@@ -183,12 +181,6 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
                 </a>
               ))}
             </div>
-            {!isMobile && (
-              <div className="mt-4 pt-4 border-t border-blue-500 text-center">
-                <p className="text-gray-500 text-sm">Press ESC to close</p>
-              </div>
-            )}
-          </div>
           </div>
           </div>
         </>

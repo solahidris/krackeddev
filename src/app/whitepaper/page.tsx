@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { WhitepaperScene } from '@/components/game/WhitepaperScene';
-import { EscapeButton } from '@/components/game/EscapeButton';
-import { useDialogClose } from '@/components/game/useDialogClose';
 import '../jobs/jobs.css';
 
 export default function WhitepaperPage() {
