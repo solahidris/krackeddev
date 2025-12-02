@@ -276,9 +276,14 @@ export const ProfileScene: React.FC<ProfileSceneProps> = ({ onBack }) => {
               )}
             </div>
 
+            {!isMobile && (
+              <div className="p-4 border-t border-pink-500 text-center">
+                <p className="text-gray-500 text-sm">Press ESC to close</p>
+              </div>
+            )}
           </div>
           </div>
-        </div>
+          </div>
         </>
       )}
     </div>

@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { CodeHubScene } from '@/components/game/CodeHubScene';
+import { EscapeButton } from '@/components/game/EscapeButton';
 import '../jobs/jobs.css';
 
 export default function CodePage() {
@@ -36,6 +37,7 @@ export default function CodePage() {
 
   return (
     <main className="min-h-screen w-full bg-gray-900 relative">
+      <EscapeButton onClose={handleBack} />
       <div className="scanlines fixed inset-0 pointer-events-none z-50"></div>
       <CodeHubScene onBack={handleBack} />
     </main>
