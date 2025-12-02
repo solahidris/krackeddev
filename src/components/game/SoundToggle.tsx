@@ -3,14 +3,18 @@
 import React, { useState, useEffect } from 'react';
 
 export const SoundToggle: React.FC = () => {
-    const [isMuted, setIsMuted] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return localStorage.getItem('soundMuted') === 'true';
-        }
-        return false;
-    });
+    // Always start with false to match server render
+    const [isMuted, setIsMuted] = useState(false);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
+        // Mark as client-side rendered
+        setIsClient(true);
+        
+        // Load initial state from localStorage on client only
+        const muted = localStorage.getItem('soundMuted') === 'true';
+        setIsMuted(muted);
+
         // Sync with localStorage changes
         const handleStorageChange = () => {
             const muted = localStorage.getItem('soundMuted') === 'true';
@@ -30,13 +34,16 @@ export const SoundToggle: React.FC = () => {
         window.dispatchEvent(new CustomEvent('soundToggle', { detail: { muted: newMuted } }));
     };
 
+    // Render consistent initial state until client-side hydration
+    const displayMuted = isClient ? isMuted : false;
+
     return (
         <button
             onClick={toggleSound}
             className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center hover:bg-black/90 transition-all"
-            aria-label={isMuted ? 'Unmute sound' : 'Mute sound'}
+            aria-label={displayMuted ? 'Unmute sound' : 'Mute sound'}
         >
-            {isMuted ? (
+            {displayMuted ? (
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

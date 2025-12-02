@@ -16,7 +16,7 @@ const Navbar = () => {
   const isHomepage = pathname === '/';
   
   // Hide navigation links (middle section) on game pages and job detail pages, but keep header visible
-  const gamePages = ['/blog', '/new-jobs', '/code', '/profile', '/whitepaper'];
+  const gamePages = ['/blog', '/new-jobs', '/code', '/profile', '/whitepaper', '/malaysia-map'];
   const isJobDetailPage = pathname?.startsWith('/jobs/');
   const shouldHideNavLinks = isHomepage || gamePages.includes(pathname) || isJobDetailPage;
 
