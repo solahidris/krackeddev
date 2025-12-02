@@ -142,6 +142,18 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ startPlaying = true, o
         }
     }, [startPlaying, audioReady]);
 
+    // Listen for global unlockAudio event from main site
+    useEffect(() => {
+        const handleUnlockAudio = () => {
+            if (startPlaying && !isAudioMuted() && audioReady) {
+                tryPlayAudio();
+            }
+        };
+
+        window.addEventListener('unlockAudio', handleUnlockAudio);
+        return () => window.removeEventListener('unlockAudio', handleUnlockAudio);
+    }, [startPlaying, audioReady]);
+
     // Aggressive autoplay on first user interaction
     useEffect(() => {
         if (!startPlaying || isAudioMuted()) return;

@@ -6,6 +6,7 @@ import { renderTile, renderPlayer, renderCat } from '@/lib/game/renderers';
 import { isWalkable, isNearBuilding, isOnBuildingTile } from '@/lib/game/utils';
 import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
+import { ControlLegend } from './ControlLegend';
 import { preloadCharacterSprites } from '@/lib/game/sprites';
 
 // Create a single shared Audio instance for click sound (only in browser)
@@ -34,6 +35,8 @@ interface BaseGameWorldProps {
   onBuildingEnter: (route: string) => void;
   initialPlayerX?: number;
   initialPlayerY?: number;
+  onCloseDialog?: () => void;
+  canCloseDialog?: boolean;
 }
 
 export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
@@ -42,6 +45,8 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
   onBuildingEnter,
   initialPlayerX = (MAP_WIDTH / 2) * TILE_SIZE,
   initialPlayerY = (MAP_HEIGHT / 2) * TILE_SIZE,
+  onCloseDialog,
+  canCloseDialog = false,
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMobile, setIsMobile] = useState(false);
@@ -344,10 +349,10 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
   }, [map, buildings, nearBuilding]);
 
   return (
-    <div className="w-full bg-gray-900 text-white jobs-container relative overflow-hidden flex flex-col items-center justify-center pt-20 pb-8 px-2 md:px-4">
+    <div className="w-full bg-gray-900 text-white jobs-container relative overflow-hidden flex flex-col items-start justify-start pt-20 pb-8 px-2 md:px-4 md:items-center md:justify-center">
       {/* Canvas Container with relative positioning for dialogs */}
-      <div className="relative w-full max-w-5xl mx-auto">
-        <div className="relative w-full border-4 border-gray-700" style={{ aspectRatio: `${MAP_WIDTH}/${MAP_HEIGHT}` }}>
+      <div className={`relative w-full mx-auto ${isMobile ? 'max-w-full' : 'max-w-5xl'}`}>
+        <div className="relative w-full border-4 border-gray-700 canvas-container" style={{ aspectRatio: `${MAP_WIDTH}/${MAP_HEIGHT}` }}>
           <canvas
             ref={canvasRef}
             width={MAP_WIDTH * TILE_SIZE}
@@ -357,6 +362,9 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
               imageRendering: "pixelated"
             }}
           />
+
+          {/* Control Legend - Desktop only */}
+          <ControlLegend isMobile={isMobile} />
 
           {/* Interaction Hint - overlay on top of tile section */}
           {nearBuilding && (
@@ -371,7 +379,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
 
       {/* Mobile Controls - Fixed at bottom of screen */}
       {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 w-full flex items-center px-4 pb-6 z-30 pointer-events-none">
+        <div className={`fixed bottom-0 left-0 right-0 w-full flex items-center px-4 pb-6 pointer-events-none ${canCloseDialog ? 'z-50' : 'z-30'}`}>
           <MobileControls
             onDirectionChange={handleDirectionInput}
             onInteract={() => {
@@ -381,6 +389,8 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
               }
             }}
             canInteract={!!nearBuilding}
+            onClose={onCloseDialog}
+            canClose={canCloseDialog}
           />
         </div>
       )}

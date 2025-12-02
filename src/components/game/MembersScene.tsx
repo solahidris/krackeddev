@@ -6,6 +6,7 @@ import { EscapeButton } from './EscapeButton';
 import { TILE_EMPTY, TILE_WALL, TILE_PROFILE, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEIGHT } from '@/lib/game/constants';
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { BuildingConfig } from '@/lib/game/types';
+import { useDialogClose } from './useDialogClose';
 
 interface MembersSceneProps {
   onBack: () => void;
@@ -136,22 +137,9 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
     }
   };
 
-  // Handle Escape key to close popups
-  React.useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        if (showFoundingMembersPopup) {
-          setShowFoundingMembersPopup(false);
-        }
-        if (showMembersPopup) {
-          setShowMembersPopup(false);
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [showFoundingMembersPopup, showMembersPopup]);
+  // Handle Escape key and Y button to close popups
+  useDialogClose(showFoundingMembersPopup, () => setShowFoundingMembersPopup(false));
+  useDialogClose(showMembersPopup, () => setShowMembersPopup(false));
 
   return (
     <div className="relative w-full h-screen">
@@ -161,14 +149,24 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
         onBuildingEnter={handleBuildingEnter}
         initialPlayerX={(MAP_WIDTH / 2) * 40}
         initialPlayerY={(MAP_HEIGHT / 2) * 40}
+        onCloseDialog={() => {
+          if (showFoundingMembersPopup) {
+            setShowFoundingMembersPopup(false);
+          }
+          if (showMembersPopup) {
+            setShowMembersPopup(false);
+          }
+        }}
+        canCloseDialog={showFoundingMembersPopup || showMembersPopup}
       />
 
       {/* Founding Members Popup */}
       {showFoundingMembersPopup && (
         <>
           <EscapeButton onClose={() => setShowFoundingMembersPopup(false)} />
-          <div className="absolute inset-0 bg-black/90 z-30 flex items-center justify-center p-4">
-            <div className="bg-gray-900 border-4 border-black max-w-md w-full flex flex-col">
+          <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
+          <div className="pointer-events-auto">
+            <div className="bg-gray-900 border-4 border-black max-w-md w-full max-h-[60vh] md:max-h-none flex flex-col mb-20 md:mb-0 overflow-y-auto">
               <div className="flex justify-between items-center p-4 border-b border-black">
                 <h2 className="text-2xl text-black bg-white px-2 font-bold">FOUNDING MEMBERS</h2>
                 <button
@@ -195,6 +193,7 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
               </div>
             </div>
           </div>
+          </div>
         </>
       )}
 
@@ -202,8 +201,9 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
       {showMembersPopup && (
         <>
           <EscapeButton onClose={() => setShowMembersPopup(false)} />
-          <div className="absolute inset-0 bg-black/90 z-30 flex items-center justify-center p-4">
-            <div className="bg-gray-900 border-4 border-green-500 max-w-md w-full flex flex-col">
+          <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
+          <div className="pointer-events-auto">
+            <div className="bg-gray-900 border-4 border-green-500 max-w-md w-full max-h-[60vh] md:max-h-none flex flex-col mb-20 md:mb-0 overflow-y-auto">
               <div className="flex justify-between items-center p-4 border-b border-green-500">
                 <h2 className="text-2xl text-green-400 font-bold">MEMBERS</h2>
                 <button
@@ -229,6 +229,7 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
                 <p className="text-gray-500 text-sm">Press ESC to close</p>
               </div>
             </div>
+          </div>
           </div>
         </>
       )}
