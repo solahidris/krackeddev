@@ -369,9 +369,9 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
         </div>
       </div>
 
-      {/* Mobile Controls - Fixed at bottom third of screen */}
+      {/* Mobile Controls - Fixed at bottom of screen */}
       {isMobile && (
-        <div className="fixed bottom-[25%] left-0 right-0 w-full flex items-center justify-center gap-8 px-4 z-30 pointer-events-none">
+        <div className="fixed bottom-0 left-0 right-0 w-full flex items-center justify-center gap-8 px-4 pb-6 z-30 pointer-events-none">
           <MobileControls
             onDirectionChange={handleDirectionInput}
             onInteract={() => {

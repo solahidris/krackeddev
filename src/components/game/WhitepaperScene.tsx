@@ -13,6 +13,19 @@ interface WhitepaperSceneProps {
 
 export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
   const [showPDF, setShowPDF] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Generate simple map
   const map = useMemo(() => {
@@ -134,27 +147,42 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
       {showPDF && (
         <>
           <EscapeButton onClose={() => setShowPDF(false)} />
-          <div className="absolute inset-0 bg-black/90 z-30 flex items-center justify-center p-2 md:p-4">
-          <div className="bg-gray-900 border-4 border-yellow-500 max-w-6xl w-full h-[95vh] md:h-[90vh] flex flex-col">
-            <div className="flex justify-between items-center p-2 md:p-4 border-b border-yellow-500">
-              <h2 className="text-lg md:text-2xl text-yellow-400 font-bold">WHITEPAPER</h2>
-              <button
-                onClick={() => setShowPDF(false)}
-                className="text-white hover:text-red-400 text-xl"
-              >
-                ✕
-              </button>
-            </div>
+          <div className={`absolute inset-0 bg-black/90 z-30 flex items-center justify-center ${
+            isMobile ? 'p-0' : 'p-2 md:p-4'
+          }`}>
+          <div className={`bg-gray-900 ${
+            isMobile 
+              ? 'w-full h-full border-0' 
+              : 'border-4 border-yellow-500 max-w-6xl w-full h-[95vh] md:h-[90vh]'
+          } flex flex-col`}>
+            {!isMobile && (
+              <div className="flex justify-between items-center p-2 md:p-4 border-b border-yellow-500">
+                <h2 className="text-lg md:text-2xl text-yellow-400 font-bold">WHITEPAPER</h2>
+                <button
+                  onClick={() => setShowPDF(false)}
+                  className="text-white hover:text-red-400 text-xl"
+                >
+                  ✕
+                </button>
+              </div>
+            )}
             <div className="flex-1 overflow-hidden">
               <iframe
-                src="/whitepaper.pdf"
+                src="/whitepaper.pdf#view=FitH"
                 className="w-full h-full"
                 title="Whitepaper PDF"
+                style={isMobile ? { 
+                  width: '100%', 
+                  height: '100%',
+                  border: 'none'
+                } : {}}
               />
             </div>
-            <div className="p-2 md:p-4 border-t border-yellow-500 text-center">
-              <p className="text-gray-500 text-xs md:text-sm">Press ESC to close</p>
-            </div>
+            {!isMobile && (
+              <div className="p-2 md:p-4 border-t border-yellow-500 text-center">
+                <p className="text-gray-500 text-xs md:text-sm">Press ESC to close</p>
+              </div>
+            )}
           </div>
         </div>
         </>
