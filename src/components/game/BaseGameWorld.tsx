@@ -8,6 +8,7 @@ import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
 import { ControlLegend } from './ControlLegend';
 import { preloadCharacterSprites } from '@/lib/game/sprites';
+import { toast } from 'sonner';
 
 // Create a single shared Audio instance for click sound (only in browser)
 let clickSound: HTMLAudioElement | null = null;
@@ -52,6 +53,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const [nearBuilding, setNearBuilding] = useState<BuildingConfig | null>(null);
   const hasNavigatedRef = useRef(false);
+  const toastIdRef = useRef<string | number | null>(null);
 
   // Player state
   const playerRef = useRef({
@@ -348,11 +350,38 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
     return () => cancelAnimationFrame(animationId);
   }, [map, buildings, nearBuilding]);
 
+  // Handle sonner toast for interaction hints
+  useEffect(() => {
+    if (nearBuilding) {
+      // Dismiss any existing toast
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current);
+      }
+      // Show new toast
+      const message = isMobile ? 'Tap X button to enter' : 'Press SPACE to enter';
+      toastIdRef.current = toast.info(message, {
+        duration: 5000,
+      });
+    } else {
+      // Dismiss toast when not near building
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current);
+        toastIdRef.current = null;
+      }
+    }
+
+    return () => {
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current);
+      }
+    };
+  }, [nearBuilding, isMobile]);
+
   return (
-    <div className="w-full bg-gray-900 text-white jobs-container relative overflow-hidden flex flex-col items-start justify-start pt-20 pb-8 px-2 md:px-4 md:items-center md:justify-center">
+    <div className="w-full h-screen bg-gray-900 text-white jobs-container relative overflow-hidden flex flex-col items-center justify-center px-2 md:px-4">
       {/* Canvas Container with relative positioning for dialogs */}
-      <div className={`relative w-full mx-auto ${isMobile ? 'max-w-full' : 'max-w-5xl'}`}>
-        <div className="relative w-full border-4 border-gray-700 canvas-container" style={{ aspectRatio: `${MAP_WIDTH}/${MAP_HEIGHT}` }}>
+      <div className={`relative w-full mx-auto flex flex-col items-center gap-4 ${isMobile ? 'max-w-full' : 'max-w-5xl'}`}>
+        <div className="relative w-full border-4 border-gray-700 canvas-container max-w-[80vw] max-h-[80vh]" style={{ aspectRatio: `${MAP_WIDTH}/${MAP_HEIGHT}` }}>
           <canvas
             ref={canvasRef}
             width={MAP_WIDTH * TILE_SIZE}
@@ -362,19 +391,10 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
               imageRendering: "pixelated"
             }}
           />
-
-          {/* Control Legend - Desktop only */}
-          <ControlLegend isMobile={isMobile} />
-
-          {/* Interaction Hint - overlay on top of tile section */}
-          {nearBuilding && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-black/70 border-2 border-yellow-400 p-2">
-              <p className="text-yellow-400 text-xs text-center">
-                {isMobile ? 'Tap X button to enter' : 'Press SPACE to enter'}
-              </p>
-            </div>
-          )}
         </div>
+        
+        {/* Control Legend - Desktop only, below canvas */}
+        <ControlLegend isMobile={isMobile} />
       </div>
 
       {/* Mobile Controls - Fixed at bottom of screen */}

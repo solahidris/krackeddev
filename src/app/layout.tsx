@@ -86,6 +86,8 @@ export default function RootLayout({
           {/* <Footer /> */}
           <Toaster 
             theme="dark"
+            position="top-center"
+            offset={16}
           />
         </SupabaseProvider>
       </body>
