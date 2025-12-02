@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { TILE_SIZE, MAP_WIDTH, MAP_HEIGHT, PLAYER_SPEED, TILE_EMPTY, TILE_WALL } from '@/lib/game/constants';
-import { renderTile, renderPlayer } from '@/lib/game/renderers';
+import { renderTile, renderPlayer, renderCat } from '@/lib/game/renderers';
 import { isWalkable, isNearBuilding, isOnBuildingTile } from '@/lib/game/utils';
 import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
@@ -55,6 +55,16 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
     direction: 0, // 0=down, 1=up, 2=left, 3=right
     frame: 0,
     isMoving: false,
+  });
+
+  // Cat state - follows the player
+  const catRef = useRef({
+    x: initialPlayerX,
+    y: initialPlayerY + TILE_SIZE, // Start behind player
+    direction: 0,
+    frame: 0,
+    targetX: initialPlayerX,
+    targetY: initialPlayerY + TILE_SIZE,
   });
 
   // Input state
@@ -264,6 +274,50 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
         }
       }
 
+      // Update cat to follow player
+      const cat = catRef.current;
+      const CAT_FOLLOW_SPEED = PLAYER_SPEED * 0.7; // Cat moves slightly slower
+      const FOLLOW_DISTANCE = TILE_SIZE * 0.8; // Distance behind player
+      
+      // Calculate target position (behind player based on direction)
+      const catDirVectors = [
+        { dx: 0, dy: FOLLOW_DISTANCE }, // down - cat follows behind
+        { dx: 0, dy: -FOLLOW_DISTANCE }, // up - cat follows behind
+        { dx: FOLLOW_DISTANCE, dy: 0 }, // left - cat follows behind
+        { dx: -FOLLOW_DISTANCE, dy: 0 }, // right - cat follows behind
+      ];
+      
+      const vec = catDirVectors[player.direction];
+      cat.targetX = player.x + vec.dx;
+      cat.targetY = player.y + vec.dy;
+      
+      // Smoothly move cat towards target
+      const dx = cat.targetX - cat.x;
+      const dy = cat.targetY - cat.y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+      
+      if (distance > 2) {
+        // Move cat towards target
+        const moveX = (dx / distance) * CAT_FOLLOW_SPEED;
+        const moveY = (dy / distance) * CAT_FOLLOW_SPEED;
+        const newCatX = cat.x + moveX;
+        const newCatY = cat.y + moveY;
+        
+        // Check if cat can move there (same walkability as player)
+        if (isWalkable(newCatX, newCatY, map, 8)) {
+          cat.x = newCatX;
+          cat.y = newCatY;
+          cat.frame++;
+          
+          // Update cat direction based on movement
+          if (Math.abs(dx) > Math.abs(dy)) {
+            cat.direction = dx > 0 ? 3 : 2; // right or left
+          } else {
+            cat.direction = dy > 0 ? 0 : 1; // down or up
+          }
+        }
+      }
+
       // Render player
       renderPlayer(
         ctx,
@@ -271,6 +325,15 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
         player.y,
         player.direction,
         player.isMoving ? player.frame : 0
+      );
+
+      // Render cat
+      renderCat(
+        ctx,
+        cat.x,
+        cat.y,
+        cat.direction,
+        cat.frame
       );
 
       animationId = requestAnimationFrame(gameLoop);

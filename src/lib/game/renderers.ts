@@ -393,3 +393,118 @@ function renderPlayerFallback(
   ctx.restore();
 }
 
+// Cat renderer - simple pixel art cat that follows the player
+export function renderCat(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  direction: number,
+  frame: number
+) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  // Walking animation bounce
+  const bounce = Math.abs(Math.sin(frame * 0.3)) * 1.5;
+
+  // Shadow
+  ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+  ctx.beginPath();
+  ctx.ellipse(0, 10, 6, 2, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Cat body (smaller than player)
+  ctx.fillStyle = "#f97316"; // orange-500 (cat body)
+  ctx.fillRect(-4, -1 - bounce, 8, 6);
+
+  // Cat head
+  ctx.fillStyle = "#f97316";
+  ctx.beginPath();
+  ctx.arc(0, -6 - bounce, 5, 0, Math.PI * 2);
+  ctx.fill();
+
+  // Cat ears
+  ctx.fillStyle = "#ea580c"; // orange-600
+  ctx.beginPath();
+  ctx.moveTo(-3, -10 - bounce);
+  ctx.lineTo(-1, -8 - bounce);
+  ctx.lineTo(-2, -6 - bounce);
+  ctx.fill();
+  ctx.beginPath();
+  ctx.moveTo(3, -10 - bounce);
+  ctx.lineTo(1, -8 - bounce);
+  ctx.lineTo(2, -6 - bounce);
+  ctx.fill();
+
+  // Cat face based on direction
+  if (direction === 0) {
+    // Down - facing camera
+    ctx.fillStyle = "#fef3c7"; // yellow-100 (inner ear)
+    ctx.beginPath();
+    ctx.arc(-2, -8 - bounce, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(2, -8 - bounce, 1.5, 0, Math.PI * 2);
+    ctx.fill();
+    // Eyes
+    ctx.fillStyle = "#000";
+    ctx.fillRect(-2, -7 - bounce, 1.5, 1.5);
+    ctx.fillRect(0.5, -7 - bounce, 1.5, 1.5);
+    // Nose
+    ctx.fillStyle = "#fbbf24"; // yellow-400
+    ctx.beginPath();
+    ctx.moveTo(0, -5 - bounce);
+    ctx.lineTo(-1, -4 - bounce);
+    ctx.lineTo(1, -4 - bounce);
+    ctx.fill();
+    // Mouth
+    ctx.strokeStyle = "#000";
+    ctx.lineWidth = 0.5;
+    ctx.beginPath();
+    ctx.moveTo(0, -4 - bounce);
+    ctx.lineTo(-1, -3 - bounce);
+    ctx.moveTo(0, -4 - bounce);
+    ctx.lineTo(1, -3 - bounce);
+    ctx.stroke();
+  } else if (direction === 1) {
+    // Up - back of head
+    ctx.fillStyle = "#ea580c";
+    ctx.beginPath();
+    ctx.arc(0, -6 - bounce, 5, 0, Math.PI * 2);
+    ctx.fill();
+  } else if (direction === 2) {
+    // Left - profile
+    ctx.fillStyle = "#fef3c7";
+    ctx.beginPath();
+    ctx.arc(-1, -6 - bounce, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#000";
+    ctx.fillRect(-2, -7 - bounce, 1.5, 1.5);
+  } else {
+    // Right - profile
+    ctx.fillStyle = "#fef3c7";
+    ctx.beginPath();
+    ctx.arc(1, -6 - bounce, 4, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#000";
+    ctx.fillRect(0.5, -7 - bounce, 1.5, 1.5);
+  }
+
+  // Cat tail (wagging animation)
+  const tailWag = Math.sin(frame * 0.4) * 0.5;
+  ctx.strokeStyle = "#f97316";
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(4, 2 - bounce);
+  ctx.quadraticCurveTo(6 + tailWag, 0 - bounce, 8 + tailWag * 2, -2 - bounce);
+  ctx.stroke();
+
+  // Legs with walking animation
+  const legOffset = Math.sin(frame * 0.4) * 1.5;
+  ctx.fillStyle = "#ea580c"; // orange-600
+  ctx.fillRect(-3, 4 - bounce + legOffset, 2, 4);
+  ctx.fillRect(1, 4 - bounce - legOffset, 2, 4);
+
+  ctx.restore();
+}
+
