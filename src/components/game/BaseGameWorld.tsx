@@ -2,12 +2,12 @@
 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { TILE_SIZE, MAP_WIDTH, MAP_HEIGHT, PLAYER_SPEED, TILE_EMPTY, TILE_WALL } from '@/lib/game/constants';
-import { renderTile, renderPlayer, renderCat } from '@/lib/game/renderers';
+import { renderTile, renderPlayer, renderCat, renderChicken, renderCow } from '@/lib/game/renderers';
 import { isWalkable, isNearBuilding, isOnBuildingTile } from '@/lib/game/utils';
 import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
 import { ControlLegend } from './ControlLegend';
-import { preloadCharacterSprites } from '@/lib/game/sprites';
+import { preloadCharacterSprites, preloadAnimalSprites } from '@/lib/game/sprites';
 import { toast } from 'sonner';
 
 // Create a single shared Audio instance for click sound (only in browser)
@@ -75,6 +75,40 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
     targetY: initialPlayerY + TILE_SIZE,
   });
 
+  // Animal state - random movement
+  const getRandomWalkablePosition = useCallback((map: number[][]) => {
+    const attempts = 50;
+    for (let i = 0; i < attempts; i++) {
+      const x = Math.random() * (MAP_WIDTH - 2) * TILE_SIZE + TILE_SIZE;
+      const y = Math.random() * (MAP_HEIGHT - 2) * TILE_SIZE + TILE_SIZE;
+      if (isWalkable(x, y, map, 8)) {
+        return { x, y };
+      }
+    }
+    // Fallback to center area
+    return { x: (MAP_WIDTH / 2) * TILE_SIZE, y: (MAP_HEIGHT / 2) * TILE_SIZE };
+  }, []);
+
+  const chickensRef = useRef(Array.from({ length: 3 }, () => ({
+    x: 0,
+    y: 0,
+    direction: Math.floor(Math.random() * 4),
+    frame: Math.floor(Math.random() * 100),
+    moveTimer: Math.floor(Math.random() * 60) + 30,
+    targetX: 0,
+    targetY: 0,
+  })));
+
+  const cowsRef = useRef(Array.from({ length: 2 }, () => ({
+    x: 0,
+    y: 0,
+    direction: Math.floor(Math.random() * 4),
+    frame: Math.floor(Math.random() * 100),
+    moveTimer: Math.floor(Math.random() * 80) + 40,
+    targetX: 0,
+    targetY: 0,
+  })));
+
   // Input state
   const currentDirRef = useRef<string | null>(null);
   const lastTileRef = useRef<{ x: number; y: number } | null>(null);
@@ -84,10 +118,29 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
     currentDirRef.current = dir;
   }, []);
 
-  // Preload character sprites
+  // Preload character and animal sprites
   useEffect(() => {
     preloadCharacterSprites().catch(console.error);
+    preloadAnimalSprites().catch(console.error);
   }, []);
+
+  // Initialize animal positions
+  useEffect(() => {
+    chickensRef.current.forEach((chicken) => {
+      const pos = getRandomWalkablePosition(map);
+      chicken.x = pos.x;
+      chicken.y = pos.y;
+      chicken.targetX = pos.x;
+      chicken.targetY = pos.y;
+    });
+    cowsRef.current.forEach((cow) => {
+      const pos = getRandomWalkablePosition(map);
+      cow.x = pos.x;
+      cow.y = pos.y;
+      cow.targetX = pos.x;
+      cow.targetY = pos.y;
+    });
+  }, [map, getRandomWalkablePosition]);
 
   // Detect mobile
   useEffect(() => {
@@ -343,6 +396,105 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
         cat.direction,
         cat.frame
       );
+
+      // Update and render chickens
+      const ANIMAL_SPEED = PLAYER_SPEED * 0.4; // Slower than player
+      chickensRef.current.forEach((chicken) => {
+        chicken.frame++;
+        chicken.moveTimer--;
+
+        // Choose new random direction when timer expires
+        if (chicken.moveTimer <= 0) {
+          const dirVectors = [
+            { dx: 0, dy: 1 }, // down
+            { dx: 0, dy: -1 }, // up
+            { dx: -1, dy: 0 }, // left
+            { dx: 1, dy: 0 }, // right
+          ];
+          chicken.direction = Math.floor(Math.random() * 4);
+          const vec = dirVectors[chicken.direction];
+          const moveDistance = TILE_SIZE * (Math.random() * 3 + 1); // 1-4 tiles
+          chicken.targetX = chicken.x + vec.dx * moveDistance;
+          chicken.targetY = chicken.y + vec.dy * moveDistance;
+          chicken.moveTimer = Math.floor(Math.random() * 60) + 30; // 30-90 frames
+        }
+
+        // Move towards target
+        const dx = chicken.targetX - chicken.x;
+        const dy = chicken.targetY - chicken.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > 2) {
+          const moveX = (dx / distance) * ANIMAL_SPEED;
+          const moveY = (dy / distance) * ANIMAL_SPEED;
+          const newX = chicken.x + moveX;
+          const newY = chicken.y + moveY;
+          
+          if (isWalkable(newX, newY, map, 6)) {
+            chicken.x = newX;
+            chicken.y = newY;
+          } else {
+            // Hit obstacle, choose new direction
+            chicken.moveTimer = 0;
+          }
+        } else {
+          // Reached target, choose new direction soon
+          if (chicken.moveTimer > 10) {
+            chicken.moveTimer = 10;
+          }
+        }
+
+        renderChicken(ctx, chicken.x, chicken.y, chicken.direction, chicken.frame);
+      });
+
+      // Update and render cows
+      cowsRef.current.forEach((cow) => {
+        cow.frame++;
+        cow.moveTimer--;
+
+        // Choose new random direction when timer expires
+        if (cow.moveTimer <= 0) {
+          const dirVectors = [
+            { dx: 0, dy: 1 }, // down
+            { dx: 0, dy: -1 }, // up
+            { dx: -1, dy: 0 }, // left
+            { dx: 1, dy: 0 }, // right
+          ];
+          cow.direction = Math.floor(Math.random() * 4);
+          const vec = dirVectors[cow.direction];
+          const moveDistance = TILE_SIZE * (Math.random() * 2 + 1); // 1-3 tiles (slower)
+          cow.targetX = cow.x + vec.dx * moveDistance;
+          cow.targetY = cow.y + vec.dy * moveDistance;
+          cow.moveTimer = Math.floor(Math.random() * 80) + 40; // 40-120 frames
+        }
+
+        // Move towards target
+        const dx = cow.targetX - cow.x;
+        const dy = cow.targetY - cow.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance > 2) {
+          const moveX = (dx / distance) * ANIMAL_SPEED * 0.7; // Cows slower than chickens
+          const moveY = (dy / distance) * ANIMAL_SPEED * 0.7;
+          const newX = cow.x + moveX;
+          const newY = cow.y + moveY;
+          
+          if (isWalkable(newX, newY, map, 8)) {
+            cow.x = newX;
+            cow.y = newY;
+          } else {
+            // Hit obstacle, choose new direction
+            cow.moveTimer = 0;
+          }
+        } else {
+          // Reached target, choose new direction soon
+          if (cow.moveTimer > 10) {
+            cow.moveTimer = 10;
+          }
+        }
+
+        renderCow(ctx, cow.x, cow.y, cow.direction, cow.frame);
+      });
 
       animationId = requestAnimationFrame(gameLoop);
     };

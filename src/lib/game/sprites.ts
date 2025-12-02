@@ -52,3 +52,32 @@ export function getCharacterSpritePath(direction: number, frame: number): string
   return `/sprites/character/${directionMap[direction]}${frameIndex}.png`;
 }
 
+// Preload animal sprites
+export async function preloadAnimalSprites(): Promise<void> {
+  const spritePaths = [
+    '/sprites/animals/CHICKEN1.png',
+    '/sprites/animals/CHICKEN2.png',
+    '/sprites/animals/CHICKEN3.png',
+    '/sprites/animals/CHICKEN4.png',
+    '/sprites/animals/COW1.png',
+    '/sprites/animals/COW2.png',
+    '/sprites/animals/COW3.png',
+  ];
+
+  await Promise.all(spritePaths.map(loadSprite));
+}
+
+// Get chicken sprite path for frame
+export function getChickenSpritePath(frame: number): string {
+  const animFrame = Math.floor(frame / 8) % 4;
+  const frameIndex = animFrame + 1; // Convert 0-3 to 1-4
+  return `/sprites/animals/CHICKEN${frameIndex}.png`;
+}
+
+// Get cow sprite path for frame
+export function getCowSpritePath(frame: number): string {
+  const animFrame = Math.floor(frame / 10) % 3;
+  const frameIndex = animFrame + 1; // Convert 0-2 to 1-3
+  return `/sprites/animals/COW${frameIndex}.png`;
+}
+

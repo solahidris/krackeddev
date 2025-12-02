@@ -1,5 +1,5 @@
 import { TILE_SIZE, TILE_EMPTY, TILE_WALL, TILE_JOBS, TILE_BLOG, TILE_HACKATHON, TILE_CODE, TILE_PROFILE, TILE_WHITEPAPER, TILE_BACK_TO_TOWN, TILE_TREE, TILE_GRAVEL, TILE_PAVEMENT, TILE_X } from './constants';
-import { spriteCache, getCharacterSpritePath } from './sprites';
+import { spriteCache, getCharacterSpritePath, getChickenSpritePath, getCowSpritePath } from './sprites';
 
 // Tile renderer
 export function renderTile(
@@ -523,6 +523,114 @@ export function renderCat(
   ctx.fillStyle = "#ea580c"; // orange-600
   ctx.fillRect(-3, 4 - bounce + legOffset, 2, 4);
   ctx.fillRect(1, 4 - bounce - legOffset, 2, 4);
+
+  ctx.restore();
+}
+
+// Chicken renderer using sprite images
+export function renderChicken(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  direction: number,
+  frame: number
+) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  const spritePath = getChickenSpritePath(frame);
+  const sprite = spriteCache.get(spritePath);
+  
+  if (sprite && sprite.complete) {
+    const targetHeight = TILE_SIZE * 0.6; // Smaller than player
+    const scale = targetHeight / sprite.height;
+    const scaledWidth = sprite.width * scale;
+    const scaledHeight = sprite.height * scale;
+
+    // Draw shadow
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.beginPath();
+    ctx.ellipse(0, scaledHeight / 2 - 1, scaledWidth * 0.25, scaledHeight * 0.08, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Draw sprite centered and scaled
+    ctx.drawImage(
+      sprite,
+      -scaledWidth / 2,
+      -scaledHeight / 2,
+      scaledWidth,
+      scaledHeight
+    );
+  } else {
+    // Fallback rendering
+    const bounce = Math.abs(Math.sin(frame * 0.3)) * 1;
+    ctx.fillStyle = "rgba(0, 0, 0, 0.2)";
+    ctx.beginPath();
+    ctx.ellipse(0, 8, 5, 2, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#fbbf24"; // yellow
+    ctx.fillRect(-3, -1 - bounce, 6, 4);
+    ctx.beginPath();
+    ctx.arc(0, -4 - bounce, 3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#000";
+    ctx.fillRect(-1, -5 - bounce, 1, 1);
+    ctx.fillRect(0, -5 - bounce, 1, 1);
+  }
+
+  ctx.restore();
+}
+
+// Cow renderer using sprite images
+export function renderCow(
+  ctx: CanvasRenderingContext2D,
+  x: number,
+  y: number,
+  direction: number,
+  frame: number
+) {
+  ctx.save();
+  ctx.translate(x, y);
+
+  const spritePath = getCowSpritePath(frame);
+  const sprite = spriteCache.get(spritePath);
+  
+  if (sprite && sprite.complete) {
+    const targetHeight = TILE_SIZE * 0.9; // Larger than chicken
+    const scale = targetHeight / sprite.height;
+    const scaledWidth = sprite.width * scale;
+    const scaledHeight = sprite.height * scale;
+
+    // Draw shadow
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    ctx.beginPath();
+    ctx.ellipse(0, scaledHeight / 2 - 1, scaledWidth * 0.3, scaledHeight * 0.1, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Draw sprite centered and scaled
+    ctx.drawImage(
+      sprite,
+      -scaledWidth / 2,
+      -scaledHeight / 2,
+      scaledWidth,
+      scaledHeight
+    );
+  } else {
+    // Fallback rendering
+    const bounce = Math.abs(Math.sin(frame * 0.2)) * 1.5;
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    ctx.beginPath();
+    ctx.ellipse(0, 12, 8, 3, 0, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#78716c"; // gray-brown
+    ctx.fillRect(-5, -2 - bounce, 10, 8);
+    ctx.beginPath();
+    ctx.arc(0, -6 - bounce, 5, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = "#000";
+    ctx.fillRect(-2, -7 - bounce, 1.5, 1.5);
+    ctx.fillRect(0.5, -7 - bounce, 1.5, 1.5);
+  }
 
   ctx.restore();
 }
