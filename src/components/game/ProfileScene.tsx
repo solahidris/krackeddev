@@ -281,7 +281,6 @@ export const ProfileScene: React.FC<ProfileSceneProps> = ({ onBack }) => {
           </div>
           </div>
           </div>
-        </div>
         </>
       )}
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { BaseGameWorld } from './BaseGameWorld';
 import { EscapeButton } from './EscapeButton';
 import { TILE_EMPTY, TILE_WALL, TILE_BLOG, TILE_JOBS, TILE_CODE, TILE_PROFILE, TILE_WHITEPAPER, MAP_WIDTH, MAP_HEIGHT } from '@/lib/game/constants';
@@ -707,7 +707,6 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
                 )}
               </div>
             </div>
-          </div>
           </div>
         </>
       )}

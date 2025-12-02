@@ -255,12 +255,12 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
                       );
                     })}
                   </div>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
           </div>
-        </div>
+          </div>
         </>
       )}
 
