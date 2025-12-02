@@ -16,6 +16,19 @@ interface NewJobsSceneProps {
 export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
   const [jobs, setJobs] = useState<Quest[]>([]);
   const [showJobScreen, setShowJobScreen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Load jobs
   useEffect(() => {
@@ -134,6 +147,8 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
       {/* Jobs Screen Overlay */}
       {showJobScreen && (
         <>
+          {/* Backdrop - Desktop only */}
+          {!isMobile && <div className="fixed inset-0 bg-black/50 z-30" />}
           <EscapeButton onClose={() => setShowJobScreen(false)} />
           <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
           <div className="pointer-events-auto">
@@ -165,9 +180,11 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
                 </a>
               ))}
             </div>
-            <div className="mt-4 pt-4 border-t border-blue-500 text-center">
-              <p className="text-gray-500 text-sm">Press ESC to close</p>
-            </div>
+            {!isMobile && (
+              <div className="mt-4 pt-4 border-t border-blue-500 text-center">
+                <p className="text-gray-500 text-sm">Press ESC to close</p>
+              </div>
+            )}
           </div>
           </div>
         </div>

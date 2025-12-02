@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { MembersScene } from '@/components/game/MembersScene';
-import { MusicPlayer } from '@/components/game/MusicPlayer';
-import { SoundToggle } from '@/components/game/SoundToggle';
 import '../jobs/jobs.css';
 
 export default function MembersPage() {
@@ -40,8 +38,6 @@ export default function MembersPage() {
   if (showGame) {
     return (
       <main className="min-h-screen w-full bg-gray-900 relative">
-        <MusicPlayer startPlaying={true} />
-        <SoundToggle />
         <div className="scanlines fixed inset-0 pointer-events-none z-50"></div>
         <MembersScene onBack={handleBack} />
       </main>

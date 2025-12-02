@@ -4,6 +4,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { SupabaseProvider } from "./context/SupabaseContext";
+import { Toaster } from "sonner";
+import { MusicPlayer } from "@/components/game/MusicPlayer";
+import { SoundToggle } from "@/components/game/SoundToggle";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kracked-dev.com'),
@@ -74,11 +77,16 @@ export default function RootLayout({
         )}
       >
         <SupabaseProvider>
+          <MusicPlayer startPlaying={true} />
+          <SoundToggle />
           <Navbar />
           <div className="flex-grow">
             {children}
           </div>
           {/* <Footer /> */}
+          <Toaster 
+            theme="dark"
+          />
         </SupabaseProvider>
       </body>
     </html>
