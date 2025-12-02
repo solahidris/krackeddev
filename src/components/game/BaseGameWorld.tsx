@@ -362,7 +362,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
           {nearBuilding && (
             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-black/70 border-2 border-yellow-400 p-2">
               <p className="text-yellow-400 text-xs text-center">
-                {isMobile ? 'Tap SPACE button to enter' : 'Press SPACE to enter'}
+                {isMobile ? 'Tap X button to enter' : 'Press SPACE to enter'}
               </p>
             </div>
           )}
@@ -371,7 +371,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
 
       {/* Mobile Controls - Fixed at bottom of screen */}
       {isMobile && (
-        <div className="fixed bottom-0 left-0 right-0 w-full flex items-center justify-center gap-8 px-4 pb-6 z-30 pointer-events-none">
+        <div className="fixed bottom-0 left-0 right-0 w-full flex items-center px-4 pb-6 z-30 pointer-events-none">
           <MobileControls
             onDirectionChange={handleDirectionInput}
             onInteract={() => {

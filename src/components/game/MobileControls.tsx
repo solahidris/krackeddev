@@ -23,7 +23,7 @@ export const MobileControls: React.FC<MobileControlsProps> = ({
   }, [onInteract]);
 
   const buttonClass = (pressed: boolean, enabled: boolean) =>
-    `w-20 h-20 rounded-full flex items-center justify-center text-xs font-bold select-none transition-all touch-none ${
+    `w-20 h-20 rounded-full flex items-center justify-center font-bold select-none transition-all touch-none ${
       enabled
         ? pressed
           ? "bg-green-500 scale-95"
@@ -32,20 +32,20 @@ export const MobileControls: React.FC<MobileControlsProps> = ({
     }`;
 
   return (
-    <div className="relative z-30 flex items-center justify-center gap-8 pointer-events-none">
-      {/* Joystick */}
+    <div className="relative z-30 flex items-center justify-between w-full pointer-events-none">
+      {/* Joystick - Leftmost */}
       <div className="pointer-events-auto">
         <Joystick onDirectionChange={onDirectionChange} />
       </div>
 
-      {/* Action button */}
+      {/* Action button - Rightmost */}
       <div className="pointer-events-auto">
         <button
           onClick={handleInteract}
           disabled={!canInteract}
           className={buttonClass(interactPressed, canInteract)}
         >
-          <span className="text-white font-mono text-xs">SPACE</span>
+          <span className="text-white font-mono text-2xl">X</span>
         </button>
       </div>
     </div>

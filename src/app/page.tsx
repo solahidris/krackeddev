@@ -11,7 +11,7 @@ import "./jobs/jobs.css";
 export default function Home() {
   const router = useRouter();
   const [showAnimation, setShowAnimation] = useState(true);
-  const [shouldStartMusic, setShouldStartMusic] = useState(false);
+  const [shouldStartMusic, setShouldStartMusic] = useState(true);
   const musicControlsRef = useRef<{ play: () => void; pause: () => void; setVolume: (vol: number) => void } | null>(null);
 
   useEffect(() => {
@@ -62,6 +62,53 @@ export default function Home() {
       musicControlsRef.current.play();
     }
   };
+
+  // Start music immediately when controls are ready
+  useEffect(() => {
+    if (musicControlsRef.current && shouldStartMusic) {
+      // Try multiple times to ensure it plays
+      const tryPlay = () => {
+        if (musicControlsRef.current) {
+          musicControlsRef.current.play();
+        }
+      };
+      
+      tryPlay();
+      const timeouts = [
+        setTimeout(tryPlay, 50),
+        setTimeout(tryPlay, 100),
+        setTimeout(tryPlay, 200),
+        setTimeout(tryPlay, 500),
+        setTimeout(tryPlay, 1000)
+      ];
+
+      return () => {
+        timeouts.forEach(timeout => clearTimeout(timeout));
+      };
+    }
+  }, [shouldStartMusic]);
+
+  // Also try to play on first user interaction (any interaction)
+  useEffect(() => {
+    if (!shouldStartMusic) return;
+
+    const handleFirstInteraction = () => {
+      if (musicControlsRef.current) {
+        musicControlsRef.current.play();
+      }
+    };
+
+    const events = ['click', 'touchstart', 'keydown', 'mousemove', 'touchmove', 'pointerdown'];
+    events.forEach(event => {
+      window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    });
+
+    return () => {
+      events.forEach(event => {
+        window.removeEventListener(event, handleFirstInteraction);
+      });
+    };
+  }, [shouldStartMusic]);
 
   const handleBuildingEnter = (route: string) => {
     if (route === '/') {

@@ -117,7 +117,8 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
     if (route === '/') {
       onBack();
     } else {
-      setShowPDF(true);
+      // Open whitepaper PDF in new tab
+      window.open('/whitepaper.pdf', '_blank');
     }
   };
 

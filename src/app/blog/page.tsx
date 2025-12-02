@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { BlogScene } from '@/components/game/BlogScene';
 import { MusicPlayer } from '@/components/game/MusicPlayer';
@@ -10,6 +10,28 @@ import '../jobs/jobs.css';
 export default function BlogPage() {
   const router = useRouter();
   const [showGame, setShowGame] = useState(true);
+  const [audioUnlocked, setAudioUnlocked] = useState(false);
+
+  // Capture first user interaction to unlock audio
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (!audioUnlocked) {
+        setAudioUnlocked(true);
+        window.dispatchEvent(new CustomEvent('unlockAudio'));
+      }
+    };
+
+    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'mousemove', 'touchmove'];
+    events.forEach(event => {
+      window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    });
+
+    return () => {
+      events.forEach(event => {
+        window.removeEventListener(event, handleFirstInteraction);
+      });
+    };
+  }, [audioUnlocked]);
 
   const handleBack = () => {
     router.push('/');

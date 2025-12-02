@@ -62,16 +62,21 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
 
     // Place New Jobs building (top-left)
     newMap[2][3] = TILE_JOBS;
+    newMap[2][4] = TILE_JOBS;
     newMap[3][3] = TILE_JOBS;
     newMap[3][4] = TILE_JOBS;
 
     // Place Code building (left-center)
     newMap[5][2] = TILE_CODE;
     newMap[5][3] = TILE_CODE;
+    newMap[6][2] = TILE_CODE;
+    newMap[6][3] = TILE_CODE;
 
     // Place Profile building (right-center)
     newMap[5][MAP_WIDTH - 4] = TILE_PROFILE;
     newMap[5][MAP_WIDTH - 3] = TILE_PROFILE;
+    newMap[6][MAP_WIDTH - 4] = TILE_PROFILE;
+    newMap[6][MAP_WIDTH - 3] = TILE_PROFILE;
 
     // Place Whitepaper building (bottom-center)
     newMap[MAP_HEIGHT - 3][Math.floor(MAP_WIDTH / 2) - 1] = TILE_WHITEPAPER;
@@ -82,9 +87,9 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
     // Connect buildings with roads (before adding trees and variety)
     const buildingPositions = [
       [{ x: MAP_WIDTH - 5, y: 2 }, { x: MAP_WIDTH - 4, y: 2 }, { x: MAP_WIDTH - 5, y: 3 }, { x: MAP_WIDTH - 4, y: 3 }], // Blog
-      [{ x: 3, y: 2 }, { x: 4, y: 2 }, { x: 3, y: 3 }], // Jobs
-      [{ x: 2, y: 5 }, { x: 3, y: 5 }], // Code
-      [{ x: MAP_WIDTH - 4, y: 5 }, { x: MAP_WIDTH - 3, y: 5 }], // Profile
+      [{ x: 3, y: 2 }, { x: 4, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 3 }], // Jobs
+      [{ x: 2, y: 5 }, { x: 3, y: 5 }, { x: 2, y: 6 }, { x: 3, y: 6 }], // Code
+      [{ x: MAP_WIDTH - 4, y: 5 }, { x: MAP_WIDTH - 3, y: 5 }, { x: MAP_WIDTH - 4, y: 6 }, { x: MAP_WIDTH - 3, y: 6 }], // Profile
       [{ x: Math.floor(MAP_WIDTH / 2) - 1, y: MAP_HEIGHT - 3 }, { x: Math.floor(MAP_WIDTH / 2), y: MAP_HEIGHT - 3 },
        { x: Math.floor(MAP_WIDTH / 2) - 1, y: MAP_HEIGHT - 4 }, { x: Math.floor(MAP_WIDTH / 2), y: MAP_HEIGHT - 4 }] // Whitepaper
     ];
@@ -93,10 +98,10 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
     // Add ground variety and trees
     addGroundVariety(newMap);
     addTrees(newMap, [
-      { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 3, y: 4 }, { x: 4, y: 3 }, // Jobs
+      { x: 3, y: 2 }, { x: 4, y: 2 }, { x: 3, y: 3 }, { x: 4, y: 3 }, // Jobs
       { x: MAP_WIDTH - 5, y: 2 }, { x: MAP_WIDTH - 4, y: 2 }, { x: MAP_WIDTH - 5, y: 3 }, { x: MAP_WIDTH - 4, y: 3 }, // Blog
-      { x: 2, y: 5 }, { x: 3, y: 5 }, // Code
-      { x: MAP_WIDTH - 4, y: 5 }, { x: MAP_WIDTH - 3, y: 5 }, // Profile
+      { x: 2, y: 5 }, { x: 3, y: 5 }, { x: 2, y: 6 }, { x: 3, y: 6 }, // Code
+      { x: MAP_WIDTH - 4, y: 5 }, { x: MAP_WIDTH - 3, y: 5 }, { x: MAP_WIDTH - 4, y: 6 }, { x: MAP_WIDTH - 3, y: 6 }, // Profile
       { x: Math.floor(MAP_WIDTH / 2) - 1, y: MAP_HEIGHT - 3 }, { x: Math.floor(MAP_WIDTH / 2), y: MAP_HEIGHT - 3 },
       { x: Math.floor(MAP_WIDTH / 2) - 1, y: MAP_HEIGHT - 4 }, { x: Math.floor(MAP_WIDTH / 2), y: MAP_HEIGHT - 4 } // Whitepaper
     ]);
@@ -128,6 +133,7 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
         { x: 3, y: 2 },
         { x: 4, y: 2 },
         { x: 3, y: 3 },
+        { x: 4, y: 3 },
       ],
       label: 'NEW JOBS',
       description: 'Explore tech jobs in a playable world',
@@ -141,6 +147,8 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
       positions: [
         { x: 2, y: 5 },
         { x: 3, y: 5 },
+        { x: 2, y: 6 },
+        { x: 3, y: 6 },
       ],
       label: 'CODE',
       description: 'Hackathons, Open Source, and Bounties',
@@ -154,6 +162,8 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
       positions: [
         { x: MAP_WIDTH - 4, y: 5 },
         { x: MAP_WIDTH - 3, y: 5 },
+        { x: MAP_WIDTH - 4, y: 6 },
+        { x: MAP_WIDTH - 3, y: 6 },
       ],
       label: 'PROFILE',
       description: 'View your profile and stats',
@@ -181,6 +191,9 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
   const handleBuildingEnter = (route: string) => {
     if (route === 'profile-popup') {
       setShowProfilePopup(true);
+    } else if (route === '/whitepaper') {
+      // Open whitepaper PDF in new tab
+      window.open('/whitepaper.pdf', '_blank');
     } else {
       onBuildingEnter(route);
     }

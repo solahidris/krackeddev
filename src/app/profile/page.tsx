@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ProfileScene } from '@/components/game/ProfileScene';
 import { MusicPlayer } from '@/components/game/MusicPlayer';
@@ -9,6 +9,28 @@ import '../jobs/jobs.css';
 
 export default function ProfilePage() {
   const router = useRouter();
+  const [audioUnlocked, setAudioUnlocked] = useState(false);
+
+  // Capture first user interaction to unlock audio
+  useEffect(() => {
+    const handleFirstInteraction = () => {
+      if (!audioUnlocked) {
+        setAudioUnlocked(true);
+        window.dispatchEvent(new CustomEvent('unlockAudio'));
+      }
+    };
+
+    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'mousemove', 'touchmove'];
+    events.forEach(event => {
+      window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    });
+
+    return () => {
+      events.forEach(event => {
+        window.removeEventListener(event, handleFirstInteraction);
+      });
+    };
+  }, [audioUnlocked]);
 
   const handleBack = () => {
     router.push('/');

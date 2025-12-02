@@ -3,3 +3,5 @@ export { generateQuests, generateTrainingTip } from '@/services/mockJobService';
 export type { Quest } from '@/types/jobs';
 export { QuestDifficulty, JobType } from '@/types/jobs';
 
+
+

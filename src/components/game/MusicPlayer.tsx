@@ -15,30 +15,66 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ startPlaying = true, o
         }
         return false;
     });
+    const [audioReady, setAudioReady] = useState(false);
 
+    // Check if audio is muted
+    const isAudioMuted = () => {
+        if (typeof window === 'undefined') return false;
+        return localStorage.getItem('soundMuted') === 'true';
+    };
+
+    // Function to try playing audio
+    const tryPlayAudio = () => {
+        const audio = audioRef.current;
+        if (!audio || isAudioMuted()) return;
+
+        audio.volume = 0.4;
+        audio.play().catch((err) => {
+            // Autoplay blocked - this is expected, will play on user interaction
+            console.log('Autoplay blocked:', err);
+        });
+    };
+
+    // Initialize audio and set up controls
     useEffect(() => {
         const audio = audioRef.current;
         if (!audio) return;
 
-        // Initialize volume based on mute state
-        const currentMuted = localStorage.getItem('soundMuted') === 'true';
-        audio.volume = currentMuted ? 0 : 0.4;
+        // Set initial volume
+        audio.volume = isAudioMuted() ? 0 : 0.4;
 
+        // Handle audio ready events
+        const handleCanPlay = () => {
+            setAudioReady(true);
+            if (startPlaying && !isAudioMuted()) {
+                tryPlayAudio();
+            }
+        };
+
+        const handleLoadedData = () => {
+            setAudioReady(true);
+            if (startPlaying && !isAudioMuted()) {
+                tryPlayAudio();
+            }
+        };
+
+        audio.addEventListener('canplay', handleCanPlay);
+        audio.addEventListener('loadeddata', handleLoadedData);
+
+        // If already loaded, try playing immediately
+        if (audio.readyState >= 2) {
+            setAudioReady(true);
+            if (startPlaying && !isAudioMuted()) {
+                tryPlayAudio();
+            }
+        }
+
+        // Set up controls
         const controls = {
             play: () => {
-                const currentMuted = localStorage.getItem('soundMuted') === 'true';
-                if (!currentMuted && audio) {
-                    audio.play().catch(() => {
-                        // Autoplay blocked – start on first user click
-                        const unlock = () => {
-                            const stillMuted = localStorage.getItem('soundMuted') === 'true';
-                            if (audio && !stillMuted) {
-                                audio.play().catch(() => { });
-                            }
-                            window.removeEventListener("click", unlock);
-                        };
-                        window.addEventListener("click", unlock);
-                    });
+                if (!isAudioMuted() && audio) {
+                    audio.volume = 0.4;
+                    tryPlayAudio();
                 }
             },
             pause: () => {
@@ -56,7 +92,12 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ startPlaying = true, o
         if (onReady) {
             onReady(controls);
         }
-    }, [onReady]);
+
+        return () => {
+            audio.removeEventListener('canplay', handleCanPlay);
+            audio.removeEventListener('loadeddata', handleLoadedData);
+        };
+    }, [onReady, startPlaying]);
 
     // Listen for sound toggle events
     useEffect(() => {
@@ -64,7 +105,6 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ startPlaying = true, o
             const newMuted = e.detail.muted;
             setIsMuted(newMuted);
             
-            // Immediately update audio
             const audio = audioRef.current;
             if (audio) {
                 if (newMuted) {
@@ -72,8 +112,8 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ startPlaying = true, o
                     audio.pause();
                 } else {
                     audio.volume = 0.4;
-                    if (startPlaying) {
-                        audio.play().catch(() => { });
+                    if (startPlaying && audioReady) {
+                        tryPlayAudio();
                     }
                 }
             }
@@ -81,23 +121,53 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ startPlaying = true, o
 
         window.addEventListener('soundToggle', handleSoundToggle as EventListener);
         return () => window.removeEventListener('soundToggle', handleSoundToggle as EventListener);
-    }, [startPlaying]);
+    }, [startPlaying, audioReady]);
 
-    // Initialize and play audio when startPlaying changes
+    // Try to play when startPlaying changes and audio is ready
     useEffect(() => {
-        const audio = audioRef.current;
-        if (!audio) return;
+        if (startPlaying && audioReady && !isAudioMuted()) {
+            // Try multiple times with delays
+            tryPlayAudio();
+            const timeout1 = setTimeout(tryPlayAudio, 100);
+            const timeout2 = setTimeout(tryPlayAudio, 300);
+            const timeout3 = setTimeout(tryPlayAudio, 500);
+            const timeout4 = setTimeout(tryPlayAudio, 1000);
 
-        const currentMuted = localStorage.getItem('soundMuted') === 'true';
-        if (currentMuted) {
-            audio.volume = 0;
-            audio.pause();
-        } else {
-            audio.volume = 0.4;
-            if (startPlaying) {
-                audio.play().catch(() => { });
-            }
+            return () => {
+                clearTimeout(timeout1);
+                clearTimeout(timeout2);
+                clearTimeout(timeout3);
+                clearTimeout(timeout4);
+            };
         }
+    }, [startPlaying, audioReady]);
+
+    // Aggressive autoplay on first user interaction
+    useEffect(() => {
+        if (!startPlaying || isAudioMuted()) return;
+
+        const handleFirstInteraction = () => {
+            tryPlayAudio();
+            // Remove all listeners
+            window.removeEventListener('click', handleFirstInteraction);
+            window.removeEventListener('touchstart', handleFirstInteraction);
+            window.removeEventListener('keydown', handleFirstInteraction);
+            window.removeEventListener('mousemove', handleFirstInteraction);
+            window.removeEventListener('touchmove', handleFirstInteraction);
+            window.removeEventListener('pointerdown', handleFirstInteraction);
+        };
+
+        // Add listeners for various interaction types
+        const events = ['click', 'touchstart', 'keydown', 'mousemove', 'touchmove', 'pointerdown'];
+        events.forEach(event => {
+            window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+        });
+
+        return () => {
+            events.forEach(event => {
+                window.removeEventListener(event, handleFirstInteraction);
+            });
+        };
     }, [startPlaying]);
 
     return (

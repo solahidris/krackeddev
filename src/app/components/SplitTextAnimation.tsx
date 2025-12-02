@@ -51,12 +51,29 @@ export default function SplitTextAnimation({
     }
   }, [isVisible, onComplete]);
 
+  // Trigger audio unlock on any interaction with animation
+  useEffect(() => {
+    const handleInteraction = () => {
+      // Dispatch event to unlock audio
+      window.dispatchEvent(new CustomEvent('unlockAudio'));
+    };
+
+    window.addEventListener('click', handleInteraction, { once: true });
+    window.addEventListener('touchstart', handleInteraction, { once: true });
+    
+    return () => {
+      window.removeEventListener('click', handleInteraction);
+      window.removeEventListener('touchstart', handleInteraction);
+    };
+  }, []);
+
   return (
     <motion.div
-      className="flex justify-center items-center min-h-screen fixed inset-0 z-50 bg-background"
+      className="flex justify-center items-center min-h-screen fixed inset-0 z-50 bg-background cursor-pointer"
       initial={{ opacity: 1 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+      onClick={() => window.dispatchEvent(new CustomEvent('unlockAudio'))}
     >
       <motion.div
         className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
