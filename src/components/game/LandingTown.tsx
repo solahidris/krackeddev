@@ -157,7 +157,7 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
       colorDark: '#0891b2',
     },
     {
-      id: 'profile',
+      id: 'members',
       tileType: TILE_PROFILE,
       positions: [
         { x: MAP_WIDTH - 4, y: 5 },
@@ -165,9 +165,9 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
         { x: MAP_WIDTH - 4, y: 6 },
         { x: MAP_WIDTH - 3, y: 6 },
       ],
-      label: 'PROFILE',
-      description: 'View your profile and stats',
-      route: 'profile-popup',
+      label: 'MEMBERS',
+      description: 'View our community members',
+      route: '/members',
       color: '#ec4899',
       colorDark: '#db2777',
     },
@@ -338,7 +338,7 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
               <p className="text-gray-500 text-sm">Press ESC to close</p>
             </div>
           </div>
-        </div>
+          </div>
         </>
       )}
     </div>

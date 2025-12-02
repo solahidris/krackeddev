@@ -134,24 +134,24 @@ export function renderTile(
       break;
 
     case TILE_PROFILE:
-      // Profile - pink building with label
+      // Members - pink building with label
       ctx.fillStyle = "#22c55e"; // green ground
       ctx.fillRect(px, py, TILE_SIZE, TILE_SIZE);
       ctx.fillStyle = "#ec4899"; // pink-500
       ctx.fillRect(px + 2, py + 2, TILE_SIZE - 4, TILE_SIZE - 4);
       ctx.fillStyle = "#db2777"; // pink-600
       ctx.fillRect(px + 4, py + 4, TILE_SIZE - 8, TILE_SIZE - 8);
-      // Draw text label
+      // Draw text label (smaller font to fit "MEMBER" in full)
       const profileTextX = px + TILE_SIZE / 2;
       const profileTextY = py + TILE_SIZE / 2;
-      ctx.font = "bold 7px 'Press Start 2P', monospace";
+      ctx.font = "bold 5px 'Press Start 2P', monospace";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.strokeStyle = "#000000";
       ctx.lineWidth = 2;
-      ctx.strokeText("PROF", profileTextX, profileTextY);
+      ctx.strokeText("MEMBER", profileTextX, profileTextY);
       ctx.fillStyle = "#ffffff";
-      ctx.fillText("PROF", profileTextX, profileTextY);
+      ctx.fillText("MEMBER", profileTextX, profileTextY);
       break;
 
     case TILE_WHITEPAPER:
