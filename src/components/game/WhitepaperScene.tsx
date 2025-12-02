@@ -6,6 +6,7 @@ import { EscapeButton } from './EscapeButton';
 import { TILE_EMPTY, TILE_WALL, TILE_WHITEPAPER, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEIGHT } from '@/lib/game/constants';
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { BuildingConfig } from '@/lib/game/types';
+import { useDialogClose } from './useDialogClose';
 
 interface WhitepaperSceneProps {
   onBack: () => void;
@@ -122,17 +123,8 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
     }
   };
 
-  // Handle Escape key to close popup
-  useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && showPDF) {
-        setShowPDF(false);
-      }
-    };
-
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [showPDF]);
+  // Handle Escape key and Y button to close popup
+  useDialogClose(showPDF, () => setShowPDF(false));
 
   return (
     <div className="relative w-full h-screen">
@@ -142,31 +134,32 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
         onBuildingEnter={handleBuildingEnter}
         initialPlayerX={(MAP_WIDTH / 2) * 40}
         initialPlayerY={(MAP_HEIGHT / 2 + 2) * 40}
+        onCloseDialog={() => setShowPDF(false)}
+        canCloseDialog={showPDF}
       />
 
       {/* PDF Viewer Overlay */}
       {showPDF && (
         <>
           <EscapeButton onClose={() => setShowPDF(false)} />
-          <div className={`absolute inset-0 bg-black/90 z-30 flex items-center justify-center ${
+          <div className={`absolute inset-0 bg-transparent z-40 flex items-center justify-center pointer-events-none ${
             isMobile ? 'p-0' : 'p-2 md:p-4'
           }`}>
+          <div className="pointer-events-auto">
           <div className={`bg-gray-900 ${
             isMobile 
-              ? 'w-full h-full border-0' 
+              ? 'w-full max-h-[60vh] border-4 border-yellow-500 mb-20' 
               : 'border-4 border-yellow-500 max-w-6xl w-full h-[95vh] md:h-[90vh]'
-          } flex flex-col`}>
-            {!isMobile && (
-              <div className="flex justify-between items-center p-2 md:p-4 border-b border-yellow-500">
-                <h2 className="text-lg md:text-2xl text-yellow-400 font-bold">WHITEPAPER</h2>
-                <button
-                  onClick={() => setShowPDF(false)}
-                  className="text-white hover:text-red-400 text-xl"
-                >
-                  ✕
-                </button>
-              </div>
-            )}
+          } flex flex-col overflow-hidden`}>
+            <div className="flex justify-between items-center p-2 md:p-4 border-b border-yellow-500">
+              <h2 className="text-lg md:text-2xl text-yellow-400 font-bold">WHITEPAPER</h2>
+              <button
+                onClick={() => setShowPDF(false)}
+                className="text-white hover:text-red-400 text-xl"
+              >
+                ✕
+              </button>
+            </div>
             <div className="flex-1 overflow-hidden">
               <iframe
                 src="/whitepaper.pdf#view=FitH"
@@ -184,6 +177,7 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
                 <p className="text-gray-500 text-xs md:text-sm">Press ESC to close</p>
               </div>
             )}
+          </div>
           </div>
         </div>
         </>

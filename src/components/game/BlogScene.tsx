@@ -7,6 +7,7 @@ import { TILE_EMPTY, TILE_WALL, TILE_BLOG, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEI
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { BuildingConfig } from '@/lib/game/types';
 import { posts } from '@/lib/blog';
+import { useDialogClose } from './useDialogClose';
 
 interface BlogSceneProps {
   onBack: () => void;
@@ -140,18 +141,11 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
     }
   };
 
-  // Handle Escape key to close popup
-  React.useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape' && showPostPopup) {
-        setShowPostPopup(false);
-        setSelectedPost(null);
-      }
-    };
-
-    window.addEventListener('keydown', handleEscape);
-    return () => window.removeEventListener('keydown', handleEscape);
-  }, [showPostPopup]);
+  // Handle Escape key and Y button to close popup
+  useDialogClose(showPostPopup, () => {
+    setShowPostPopup(false);
+    setSelectedPost(null);
+  });
 
   return (
     <div className="relative w-full h-screen">
@@ -161,14 +155,20 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
         onBuildingEnter={handleBuildingEnter}
         initialPlayerX={(MAP_WIDTH / 2) * 40}
         initialPlayerY={(MAP_HEIGHT / 2) * 40}
+        onCloseDialog={() => {
+          setShowPostPopup(false);
+          setSelectedPost(null);
+        }}
+        canCloseDialog={showPostPopup}
       />
 
       {/* Blog Post Popup */}
       {showPostPopup && selectedPost && (
         <>
           <EscapeButton onClose={() => { setShowPostPopup(false); setSelectedPost(null); }} />
-          <div className="absolute inset-0 bg-black/90 z-30 flex items-center justify-center p-4">
-          <div className="bg-gray-900 border-4 border-purple-500 max-w-4xl w-full max-h-[90vh] flex flex-col">
+          <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
+          <div className="pointer-events-auto">
+          <div className="bg-gray-900 border-4 border-purple-500 max-w-4xl w-full max-h-[60vh] md:max-h-[90vh] flex flex-col mb-20 md:mb-0">
             <div className="flex justify-between items-center p-4 border-b border-purple-500">
               <div>
                 <h2 className="text-2xl text-purple-400 font-bold">{selectedPost.title}</h2>
@@ -248,6 +248,7 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
             <div className="p-4 border-t border-purple-500 text-center">
               <p className="text-gray-500 text-sm">Press ESC to close</p>
             </div>
+          </div>
           </div>
         </div>
         </>

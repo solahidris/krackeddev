@@ -128,3 +128,32 @@
 .text-shadow-sm {
   text-shadow: 1px 1px 0px #000;
 }
+
+/* Mobile Canvas Positioning - Prevent shifting when keyboard appears */
+@media (max-width: 767px) {
+  .canvas-container {
+    position: relative;
+    touch-action: none;
+    will-change: transform;
+    overflow: hidden;
+  }
+  
+  .canvas-container canvas {
+    position: relative;
+    touch-action: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Prevent viewport shifts on mobile */
+  .jobs-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh; /* Dynamic viewport height for mobile */
+  }
+}
