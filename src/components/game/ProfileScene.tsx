@@ -15,6 +15,19 @@ interface ProfileSceneProps {
 
 export const ProfileScene: React.FC<ProfileSceneProps> = ({ onBack }) => {
   const [showProfilePopup, setShowProfilePopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Mock profile data
   const stats: CharacterStats = {
@@ -260,12 +273,14 @@ export const ProfileScene: React.FC<ProfileSceneProps> = ({ onBack }) => {
               )}
             </div>
 
-            <div className="p-4 border-t border-pink-500 text-center">
-              <p className="text-gray-500 text-sm">Press ESC to close</p>
-            </div>
+            {!isMobile && (
+              <div className="p-4 border-t border-pink-500 text-center">
+                <p className="text-gray-500 text-sm">Press ESC to close</p>
+              </div>
+            )}
           </div>
           </div>
-        </div>
+          </div>
         </>
       )}
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { BaseGameWorld } from './BaseGameWorld';
 import { EscapeButton } from './EscapeButton';
 import { TILE_EMPTY, TILE_WALL, TILE_PROFILE, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEIGHT } from '@/lib/game/constants';
@@ -18,6 +18,19 @@ const NORMAL_MEMBERS = ['anonymous'];
 export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
   const [showFoundingMembersPopup, setShowFoundingMembersPopup] = useState(false);
   const [showMembersPopup, setShowMembersPopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Generate map
   const map = useMemo(() => {
@@ -188,9 +201,11 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
                   ))}
                 </div>
               </div>
-              <div className="p-4 border-t border-black text-center">
-                <p className="text-gray-500 text-sm">Press ESC to close</p>
-              </div>
+              {!isMobile && (
+                <div className="p-4 border-t border-black text-center">
+                  <p className="text-gray-500 text-sm">Press ESC to close</p>
+                </div>
+              )}
             </div>
           </div>
           </div>
@@ -225,9 +240,11 @@ export const MembersScene: React.FC<MembersSceneProps> = ({ onBack }) => {
                   ))}
                 </div>
               </div>
-              <div className="p-4 border-t border-green-500 text-center">
-                <p className="text-gray-500 text-sm">Press ESC to close</p>
-              </div>
+              {!isMobile && (
+                <div className="p-4 border-t border-green-500 text-center">
+                  <p className="text-gray-500 text-sm">Press ESC to close</p>
+                </div>
+              )}
             </div>
           </div>
           </div>

@@ -141,6 +141,8 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
       {/* PDF Viewer Overlay */}
       {showPDF && (
         <>
+          {/* Backdrop - Desktop only */}
+          {!isMobile && <div className="fixed inset-0 bg-black/50 z-30" />}
           <EscapeButton onClose={() => setShowPDF(false)} />
           <div className={`absolute inset-0 bg-transparent z-40 flex items-center justify-center pointer-events-none ${
             isMobile ? 'p-0' : 'p-2 md:p-4'

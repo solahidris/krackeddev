@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { BaseGameWorld } from './BaseGameWorld';
 import { EscapeButton } from './EscapeButton';
 import { TILE_EMPTY, TILE_WALL, TILE_BLOG, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEIGHT } from '@/lib/game/constants';
@@ -16,6 +16,19 @@ interface BlogSceneProps {
 export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
   const [selectedPost, setSelectedPost] = useState<any>(null);
   const [showPostPopup, setShowPostPopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Generate map
   const map = useMemo(() => {
@@ -165,6 +178,8 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
       {/* Blog Post Popup */}
       {showPostPopup && selectedPost && (
         <>
+          {/* Backdrop - Desktop only */}
+          {!isMobile && <div className="fixed inset-0 bg-black/50 z-30" />}
           <EscapeButton onClose={() => { setShowPostPopup(false); setSelectedPost(null); }} />
           <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
           <div className="pointer-events-auto">
@@ -240,17 +255,12 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
                       );
                     })}
                   </div>
-                ) : (
-                  <p className="text-gray-400">Content coming soon...</p>
-                )}
+                ) : null}
               </div>
             </div>
-            <div className="p-4 border-t border-purple-500 text-center">
-              <p className="text-gray-500 text-sm">Press ESC to close</p>
-            </div>
           </div>
           </div>
-        </div>
+          </div>
         </>
       )}
 

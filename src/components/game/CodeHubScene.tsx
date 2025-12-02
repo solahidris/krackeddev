@@ -164,6 +164,8 @@ export const CodeHubScene: React.FC<CodeHubSceneProps> = ({ onBack }) => {
         onBuildingEnter={handleBuildingEnter}
         initialPlayerX={(MAP_WIDTH / 2) * 40}
         initialPlayerY={(MAP_HEIGHT / 2 + 2) * 40}
+        onCloseDialog={() => {}}
+        canCloseDialog={false}
       />
 
 

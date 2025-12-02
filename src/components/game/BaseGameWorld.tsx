@@ -8,6 +8,7 @@ import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
 import { ControlLegend } from './ControlLegend';
 import { preloadCharacterSprites } from '@/lib/game/sprites';
+import { toast } from 'sonner';
 
 // Create a single shared Audio instance for click sound (only in browser)
 let clickSound: HTMLAudioElement | null = null;
@@ -52,6 +53,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
   const [isMobile, setIsMobile] = useState(false);
   const [nearBuilding, setNearBuilding] = useState<BuildingConfig | null>(null);
   const hasNavigatedRef = useRef(false);
+  const toastIdRef = useRef<string | number | null>(null);
 
   // Player state
   const playerRef = useRef({
@@ -348,6 +350,33 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
     return () => cancelAnimationFrame(animationId);
   }, [map, buildings, nearBuilding]);
 
+  // Handle sonner toast for interaction hints
+  useEffect(() => {
+    if (nearBuilding) {
+      // Dismiss any existing toast
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current);
+      }
+      // Show new toast
+      const message = isMobile ? 'Tap X button to enter' : 'Press SPACE to enter';
+      toastIdRef.current = toast.info(message, {
+        duration: 5000,
+      });
+    } else {
+      // Dismiss toast when not near building
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current);
+        toastIdRef.current = null;
+      }
+    }
+
+    return () => {
+      if (toastIdRef.current !== null) {
+        toast.dismiss(toastIdRef.current);
+      }
+    };
+  }, [nearBuilding, isMobile]);
+
   return (
     <div className="w-full bg-gray-900 text-white jobs-container relative overflow-hidden flex flex-col items-start justify-start pt-20 pb-8 px-2 md:px-4 md:items-center md:justify-center">
       {/* Canvas Container with relative positioning for dialogs */}
@@ -375,6 +404,9 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
             </div>
           )}
         </div>
+        
+        {/* Control Legend - Desktop only, below canvas */}
+        <ControlLegend isMobile={isMobile} />
       </div>
 
       {/* Mobile Controls - Fixed at bottom of screen */}

@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import MusicPlayer from "./MusicPlayer";
-import { SoundToggle } from "@/components/game/SoundToggle";
 
 export const metadata: Metadata = {
   title: "Kracked Jobs",
@@ -32,9 +30,6 @@ export default function JobsLayout({
 }) {
   return (
     <>
-      {/* Background music for /jobs */}
-      <MusicPlayer />
-      <SoundToggle />
       {children}
     </>
   );

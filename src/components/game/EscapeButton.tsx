@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { GameBoyButtonY } from './GameBoyButtonY';
 
 interface EscapeButtonProps {
@@ -9,6 +9,21 @@ interface EscapeButtonProps {
 }
 
 export const EscapeButton: React.FC<EscapeButtonProps> = ({ onClose, className = '' }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      const isMobileDevice = typeof window !== 'undefined' && window.innerWidth < 768;
+      setIsMobile(isMobileDevice);
+    };
+
+    checkMobile();
+    if (typeof window !== 'undefined') {
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }
+  }, []);
+
   return (
     <button
       onClick={onClose}

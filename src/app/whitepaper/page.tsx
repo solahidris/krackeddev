@@ -3,8 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { WhitepaperScene } from '@/components/game/WhitepaperScene';
-import { MusicPlayer } from '@/components/game/MusicPlayer';
-import { SoundToggle } from '@/components/game/SoundToggle';
 import { EscapeButton } from '@/components/game/EscapeButton';
 import { useDialogClose } from '@/components/game/useDialogClose';
 import '../jobs/jobs.css';
@@ -60,8 +58,6 @@ export default function WhitepaperPage() {
 
   return (
     <main className="min-h-screen w-full bg-gray-900 relative">
-      <MusicPlayer startPlaying={true} />
-      <SoundToggle />
       <div className="scanlines fixed inset-0 pointer-events-none z-50"></div>
       <WhitepaperScene onBack={handleBack} />
       
