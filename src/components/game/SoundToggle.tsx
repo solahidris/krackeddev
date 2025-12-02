@@ -40,7 +40,7 @@ export const SoundToggle: React.FC = () => {
     return (
         <button
             onClick={toggleSound}
-            className="fixed top-20 right-20 z-[100] w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center hover:bg-black/90 transition-all pointer-events-auto"
+            className="fixed top-4 right-4 z-50 w-12 h-12 rounded-full bg-black/70 backdrop-blur-sm border-2 border-white/30 flex items-center justify-center hover:bg-black/90 transition-all"
             aria-label={displayMuted ? 'Unmute sound' : 'Mute sound'}
         >
             {displayMuted ? (

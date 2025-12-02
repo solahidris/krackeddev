@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import { BaseGameWorld } from './BaseGameWorld';
 import { EscapeButton } from './EscapeButton';
 import { TILE_EMPTY, TILE_WALL, TILE_BLOG, TILE_JOBS, TILE_CODE, TILE_PROFILE, TILE_WHITEPAPER, MAP_WIDTH, MAP_HEIGHT } from '@/lib/game/constants';
@@ -213,9 +213,8 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
     }
   };
 
-  // Handle Escape key and Y button to close popups
+  // Handle Escape key and Y button to close popup
   useDialogClose(showProfilePopup, () => setShowProfilePopup(false));
-  useDialogClose(showWhitepaperPopup, () => setShowWhitepaperPopup(false));
 
   return (
     <div className="relative w-full h-full">
@@ -225,11 +224,8 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
         onBuildingEnter={handleBuildingEnter}
         initialPlayerX={(MAP_WIDTH / 2) * 40}
         initialPlayerY={(MAP_HEIGHT / 2) * 40}
-        onCloseDialog={() => {
-          setShowProfilePopup(false);
-          setShowWhitepaperPopup(false);
-        }}
-        canCloseDialog={showProfilePopup || showWhitepaperPopup}
+        onCloseDialog={() => setShowProfilePopup(false)}
+        canCloseDialog={showProfilePopup}
       />
 
       {/* Profile Popup */}
@@ -711,6 +707,7 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
                 )}
               </div>
             </div>
+          </div>
           </div>
         </>
       )}

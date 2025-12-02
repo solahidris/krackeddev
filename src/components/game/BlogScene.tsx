@@ -181,99 +181,86 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
           {/* Backdrop - Desktop only */}
           {!isMobile && <div className="fixed inset-0 bg-black/50 z-30" />}
           <EscapeButton onClose={() => { setShowPostPopup(false); setSelectedPost(null); }} />
-          <div className={`absolute inset-0 bg-transparent z-40 flex items-center justify-center pointer-events-none ${
-            isMobile ? 'p-0' : 'p-2 md:p-4'
-          }`}>
-            <div className="pointer-events-auto">
-              <div className={`bg-gray-900 ${
-                isMobile 
-                  ? 'w-full max-h-[60vh] border-4 border-purple-500 mb-20' 
-                  : 'border-4 border-purple-500 max-w-4xl w-full max-h-[90vh]'
-              } flex flex-col overflow-hidden`}>
-                <div className="flex justify-between items-center p-2 md:p-4 border-b border-purple-500">
-                  <div>
-                    <h2 className="text-lg md:text-2xl text-purple-400 font-bold">{selectedPost.title}</h2>
-                    <p className="text-gray-400 text-xs md:text-sm mt-1">
-                      {new Date(selectedPost.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                      })}
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setShowPostPopup(false);
-                      setSelectedPost(null);
-                    }}
-                    className="text-white hover:text-red-400 text-xl"
-                  >
-                    ✕
-                  </button>
-                </div>
-                <div className="flex-1 overflow-y-auto p-4 md:p-6">
-                  <div className="prose prose-invert max-w-none">
-                    <p className="text-purple-300 mb-4 md:mb-6 text-base md:text-lg">{selectedPost.summary}</p>
-                    {selectedPost.content ? (
-                      <div className="text-white">
-                        {selectedPost.content.split(/\n\n+/).map((para: string, idx: number) => {
-                          if (!para.trim()) return null;
-                          
-                          // Check if it's a heading
-                          if (para.trim().startsWith('##')) {
-                            const heading = para.replace(/^##+\s*/, '').trim();
-                            return (
-                              <h3 key={idx} className="text-purple-400 text-lg md:text-xl font-bold mt-4 md:mt-6 mb-2 md:mb-3">
-                                {heading}
-                              </h3>
-                            );
-                          }
-                          
-                          // Check if it's a code block
-                          if (para.trim().startsWith('```')) {
-                            const codeContent = para.split('\n').slice(1, -1).join('\n');
-                            return (
-                              <pre key={idx} className="bg-gray-800 p-3 md:p-4 rounded mb-3 md:mb-4 overflow-x-auto">
-                                <code className="text-green-400 text-xs md:text-sm font-mono">{codeContent}</code>
-                              </pre>
-                            );
-                          }
-                          
-                          // Check if it's a list item
-                          if (para.trim().startsWith('-') || para.trim().startsWith('*')) {
-                            const items = para.split('\n').filter(line => line.trim());
-                            return (
-                              <ul key={idx} className="list-disc list-inside mb-3 md:mb-4 space-y-1 md:space-y-2 ml-2 md:ml-4">
-                                {items.map((item, itemIdx) => (
-                                  <li key={itemIdx} className="text-gray-300 text-sm md:text-base">
-                                    {item.replace(/^[-*]\s*/, '').trim()}
-                                  </li>
-                                ))}
-                              </ul>
-                            );
-                          }
-                          
-                          // Regular paragraph
-                          return (
-                            <p key={idx} className="mb-3 md:mb-4 text-gray-300 leading-relaxed text-sm md:text-base">
-                              {para.trim()}
-                            </p>
-                          );
-                        })}
-                      </div>
-                    ) : (
-                      <p className="text-gray-400">Content coming soon...</p>
-                    )}
-                  </div>
-                </div>
-                {!isMobile && (
-                  <div className="p-2 md:p-4 border-t border-purple-500 text-center">
-                    <p className="text-gray-500 text-xs md:text-sm">Press ESC to close</p>
+          <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-4 pointer-events-none">
+          <div className="pointer-events-auto">
+          <div className="bg-gray-900 border-4 border-purple-500 max-w-4xl w-full max-h-[60vh] md:max-h-[90vh] flex flex-col mb-20 md:mb-0">
+            <div className="flex justify-between items-center p-4 border-b border-purple-500">
+              <div>
+                <h2 className="text-2xl text-purple-400 font-bold">{selectedPost.title}</h2>
+                <p className="text-gray-400 text-sm mt-1">
+                  {new Date(selectedPost.date).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                  })}
+                </p>
+              </div>
+              <button
+                onClick={() => {
+                  setShowPostPopup(false);
+                  setSelectedPost(null);
+                }}
+                className="text-white hover:text-red-400 text-xl"
+              >
+                ✕
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="prose prose-invert max-w-none">
+                <p className="text-purple-300 mb-6 text-lg">{selectedPost.summary}</p>
+                {selectedPost.content ? (
+                  <div className="text-white">
+                    {selectedPost.content.split(/\n\n+/).map((para: string, idx: number) => {
+                      if (!para.trim()) return null;
+                      
+                      // Check if it's a heading
+                      if (para.trim().startsWith('##')) {
+                        const heading = para.replace(/^##+\s*/, '').trim();
+                        return (
+                          <h3 key={idx} className="text-purple-400 text-xl font-bold mt-6 mb-3">
+                            {heading}
+                          </h3>
+                        );
+                      }
+                      
+                      // Check if it's a code block
+                      if (para.trim().startsWith('```')) {
+                        const codeContent = para.split('\n').slice(1, -1).join('\n');
+                        return (
+                          <pre key={idx} className="bg-gray-800 p-4 rounded mb-4 overflow-x-auto">
+                            <code className="text-green-400 text-sm font-mono">{codeContent}</code>
+                          </pre>
+                        );
+                      }
+                      
+                      // Check if it's a list item
+                      if (para.trim().startsWith('-') || para.trim().startsWith('*')) {
+                        const items = para.split('\n').filter(line => line.trim());
+                        return (
+                          <ul key={idx} className="list-disc list-inside mb-4 space-y-2 ml-4">
+                            {items.map((item, itemIdx) => (
+                              <li key={itemIdx} className="text-gray-300">
+                                {item.replace(/^[-*]\s*/, '').trim()}
+                              </li>
+                            ))}
+                          </ul>
+                        );
+                      }
+                      
+                      // Regular paragraph
+                      return (
+                        <p key={idx} className="mb-4 text-gray-300 leading-relaxed">
+                          {para.trim()}
+                        </p>
+                      );
+                    })}
                   </div>
                 )}
               </div>
             </div>
           </div>
+          </div>
+        </div>
         </>
       )}
 

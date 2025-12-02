@@ -187,6 +187,7 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
             )}
           </div>
           </div>
+          </div>
         </div>
         </>
       )}
