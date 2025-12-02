@@ -6,6 +6,7 @@ import { TILE_EMPTY, TILE_WALL, TILE_BLOG, TILE_JOBS, TILE_CODE, TILE_PROFILE, T
 import { BuildingConfig } from '@/lib/game/types';
 import { CharacterStats, UserProfile } from '@/types/jobs';
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
+import { EscapeButton } from './EscapeButton';
 
 interface LandingTownProps {
   onBuildingEnter: (route: string) => void;

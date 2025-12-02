@@ -6,6 +6,7 @@ import { TILE_EMPTY, TILE_WALL, TILE_JOBS, TILE_BACK_TO_TOWN, MAP_WIDTH, MAP_HEI
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { BuildingConfig } from '@/lib/game/types';
 import { generateQuests, type Quest } from '@/lib/jobs';
+import { EscapeButton } from './EscapeButton';
 
 interface NewJobsSceneProps {
   onBack: () => void;
