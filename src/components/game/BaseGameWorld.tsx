@@ -8,6 +8,26 @@ import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
 import { preloadCharacterSprites } from '@/lib/game/sprites';
 
+// Create a single shared Audio instance for click sound (only in browser)
+let clickSound: HTMLAudioElement | null = null;
+if (typeof Audio !== "undefined") {
+    clickSound = new Audio("/audio/click.mp3");
+    clickSound.volume = 0.6;
+}
+
+const playClickSound = () => {
+    if (clickSound) {
+        try {
+            clickSound.currentTime = 0;
+            clickSound.play().catch(() => {
+                // ignore autoplay / user gesture issues
+            });
+        } catch {
+            // fail silently
+        }
+    }
+};
+
 interface BaseGameWorldProps {
   map: number[][];
   buildings: BuildingConfig[];
@@ -25,6 +45,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [nearBuilding, setNearBuilding] = useState<BuildingConfig | null>(null);
   const [showDialog, setShowDialog] = useState(false);
   const hasNavigatedRef = useRef(false);
@@ -52,16 +73,18 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
     preloadCharacterSprites().catch(console.error);
   }, []);
 
-  // Detect mobile
+  // Detect mobile and small screens
   useEffect(() => {
-    const checkMobile = () => {
+    const checkScreenSize = () => {
       const isMobileDevice = window.innerWidth < 768;
+      const isSmallScreenDevice = window.innerWidth < 1280; // Below xl (huge) breakpoint
       setIsMobile(isMobileDevice);
+      setIsSmallScreen(isSmallScreenDevice);
     };
 
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   // Keyboard input
@@ -86,12 +109,14 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
         // E or Space to interact
         e.preventDefault();
         if (nearBuilding) {
+          playClickSound();
           setShowDialog(true);
         }
       } else if (e.key === "Enter") {
         // Enter to navigate
         e.preventDefault();
         if (nearBuilding && showDialog) {
+          playClickSound();
           onBuildingEnter(nearBuilding.route);
         }
       }
@@ -270,58 +295,64 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
   }, [map, buildings, nearBuilding]);
 
   return (
-    <div className="w-full bg-gray-900 text-white jobs-container relative overflow-hidden flex items-center justify-center pt-20 pb-8 px-2 md:px-4">
-      {/* Canvas Container */}
-      <div className="w-full max-w-5xl border-4 border-gray-700 mx-auto" style={{ aspectRatio: `${MAP_WIDTH}/${MAP_HEIGHT}` }}>
-        <canvas
-          ref={canvasRef}
-          width={MAP_WIDTH * TILE_SIZE}
-          height={MAP_HEIGHT * TILE_SIZE}
-          className="block w-full h-full"
-          style={{ 
-            imageRendering: "pixelated"
-          }}
-        />
+    <div className="w-full bg-gray-900 text-white jobs-container relative overflow-hidden flex flex-col items-center justify-center pt-20 pb-8 px-2 md:px-4">
+      {/* Canvas Container with relative positioning for dialogs */}
+      <div className="relative w-full max-w-5xl mx-auto">
+        <div className="relative w-full border-4 border-gray-700" style={{ aspectRatio: `${MAP_WIDTH}/${MAP_HEIGHT}` }}>
+          <canvas
+            ref={canvasRef}
+            width={MAP_WIDTH * TILE_SIZE}
+            height={MAP_HEIGHT * TILE_SIZE}
+            className="block w-full h-full"
+            style={{ 
+              imageRendering: "pixelated"
+            }}
+          />
+
+          {/* Dialog Box - overlay on top of tile section */}
+          {showDialog && nearBuilding && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-black/90 border-4 border-white p-4 max-w-md w-[90%]">
+              <div className="text-center">
+                <p className="text-yellow-400 mb-2 text-sm">{nearBuilding.label}</p>
+                <p className="text-white text-xs mb-2">{nearBuilding.description}</p>
+                {!isMobile && <p className="text-green-400 text-xs">Press ENTER to enter</p>}
+                {isMobile && <p className="text-green-400 text-xs">Tap ENTER button below</p>}
+              </div>
+            </div>
+          )}
+
+          {/* Interaction Hint - overlay on top of tile section */}
+          {nearBuilding && !showDialog && (
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 z-20 bg-black/70 border-2 border-yellow-400 p-2">
+              <p className="text-yellow-400 text-xs text-center">
+                {isMobile ? 'Tap E button below' : 'Press E or SPACE to speak'}
+              </p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* Dialog Box */}
-      {showDialog && nearBuilding && (
-        <div className={`absolute ${isMobile ? 'bottom-32' : 'bottom-20'} left-1/2 -translate-x-1/2 z-20 bg-black/90 border-4 border-white p-4 max-w-md`}>
-          <div className="text-center">
-            <p className="text-yellow-400 mb-2 text-sm">{nearBuilding.label}</p>
-            <p className="text-white text-xs mb-2">{nearBuilding.description}</p>
-            {!isMobile && <p className="text-green-400 text-xs">Press ENTER to enter</p>}
-            {isMobile && <p className="text-green-400 text-xs">Tap ENTER button below</p>}
-          </div>
-        </div>
-      )}
-
-      {/* Interaction Hint */}
-      {nearBuilding && !showDialog && (
-        <div className={`absolute ${isMobile ? 'bottom-32' : 'bottom-20'} left-1/2 -translate-x-1/2 z-20 bg-black/70 border-2 border-yellow-400 p-2`}>
-          <p className="text-yellow-400 text-xs text-center">
-            {isMobile ? 'Tap E button below' : 'Press E or SPACE to speak'}
-          </p>
-        </div>
-      )}
-
-      {/* Mobile Controls */}
+      {/* Mobile Controls - Centered below tile section */}
       {isMobile && (
-        <MobileControls
-          onDirectionChange={handleDirectionInput}
-          onInteract={() => {
-            if (nearBuilding) {
-              setShowDialog(true);
-            }
-          }}
-          onConfirm={() => {
-            if (nearBuilding && showDialog) {
-              onBuildingEnter(nearBuilding.route);
-            }
-          }}
-          canInteract={!!nearBuilding && !showDialog}
-          canConfirm={!!nearBuilding && showDialog}
-        />
+        <div className="w-full max-w-5xl mt-6 flex items-center justify-center gap-8">
+          <MobileControls
+            onDirectionChange={handleDirectionInput}
+            onInteract={() => {
+              if (nearBuilding) {
+                playClickSound();
+                setShowDialog(true);
+              }
+            }}
+            onConfirm={() => {
+              if (nearBuilding && showDialog) {
+                playClickSound();
+                onBuildingEnter(nearBuilding.route);
+              }
+            }}
+            canInteract={!!nearBuilding && !showDialog}
+            canConfirm={!!nearBuilding && showDialog}
+          />
+        </div>
       )}
     </div>
   );
