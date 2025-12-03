@@ -86,7 +86,7 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
   }, []);
 
   const buildings: BuildingConfig[] = useMemo(() => [
-    {
+      {
       id: 'jobs-building',
       tileType: TILE_JOBS,
       positions: [
@@ -96,6 +96,7 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
         { x: Math.floor(MAP_WIDTH / 2), y: Math.floor(MAP_HEIGHT / 2) },
       ],
       label: 'JOBS BOARD',
+      customLabel: 'JOBS\nBOARD',
       description: 'View available tech jobs',
       route: '',
       color: '#3b82f6',
@@ -111,6 +112,7 @@ export const NewJobsScene: React.FC<NewJobsSceneProps> = ({ onBack }) => {
         { x: 2, y: MAP_HEIGHT - 2 },
       ],
       label: 'BACK TO TOWN',
+      customLabel: 'BACK\nTO\nTOWN',
       description: 'Return to the main town',
       route: '/',
       color: '#ef4444',

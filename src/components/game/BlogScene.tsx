@@ -130,6 +130,7 @@ export const BlogScene: React.FC<BlogSceneProps> = ({ onBack }) => {
           { x: 2, y: MAP_HEIGHT - 2 },
         ],
         label: 'BACK TO TOWN',
+        customLabel: 'BACK\nTO\nTOWN',
         description: 'Return to the main town',
         route: '/',
         color: '#ef4444',

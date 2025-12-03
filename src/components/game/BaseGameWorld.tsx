@@ -288,16 +288,30 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
       ctx.fillStyle = "#0f172a"; // slate-900 background
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Render map
+      // Create a set of building tile positions to skip during map rendering
+      const buildingTilePositions = new Set<string>();
+      buildings.forEach(building => {
+        building.positions.forEach(pos => {
+          buildingTilePositions.add(`${pos.x},${pos.y}`);
+        });
+      });
+
+      // Render map (skip building tiles - they'll be rendered as big boxes)
       for (let y = 0; y < MAP_HEIGHT; y++) {
         for (let x = 0; x < MAP_WIDTH; x++) {
-          renderTile(ctx, map[y][x], x, y);
+          const tileKey = `${x},${y}`;
+          if (buildingTilePositions.has(tileKey)) {
+            // Render as empty ground instead of building tile
+            renderTile(ctx, TILE_EMPTY, x, y);
+          } else {
+            renderTile(ctx, map[y][x], x, y);
+          }
         }
       }
 
-      // Render custom labels on buildings
+      // Render buildings as one big box each
       for (const building of buildings) {
-        if (building.customLabel && building.positions.length > 0) {
+        if (building.positions.length > 0) {
           // Find the bounding box of all building positions
           const minX = Math.min(...building.positions.map(p => p.x));
           const minY = Math.min(...building.positions.map(p => p.y));
@@ -309,8 +323,13 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
           const width = (maxX - minX + 1) * TILE_SIZE;
           const height = (maxY - minY + 1) * TILE_SIZE;
           
-          // Cover the default building text with a background rectangle
-          // This ensures only the custom label (date) is visible, no "BLOG" text behind it
+          // Render ground under building
+          ctx.fillStyle = "#22c55e"; // green ground
+          ctx.fillRect(px, py, width, height);
+          
+          // Render building as one big box
+          ctx.fillStyle = building.color || "#9333ea"; // Use building's color
+          ctx.fillRect(px + 2, py + 2, width - 4, height - 4);
           ctx.fillStyle = building.colorDark || "#9333ea"; // Use building's dark color
           ctx.fillRect(px + 4, py + 4, width - 8, height - 8);
           
@@ -318,17 +337,36 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
           const centerX = px + width / 2;
           const centerY = py + height / 2;
           
-          ctx.font = "bold 6px 'Press Start 2P', monospace";
+          // Render label with big font (smaller for certain buildings)
+          const labelText = building.customLabel || building.label;
+          const isVerySmallFontBuilding = building.id === 'members' ||
+                                          building.id === 'levels' ||
+                                          building.id === 'system' ||
+                                          building.id === 'founding-members';
+          const isSmallFontBuilding = building.id === 'back-to-town' ||
+                                      building.id === 'whitepaper' ||
+                                      building.id === 'opensource' ||
+                                      building.id === 'bounty';
+          let fontSize = 16;
+          let lineSpacing = 18;
+          if (isVerySmallFontBuilding) {
+            fontSize = 10;
+            lineSpacing = 12;
+          } else if (isSmallFontBuilding) {
+            fontSize = 12;
+            lineSpacing = 14;
+          }
+          ctx.font = `bold ${fontSize}px 'Press Start 2P', monospace`;
           ctx.textAlign = "center";
           ctx.textBaseline = "middle";
           ctx.strokeStyle = "#000000";
-          ctx.lineWidth = 2;
+          ctx.lineWidth = 3;
           ctx.fillStyle = "#ffffff";
           
           // Split label into lines if needed
-          const lines = building.customLabel.split('\n');
+          const lines = labelText.split('\n');
           lines.forEach((line, idx) => {
-            const textY = centerY + (idx - (lines.length - 1) / 2) * 6;
+            const textY = centerY + (idx - (lines.length - 1) / 2) * lineSpacing;
             ctx.strokeText(line, centerX, textY);
             ctx.fillText(line, centerX, textY);
           });
@@ -398,7 +436,7 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
       );
 
       // Update and render chickens
-      const ANIMAL_SPEED = PLAYER_SPEED * 0.4; // Slower than player
+      const ANIMAL_SPEED = PLAYER_SPEED * 0.15; // Much slower than player
       chickensRef.current.forEach((chicken) => {
         chicken.frame++;
         chicken.moveTimer--;
@@ -474,8 +512,8 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance > 2) {
-          const moveX = (dx / distance) * ANIMAL_SPEED * 0.7; // Cows slower than chickens
-          const moveY = (dy / distance) * ANIMAL_SPEED * 0.7;
+          const moveX = (dx / distance) * ANIMAL_SPEED * 0.5; // Cows slower than chickens
+          const moveY = (dy / distance) * ANIMAL_SPEED * 0.5;
           const newX = cow.x + moveX;
           const newY = cow.y + moveY;
           
