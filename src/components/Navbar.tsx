@@ -16,7 +16,7 @@ const Navbar = () => {
   const isHomepage = pathname === '/';
   
   // Hide navigation links (middle section) on game pages and job detail pages, but keep header visible
-  const gamePages = ['/blog', '/new-jobs', '/code', '/profile', '/whitepaper', '/members'];
+  const gamePages = ['/blog', '/new-jobs', '/code', '/profile', '/whitepaper', '/members', '/onboarding'];
   const isJobDetailPage = pathname?.startsWith('/jobs/');
   const shouldHideNavLinks = isHomepage || gamePages.includes(pathname) || isJobDetailPage;
 
@@ -52,13 +52,6 @@ const Navbar = () => {
         {/* Desktop Nav */}
         {!shouldHideNavLinks && (
           <div className="hidden md:flex items-center gap-8">
-            <NavLink href="/">Home</NavLink>
-            <NavLink href="/game">Games</NavLink>
-            <NavLink href="/talks">Talks</NavLink>
-            <NavLink href="/hackathon">Hackathon</NavLink>
-
-            <NavLink href="/jobs">Jobs</NavLink>
-            <NavLink href="/forum">Forum</NavLink>
           </div>
         )}
 
@@ -92,13 +85,6 @@ const Navbar = () => {
             className="md:hidden border-t border-white/10 bg-background/95 backdrop-blur-xl overflow-hidden"
           >
             <div className="container mx-auto px-4 py-6 space-y-4 flex flex-col">
-              <MobileNavLink href="/" onClick={() => setIsMobileMenuOpen(false)}>Home</MobileNavLink>
-              <MobileNavLink href="/game" onClick={() => setIsMobileMenuOpen(false)}>Games</MobileNavLink>
-              <MobileNavLink href="/talks" onClick={() => setIsMobileMenuOpen(false)}>Talks</MobileNavLink>
-              <MobileNavLink href="/hackathon" onClick={() => setIsMobileMenuOpen(false)}>Hackathon</MobileNavLink>
-
-              <MobileNavLink href="/jobs" onClick={() => setIsMobileMenuOpen(false)}>Jobs</MobileNavLink>
-              <MobileNavLink href="/forum" onClick={() => setIsMobileMenuOpen(false)}>Forum</MobileNavLink>
 
               <div className="pt-4 border-t border-white/10 flex items-center justify-between">
                 <span className="text-sm text-muted-foreground">Prayer Times</span>

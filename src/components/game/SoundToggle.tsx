@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 
 export const SoundToggle: React.FC = () => {
     // Always start with false to match server render
     const [isMuted, setIsMuted] = useState(false);
     const [isClient, setIsClient] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         // Mark as client-side rendered
@@ -57,7 +59,8 @@ export const SoundToggle: React.FC = () => {
     const displayMuted = isClient ? isMuted : false;
 
     // Hide on mobile (mute button is in MobileControls)
-    if (isMobile) {
+    // Also hide on /testimonial page
+    if (isMobile || pathname === '/testimonial') {
         return null;
     }
 
@@ -100,4 +103,3 @@ export const SoundToggle: React.FC = () => {
         </button>
     );
 };
-

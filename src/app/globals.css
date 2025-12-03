@@ -362,9 +362,16 @@ input:-webkit-autofill:active {
   color: #ffffff !important;
 }
 
-/* Sonner positioning - below header on mobile */
-@media (max-width: 768px) {
-  [data-sonner-toaster] {
-    top: 80px !important;
-  }
+/* Infinite Scroll Animation */
+@keyframes infinite-scroll {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 20s linear infinite;
+}
+
+.animate-infinite-scroll:hover {
+  animation-play-state: paused;
 }
