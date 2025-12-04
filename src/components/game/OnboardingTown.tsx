@@ -7,16 +7,13 @@ import { BuildingConfig } from '@/lib/game/types';
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { loadSprite } from '@/lib/game/sprites';
 import {
-  onboardingLevels,
   getLevelById,
   getNextLevel,
   getSectionLabel,
   getSectionDescription,
   getTasksBySection,
-  getSectionCompletion,
   getAllSections,
   getCurrentFocusSection,
-  type OnboardingLevel,
   type OnboardingTask,
 } from '@/lib/onboardingLevels';
 
@@ -24,11 +21,9 @@ interface OnboardingTownProps {
   onBuildingEnter: (route: string) => void;
 }
 
-type DialogState = "closed" | "inProgress" | "completed";
 
 export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter }) => {
   const [showDialog, setShowDialog] = useState(false);
-  const [dialogState, setDialogState] = useState<DialogState>("closed");
   const [showGreeting, setShowGreeting] = useState(true);
   const [currentLevelId, setCurrentLevelId] = useState<number>(1);
   const [completedTaskIds, setCompletedTaskIds] = useState<Set<string>>(new Set());
@@ -39,6 +34,35 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
   const [currentTaskIndex, setCurrentTaskIndex] = useState<number>(0);
   const [showCelebration, setShowCelebration] = useState<boolean>(false);
   const [celebrationTask, setCelebrationTask] = useState<{ title: string; xp: number } | null>(null);
+
+  // Generate confetti data once to avoid Math.random() in render
+  const confettiData = useMemo(() => {
+    const colors = ['confetti-blue', 'confetti-red', 'confetti-green', 'confetti-yellow', 'confetti-purple', 'confetti-pink'];
+    const leftParticles = Array.from({ length: 40 }, (_, i) => {
+      // Use index-based seed for deterministic randomness
+      const seed = i * 0.618033988749895; // Golden ratio for better distribution
+      const randomColor = colors[Math.floor((seed % 1) * colors.length)];
+      const angle = ((seed % 1) * 120 - 60) * (Math.PI / 180);
+      const velocity = 300 + (seed % 1) * 400;
+      const tx = Math.cos(angle) * velocity;
+      const ty = Math.sin(angle) * velocity;
+      const r = (seed % 1) * 720 - 360;
+      const delay = (seed % 1) * 0.2;
+      return { randomColor, tx, ty, r, delay };
+    });
+    const rightParticles = Array.from({ length: 40 }, (_, i) => {
+      const seed = (i + 40) * 0.618033988749895;
+      const randomColor = colors[Math.floor((seed % 1) * colors.length)];
+      const angle = ((seed % 1) * 120 + 120) * (Math.PI / 180);
+      const velocity = 300 + (seed % 1) * 400;
+      const tx = Math.cos(angle) * velocity;
+      const ty = Math.sin(angle) * velocity;
+      const r = (seed % 1) * 720 - 360;
+      const delay = (seed % 1) * 0.2;
+      return { randomColor, tx, ty, r, delay };
+    });
+    return { leftParticles, rightParticles };
+  }, []);
 
   // Preload house image
   useEffect(() => {
@@ -196,12 +220,12 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
         setCurrentTaskIndex(level1TasksOrdered.length - 1);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLevelId, completedTaskIds, level1TasksOrdered]);
 
   const handleBuildingEnter = (route: string) => {
     if (route === 'npc-dialog') {
       setShowDialog(true);
-      setDialogState("inProgress");
       setShowGreeting(false);
       // Reset to first incomplete task for Level 1
       if (currentLevelId === 1 && level1TasksOrdered.length > 0) {
@@ -227,7 +251,6 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
         const nextLevel = getNextLevel(currentLevelId);
         if (nextLevel) {
           setCurrentLevelId(nextLevel.id);
-          setDialogState("closed");
           setShowDialog(false);
           setShowGreeting(true);
           setShowLevelUp(true);
@@ -236,7 +259,6 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
             setShowLevelUp(false);
           }, 3000);
         } else {
-          setDialogState("closed");
           setShowDialog(false);
         }
       }
@@ -298,7 +320,6 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
     setCurrentXP(0);
     setCurrentTaskIndex(0);
     setShowDialog(false);
-    setDialogState("closed");
     setShowGreeting(true);
     
     // Show confirmation message
@@ -327,7 +348,6 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
         e.preventDefault();
         if (showDialog) {
           setShowDialog(false);
-          setDialogState("closed");
           setShowGreeting(true);
         }
       }
@@ -350,7 +370,6 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
         onCloseDialog={() => {
           if (showDialog) {
             setShowDialog(false);
-            setDialogState("closed");
           }
         }}
         canCloseDialog={showDialog}
@@ -389,62 +408,38 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             {/* Left Cannon */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2">
-              {Array.from({ length: 40 }).map((_, i) => {
-                const colors = ['confetti-blue', 'confetti-red', 'confetti-green', 'confetti-yellow', 'confetti-purple', 'confetti-pink'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                
-                // Burst towards right (-60 to 60 degrees)
-                const angle = (Math.random() * 120 - 60) * (Math.PI / 180);
-                const velocity = 300 + Math.random() * 400;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                const r = Math.random() * 720 - 360;
-
-                return (
-                  <div
-                    key={`left-${i}`}
-                    className={`confetti-piece ${randomColor} animate-confetti-pop-side`}
-                    style={{
-                      left: '0px',
-                      top: '0px',
-                      '--tx': `${tx}px`,
-                      '--ty': `${ty}px`,
-                      '--r': `${r}deg`,
-                      animationDelay: `${Math.random() * 0.2}s`,
-                    } as React.CSSProperties}
-                  />
-                );
-              })}
+              {confettiData.leftParticles.map((particle, i) => (
+                <div
+                  key={`left-${i}`}
+                  className={`confetti-piece ${particle.randomColor} animate-confetti-pop-side`}
+                  style={{
+                    left: '0px',
+                    top: '0px',
+                    '--tx': `${particle.tx}px`,
+                    '--ty': `${particle.ty}px`,
+                    '--r': `${particle.r}deg`,
+                    animationDelay: `${particle.delay}s`,
+                  } as React.CSSProperties}
+                />
+              ))}
             </div>
 
             {/* Right Cannon */}
             <div className="absolute right-0 top-1/2 -translate-y-1/2">
-              {Array.from({ length: 40 }).map((_, i) => {
-                const colors = ['confetti-blue', 'confetti-red', 'confetti-green', 'confetti-yellow', 'confetti-purple', 'confetti-pink'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-                // Burst towards left (120 to 240 degrees)
-                const angle = (Math.random() * 120 + 120) * (Math.PI / 180);
-                const velocity = 300 + Math.random() * 400;
-                const tx = Math.cos(angle) * velocity;
-                const ty = Math.sin(angle) * velocity;
-                const r = Math.random() * 720 - 360;
-
-                return (
-                  <div
-                    key={`right-${i}`}
-                    className={`confetti-piece ${randomColor} animate-confetti-pop-side`}
-                    style={{
-                      right: '0px',
-                      top: '0px',
-                      '--tx': `${tx}px`,
-                      '--ty': `${ty}px`,
-                      '--r': `${r}deg`,
-                      animationDelay: `${Math.random() * 0.2}s`,
-                    } as React.CSSProperties}
-                  />
-                );
-              })}
+              {confettiData.rightParticles.map((particle, i) => (
+                <div
+                  key={`right-${i}`}
+                  className={`confetti-piece ${particle.randomColor} animate-confetti-pop-side`}
+                  style={{
+                    right: '0px',
+                    top: '0px',
+                    '--tx': `${particle.tx}px`,
+                    '--ty': `${particle.ty}px`,
+                    '--r': `${particle.r}deg`,
+                    animationDelay: `${particle.delay}s`,
+                  } as React.CSSProperties}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -473,7 +468,6 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
                     <button
                       onClick={() => {
                         setShowDialog(false);
-                        setDialogState("closed");
                         setShowGreeting(true);
                       }}
                       className="text-blue-400 hover:text-blue-300 text-2xl font-bold"
@@ -487,7 +481,7 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
                     {showGreeting && currentLevel && (
                       <div className="border-b border-blue-500/30 pb-4 md:pb-6">
                         <p className="text-gray-300 text-base md:text-lg mb-4">
-                          Welcome, Developer! I'm your onboarding guide. Here's your current quest progress.
+                          Welcome, Developer! I&apos;m your onboarding guide. Here&apos;s your current quest progress.
                         </p>
                         {currentLevel.id === 1 && (() => {
                           const focusSection = getCurrentFocusSection(currentLevel.tasks, completedTaskIds);
@@ -711,7 +705,7 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
                                 🎉 Congratulations! Level {currentLevel.id} Complete!
                               </p>
                               <p className="text-gray-300 text-sm md:text-base">
-                                You've completed all required tasks. Press the button below to advance to the next level.
+                                You&apos;ve completed all required tasks. Press the button below to advance to the next level.
                               </p>
                               <button
                                 onClick={handleLevelAdvance}
