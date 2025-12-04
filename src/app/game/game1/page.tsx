@@ -10,7 +10,7 @@
  * - Collect money bags to earn tokens
  */
 
-/* eslint-disable @typescript-eslint/no-namespace */
+ 
 /// <reference types="@react-three/fiber" />
 
 "use client";

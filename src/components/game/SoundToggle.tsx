@@ -59,8 +59,8 @@ export const SoundToggle: React.FC = () => {
     const displayMuted = isClient ? isMuted : false;
 
     // Hide on mobile (mute button is in MobileControls)
-    // Also hide on /testimonial page
-    if (isMobile || pathname === '/testimonial') {
+    // Also hide on /testimonial and /landingpage pages
+    if (isMobile || pathname === '/testimonial' || pathname === '/landingpage') {
         return null;
     }
 

@@ -7,6 +7,7 @@ import { BuildingConfig } from '@/lib/game/types';
 import { CharacterStats, UserProfile } from '@/types/jobs';
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { EscapeButton } from './EscapeButton';
+import { loadSprite } from '@/lib/game/sprites';
 
 interface LandingTownProps {
   onBuildingEnter: (route: string) => void;
@@ -26,6 +27,12 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
     checkMobile();
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Preload house images
+  useEffect(() => {
+    loadSprite('/houses/HOUSE1.png').catch(() => {});
+    loadSprite('/houses/HOUSE2.png').catch(() => {});
   }, []);
 
   // Mock profile data
@@ -146,6 +153,7 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
       route: '/blog',
       color: '#a855f7',
       colorDark: '#9333ea',
+      imagePath: '/houses/HOUSE2.png', // Replace blog building with house2
     },
     {
       id: 'new-jobs',
@@ -161,6 +169,7 @@ export const LandingTown: React.FC<LandingTownProps> = ({ onBuildingEnter }) => 
       route: '/new-jobs',
       color: '#3b82f6',
       colorDark: '#2563eb',
+      imagePath: '/houses/HOUSE1.png', // Replace jobs building with house1
     },
     {
       id: 'code',
