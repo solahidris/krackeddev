@@ -1,4 +1,4 @@
-import { TILE_SIZE, TILE_EMPTY, TILE_WALL, TILE_JOBS, TILE_BLOG, TILE_HACKATHON, TILE_CODE, TILE_PROFILE, TILE_WHITEPAPER, TILE_BACK_TO_TOWN, TILE_SYSTEM, TILE_LEVELS, TILE_TREE, TILE_GRAVEL, TILE_PAVEMENT, TILE_X } from './constants';
+import { TILE_SIZE, TILE_EMPTY, TILE_WALL, TILE_JOBS, TILE_BLOG, TILE_HACKATHON, TILE_CODE, TILE_PROFILE, TILE_WHITEPAPER, TILE_BACK_TO_TOWN, TILE_SYSTEM, TILE_LEVELS, TILE_TREE, TILE_GRAVEL, TILE_PAVEMENT, TILE_X, TILE_NPC } from './constants';
 import { spriteCache, getCharacterSpritePath, getChickenSpritePath, getCowSpritePath } from './sprites';
 
 // Tile renderer
@@ -328,6 +328,27 @@ export function renderTile(
       ctx.strokeText("X", xTextX, xTextY);
       ctx.fillStyle = "#ffffff";
       ctx.fillText("X", xTextX, xTextY);
+      break;
+
+    case TILE_NPC:
+      // NPC - cyan building with label
+      ctx.fillStyle = "#22c55e"; // green ground
+      ctx.fillRect(px, py, TILE_SIZE, TILE_SIZE);
+      ctx.fillStyle = "#06b6d4"; // cyan-500
+      ctx.fillRect(px + 2, py + 2, TILE_SIZE - 4, TILE_SIZE - 4);
+      ctx.fillStyle = "#0891b2"; // cyan-600
+      ctx.fillRect(px + 4, py + 4, TILE_SIZE - 8, TILE_SIZE - 8);
+      // Draw text label
+      const npcTextX = px + TILE_SIZE / 2;
+      const npcTextY = py + TILE_SIZE / 2;
+      ctx.font = "bold 8px 'Press Start 2P', monospace";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.strokeStyle = "#000000";
+      ctx.lineWidth = 2;
+      ctx.strokeText("NPC", npcTextX, npcTextY);
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText("NPC", npcTextX, npcTextY);
       break;
   }
 }

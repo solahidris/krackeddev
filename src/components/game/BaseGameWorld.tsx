@@ -7,7 +7,7 @@ import { isWalkable, isNearBuilding, isOnBuildingTile } from '@/lib/game/utils';
 import { BuildingConfig } from '@/lib/game/types';
 import { MobileControls } from './MobileControls';
 import { ControlLegend } from './ControlLegend';
-import { preloadCharacterSprites, preloadAnimalSprites } from '@/lib/game/sprites';
+import { preloadCharacterSprites, preloadAnimalSprites, spriteCache, loadSprite } from '@/lib/game/sprites';
 import { toast } from 'sonner';
 
 // Create a single shared Audio instance for click sound (only in browser)
@@ -327,49 +327,82 @@ export const BaseGameWorld: React.FC<BaseGameWorldProps> = ({
           ctx.fillStyle = "#22c55e"; // green ground
           ctx.fillRect(px, py, width, height);
           
-          // Render building as one big box
-          ctx.fillStyle = building.color || "#9333ea"; // Use building's color
-          ctx.fillRect(px + 2, py + 2, width - 4, height - 4);
-          ctx.fillStyle = building.colorDark || "#9333ea"; // Use building's dark color
-          ctx.fillRect(px + 4, py + 4, width - 8, height - 8);
-          
-          // Calculate center of the building for text placement
-          const centerX = px + width / 2;
-          const centerY = py + height / 2;
-          
-          // Render label with big font (smaller for certain buildings)
-          const labelText = building.customLabel || building.label;
-          const isVerySmallFontBuilding = building.id === 'members' ||
-                                          building.id === 'levels' ||
-                                          building.id === 'system' ||
-                                          building.id === 'founding-members';
-          const isSmallFontBuilding = building.id === 'back-to-town' ||
-                                      building.id === 'whitepaper' ||
-                                      building.id === 'opensource' ||
-                                      building.id === 'bounty';
-          let fontSize = 16;
-          let lineSpacing = 18;
-          if (isVerySmallFontBuilding) {
-            fontSize = 10;
-            lineSpacing = 12;
-          } else if (isSmallFontBuilding) {
-            fontSize = 12;
-            lineSpacing = 14;
+          // If building has an image path, render the image instead of colored box
+          if (building.imagePath) {
+            const buildingImage = spriteCache.get(building.imagePath);
+            if (buildingImage && buildingImage.complete) {
+              // Render image, maintaining aspect ratio and fitting within building bounds
+              const imageAspect = buildingImage.width / buildingImage.height;
+              const buildingAspect = width / height;
+              
+              let drawWidth = width - 4;
+              let drawHeight = height - 4;
+              let drawX = px + 2;
+              let drawY = py + 2;
+              
+              if (imageAspect > buildingAspect) {
+                // Image is wider - fit to width
+                drawHeight = drawWidth / imageAspect;
+                drawY = py + (height - drawHeight) / 2;
+              } else {
+                // Image is taller - fit to height
+                drawWidth = drawHeight * imageAspect;
+                drawX = px + (width - drawWidth) / 2;
+              }
+              
+              ctx.imageSmoothingEnabled = false; // Pixelated rendering
+              ctx.drawImage(buildingImage, drawX, drawY, drawWidth, drawHeight);
+              ctx.imageSmoothingEnabled = true;
+            } else {
+              // Image not loaded yet, render placeholder colored box
+              ctx.fillStyle = building.color || "#9333ea";
+              ctx.fillRect(px + 2, py + 2, width - 4, height - 4);
+            }
+          } else {
+            // Render building as one big box
+            ctx.fillStyle = building.color || "#9333ea"; // Use building's color
+            ctx.fillRect(px + 2, py + 2, width - 4, height - 4);
+            ctx.fillStyle = building.colorDark || "#9333ea"; // Use building's dark color
+            ctx.fillRect(px + 4, py + 4, width - 8, height - 8);
+            
+            // Calculate center of the building for text placement
+            const centerX = px + width / 2;
+            const centerY = py + height / 2;
+            
+            // Render label with big font (smaller for certain buildings)
+            const labelText = building.customLabel || building.label;
+            const isVerySmallFontBuilding = building.id === 'members' ||
+                                            building.id === 'levels' ||
+                                            building.id === 'system' ||
+                                            building.id === 'founding-members';
+            const isSmallFontBuilding = building.id === 'back-to-town' ||
+                                        building.id === 'whitepaper' ||
+                                        building.id === 'opensource' ||
+                                        building.id === 'bounty';
+            let fontSize = 16;
+            let lineSpacing = 18;
+            if (isVerySmallFontBuilding) {
+              fontSize = 10;
+              lineSpacing = 12;
+            } else if (isSmallFontBuilding) {
+              fontSize = 12;
+              lineSpacing = 14;
+            }
+            ctx.font = `bold ${fontSize}px 'Press Start 2P', monospace`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.strokeStyle = "#000000";
+            ctx.lineWidth = 3;
+            ctx.fillStyle = "#ffffff";
+            
+            // Split label into lines if needed
+            const lines = labelText.split('\n');
+            lines.forEach((line, idx) => {
+              const textY = centerY + (idx - (lines.length - 1) / 2) * lineSpacing;
+              ctx.strokeText(line, centerX, textY);
+              ctx.fillText(line, centerX, textY);
+            });
           }
-          ctx.font = `bold ${fontSize}px 'Press Start 2P', monospace`;
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.strokeStyle = "#000000";
-          ctx.lineWidth = 3;
-          ctx.fillStyle = "#ffffff";
-          
-          // Split label into lines if needed
-          const lines = labelText.split('\n');
-          lines.forEach((line, idx) => {
-            const textY = centerY + (idx - (lines.length - 1) / 2) * lineSpacing;
-            ctx.strokeText(line, centerX, textY);
-            ctx.fillText(line, centerX, textY);
-          });
         }
       }
 
