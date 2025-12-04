@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { cn } from "@/lib/utils";
 import { SupabaseProvider } from "./context/SupabaseContext";
+import { GitResumeProvider } from "./context/GitResumeContext";
+import { GitResumeLoginModal } from "@/components/GitResumeLoginModal";
 import { Toaster } from "sonner";
 import { MusicPlayer } from "@/components/game/MusicPlayer";
 import { SoundToggle } from "@/components/game/SoundToggle";
@@ -90,12 +92,15 @@ export default function RootLayout({
         )}
       >
         <SupabaseProvider>
-          <MusicPlayer startPlaying={true} />
-          <SoundToggle />
-          <Navbar />
-          <div className="flex-grow">{children}</div>
-          {/* <Footer /> */}
-          <Toaster theme="dark" position="top-center" offset={16} />
+          <GitResumeProvider>
+            <MusicPlayer startPlaying={true} />
+            <SoundToggle />
+            <Navbar />
+            <div className="flex-grow">{children}</div>
+            {/* <Footer /> */}
+            <Toaster theme="dark" position="top-center" offset={16} />
+            <GitResumeLoginModal />
+          </GitResumeProvider>
         </SupabaseProvider>
       </body>
     </html>

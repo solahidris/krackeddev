@@ -4,54 +4,72 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SplitTextAnimation from "./components/SplitTextAnimation";
 import { LandingTown } from "@/components/game/LandingTown";
+import { useGitResume } from "@/app/context/GitResumeContext";
 import "./jobs/jobs.css";
 
 export default function Home() {
   const router = useRouter();
+  const { isAuthenticated, isLoading, openLoginModal } = useGitResume();
   const [showAnimation, setShowAnimation] = useState(true);
   const [audioUnlocked, setAudioUnlocked] = useState(false);
+  const [animationDone, setAnimationDone] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       // Check if we should skip animation (e.g., coming from back to town)
-      const skipAnimation = sessionStorage.getItem('skipWelcomeAnimation') === 'true';
+      const skipAnimation =
+        sessionStorage.getItem("skipWelcomeAnimation") === "true";
       if (skipAnimation) {
         setShowAnimation(false);
-        sessionStorage.removeItem('skipWelcomeAnimation');
+        setAnimationDone(true);
+        sessionStorage.removeItem("skipWelcomeAnimation");
         return;
       }
 
       // Check 12-hour localStorage logic
-      const LAST_WELCOME_KEY = 'krackedDevs_lastWelcomeTime';
+      const LAST_WELCOME_KEY = "krackedDevs_lastWelcomeTime";
       const TWELVE_HOURS_MS = 12 * 60 * 60 * 1000; // 12 hours in milliseconds
-      
+
       const lastWelcomeTime = localStorage.getItem(LAST_WELCOME_KEY);
       const now = Date.now();
-      
+
       if (lastWelcomeTime) {
         const timeSinceLastWelcome = now - parseInt(lastWelcomeTime, 10);
         // If less than 12 hours have passed, skip animation
         if (timeSinceLastWelcome < TWELVE_HOURS_MS) {
           setShowAnimation(false);
+          setAnimationDone(true);
           return;
         }
       }
-      
+
       // If we get here, either it's the first time or 12+ hours have passed
       // Animation will show, and we'll save the timestamp when it completes
     }
   }, []);
 
+  // Auto-open login modal when animation is done and user is not authenticated
+  useEffect(() => {
+    if (animationDone && !isLoading && !isAuthenticated) {
+      // Small delay to let the town render first
+      const timer = setTimeout(() => {
+        openLoginModal();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [animationDone, isLoading, isAuthenticated, openLoginModal]);
+
   const handleAnimationComplete = () => {
     // Save the current timestamp when animation completes
-    if (typeof window !== 'undefined') {
-      const LAST_WELCOME_KEY = 'krackedDevs_lastWelcomeTime';
+    if (typeof window !== "undefined") {
+      const LAST_WELCOME_KEY = "krackedDevs_lastWelcomeTime";
       localStorage.setItem(LAST_WELCOME_KEY, Date.now().toString());
     }
     setShowAnimation(false);
+    setAnimationDone(true);
     // Trigger audio unlock event for global MusicPlayer
     setAudioUnlocked(true);
-    window.dispatchEvent(new CustomEvent('unlockAudio'));
+    window.dispatchEvent(new CustomEvent("unlockAudio"));
   };
 
   // Capture first user interaction to unlock audio
@@ -59,32 +77,42 @@ export default function Home() {
     const handleFirstInteraction = () => {
       if (!audioUnlocked) {
         setAudioUnlocked(true);
-        window.dispatchEvent(new CustomEvent('unlockAudio'));
+        window.dispatchEvent(new CustomEvent("unlockAudio"));
       }
     };
 
-    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'mousemove', 'touchmove'];
-    events.forEach(event => {
-      window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    const events = [
+      "click",
+      "touchstart",
+      "mousedown",
+      "keydown",
+      "mousemove",
+      "touchmove",
+    ];
+    events.forEach((event) => {
+      window.addEventListener(event, handleFirstInteraction, {
+        once: true,
+        passive: true,
+      });
     });
 
     return () => {
-      events.forEach(event => {
+      events.forEach((event) => {
         window.removeEventListener(event, handleFirstInteraction);
       });
     };
   }, [audioUnlocked]);
 
   const handleBuildingEnter = (route: string) => {
-    if (route === '/') {
+    if (route === "/") {
       // Set flag to skip animation when returning to landing
-      if (typeof window !== 'undefined') {
-        sessionStorage.setItem('skipWelcomeAnimation', 'true');
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("skipWelcomeAnimation", "true");
       }
     }
     // Check if route is an external URL
-    if (route.startsWith('http://') || route.startsWith('https://')) {
-      window.open(route, '_blank', 'noopener,noreferrer');
+    if (route.startsWith("http://") || route.startsWith("https://")) {
+      window.open(route, "_blank", "noopener,noreferrer");
     } else {
       router.push(route);
     }
@@ -102,9 +130,7 @@ export default function Home() {
           onComplete={handleAnimationComplete}
         />
       )}
-      {!showAnimation && (
-        <LandingTown onBuildingEnter={handleBuildingEnter} />
-      )}
+      {!showAnimation && <LandingTown onBuildingEnter={handleBuildingEnter} />}
     </main>
   );
 }
