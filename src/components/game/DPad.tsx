@@ -18,7 +18,7 @@ export const DPad: React.FC<DPadProps> = ({ onDirectionChange }) => {
   );
 
   const buttonClass = (dir: string) =>
-    `w-12 h-12 rounded-xl flex items-center justify-center text-xl select-none transition-all touch-none ${
+    `w-9 h-9 rounded-xl flex items-center justify-center text-lg select-none transition-all touch-none ${
       activeDir === dir
         ? "bg-blue-500/80 scale-95"
         : "bg-white/20 active:bg-blue-500/60"
@@ -60,7 +60,7 @@ export const DPad: React.FC<DPadProps> = ({ onDirectionChange }) => {
       >
         ◀
       </button>
-      <div className="w-12 h-12 rounded-full bg-white/5 border border-white/20" />
+      <div className="w-9 h-9 rounded-full bg-white/5 border border-white/20" />
       <button
         className={buttonClass("right")}
         onTouchStart={(e) => {
@@ -98,6 +98,8 @@ export const DPad: React.FC<DPadProps> = ({ onDirectionChange }) => {
     </div>
   );
 };
+
+
 
 
 
