@@ -20,4 +20,5 @@ export const TILE_TREE = 9;
 export const TILE_GRAVEL = 10;
 export const TILE_PAVEMENT = 11;
 export const TILE_X = 12;
+export const TILE_NPC = 15;
 
