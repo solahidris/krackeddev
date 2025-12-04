@@ -8,11 +8,13 @@ export const metadata: Metadata = {
     description: "Your privacy matters to us. Learn how Kracked Devs collects, uses, and protects your personal information.",
     url: "/privacy",
     type: "website",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Kracked Devs Privacy Policy" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Privacy Policy",
     description: "Your privacy matters to us. Learn how we protect your information.",
+    images: ["/images/og-image-twitter.png"],
   },
   robots: {
     index: true,

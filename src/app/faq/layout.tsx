@@ -8,11 +8,13 @@ export const metadata: Metadata = {
     description: "Frequently asked questions about Kracked Devs hackathon, bootcamps, and community.",
     url: "/faq",
     type: "website",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Kracked Devs FAQ" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "FAQ",
     description: "Frequently asked questions about Kracked Devs.",
+    images: ["/images/og-image-twitter.png"],
   },
   robots: {
     index: true,

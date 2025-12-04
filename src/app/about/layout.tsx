@@ -8,11 +8,13 @@ export const metadata: Metadata = {
     description: "Building the future of tech, one line of code at a time. Learn about our mission, values, and community.",
     url: "/about",
     type: "website",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "About Kracked Devs" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "About Kracked Devs",
     description: "Building the future of tech, one line of code at a time.",
+    images: ["/images/og-image-twitter.png"],
   },
 };
 

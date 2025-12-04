@@ -8,11 +8,13 @@ export const metadata: Metadata = {
     description: "Go crazy. Win AI credits. Grand Prize: RM 1,200 in AI Credits. Earn points and get interviewed.",
     url: "/hackathon",
     type: "website",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Kracked Hackathon" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kracked Hackathon",
     description: "Go crazy. Win AI credits. Grand Prize: RM 1,200 in AI Credits.",
+    images: ["/images/og-image-twitter.png"],
   },
 };
 

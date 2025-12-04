@@ -9,13 +9,23 @@ import { MusicPlayer } from "@/components/game/MusicPlayer";
 import { SoundToggle } from "@/components/game/SoundToggle";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://kracked-dev.com'),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://krackeddevs.com/"
+  ),
   title: {
     default: "Kracked Devs",
-    template: "%s | Kracked Devs"
+    template: "%s | Kracked Devs",
   },
-  description: "A community of cracked developers who want to level up together. Join our bootcamps, hackathons, and community talks.",
-  keywords: ["developer community", "coding bootcamp", "web development", "programming", "tech community", "developer education"],
+  description:
+    "A community of cracked developers who want to level up together. Join our bootcamps, hackathons, and community talks.",
+  keywords: [
+    "developer community",
+    "coding bootcamp",
+    "web development",
+    "programming",
+    "tech community",
+    "developer education",
+  ],
   authors: [{ name: "Kracked Devs" }],
   creator: "Kracked Devs",
   publisher: "Kracked Devs",
@@ -30,21 +40,24 @@ export const metadata: Metadata = {
     url: "/",
     siteName: "Kracked Devs",
     title: "Kracked Devs - A Community of Cracked Developers",
-    description: "A community of cracked developers who want to level up together. Join our bootcamps, hackathons, and community talks.",
+    description:
+      "A community of cracked developers who want to level up together. Join our bootcamps, hackathons, and community talks.",
     images: [
       {
-        url: "/android-chrome-512x512.png",
-        width: 512,
-        height: 512,
-        alt: "Kracked Devs",
+        url: "/images/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Kracked Devs - A Community of Cracked Developers",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kracked Devs - A Community of Cracked Developers",
-    description: "A community of cracked developers who want to level up together.",
-    images: ["/android-chrome-512x512.png"],
+    description:
+      "A community of cracked developers who want to level up together.",
+    images: ["/images/og-image-twitter.png"],
+    creator: "@KrackedDevs",
   },
   robots: {
     index: true,
@@ -80,15 +93,9 @@ export default function RootLayout({
           <MusicPlayer startPlaying={true} />
           <SoundToggle />
           <Navbar />
-          <div className="flex-grow">
-            {children}
-          </div>
+          <div className="flex-grow">{children}</div>
           {/* <Footer /> */}
-          <Toaster 
-            theme="dark"
-            position="top-center"
-            offset={16}
-          />
+          <Toaster theme="dark" position="top-center" offset={16} />
         </SupabaseProvider>
       </body>
     </html>

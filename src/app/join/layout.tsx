@@ -8,11 +8,13 @@ export const metadata: Metadata = {
     description: "Connect with 500+ developers and level up together. Get access to exclusive community benefits.",
     url: "/join",
     type: "website",
+    images: [{ url: "/images/og-image.png", width: 1200, height: 630, alt: "Join Kracked Devs Community" }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Join the Kracked Dev Community",
     description: "Connect with 500+ developers and level up together.",
+    images: ["/images/og-image-twitter.png"],
   },
 };
 
