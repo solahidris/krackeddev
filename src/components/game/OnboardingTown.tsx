@@ -35,40 +35,35 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
   const [showCelebration, setShowCelebration] = useState<boolean>(false);
   const [celebrationTask, setCelebrationTask] = useState<{ title: string; xp: number } | null>(null);
 
-  // Generate confetti data once
+  // Generate confetti data with pseudo-random positioning (single color)
   const confettiData = useMemo(() => {
-    const colors = ['confetti-blue', 'confetti-red', 'confetti-green', 'confetti-yellow', 'confetti-purple', 'confetti-pink'];
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const leftParticles = Array.from({ length: 40 }, () => {
-      // eslint-disable-next-line react-hooks/purity
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      // eslint-disable-next-line react-hooks/purity
-      const angle = (Math.random() * 120 - 60) * (Math.PI / 180);
-      // eslint-disable-next-line react-hooks/purity
-      const velocity = 300 + Math.random() * 400;
+    const singleColor = 'confetti-yellow'; // Single color for all confetti
+    // Pseudo-random generator using seed
+    const seededRandom = (seed: number) => {
+      const x = Math.sin(seed) * 10000;
+      return x - Math.floor(x);
+    };
+    
+    const leftParticles = Array.from({ length: 40 }, (_, i) => {
+      const seed = i * 0.618033988749895; // Golden ratio for distribution
+      const angle = (seededRandom(seed) * 120 - 60) * (Math.PI / 180);
+      const velocity = 300 + seededRandom(seed + 1) * 400;
       const tx = Math.cos(angle) * velocity;
       const ty = Math.sin(angle) * velocity;
-      // eslint-disable-next-line react-hooks/purity
-      const r = Math.random() * 720 - 360;
-      // eslint-disable-next-line react-hooks/purity
-      const delay = Math.random() * 0.2;
-      return { randomColor, tx, ty, r, delay };
+      const r = seededRandom(seed + 2) * 720 - 360;
+      const delay = seededRandom(seed + 3) * 0.2;
+      return { randomColor: singleColor, tx, ty, r, delay };
     });
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const rightParticles = Array.from({ length: 40 }, () => {
-      // eslint-disable-next-line react-hooks/purity
-      const randomColor = colors[Math.floor(Math.random() * colors.length)];
-      // eslint-disable-next-line react-hooks/purity
-      const angle = (Math.random() * 120 + 120) * (Math.PI / 180);
-      // eslint-disable-next-line react-hooks/purity
-      const velocity = 300 + Math.random() * 400;
+    
+    const rightParticles = Array.from({ length: 40 }, (_, i) => {
+      const seed = (i + 40) * 0.618033988749895;
+      const angle = (seededRandom(seed) * 120 + 120) * (Math.PI / 180);
+      const velocity = 300 + seededRandom(seed + 1) * 400;
       const tx = Math.cos(angle) * velocity;
       const ty = Math.sin(angle) * velocity;
-      // eslint-disable-next-line react-hooks/purity
-      const r = Math.random() * 720 - 360;
-      // eslint-disable-next-line react-hooks/purity
-      const delay = Math.random() * 0.2;
-      return { randomColor, tx, ty, r, delay };
+      const r = seededRandom(seed + 2) * 720 - 360;
+      const delay = seededRandom(seed + 3) * 0.2;
+      return { randomColor: singleColor, tx, ty, r, delay };
     });
     return { leftParticles, rightParticles };
   }, []);
