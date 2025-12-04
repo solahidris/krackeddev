@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { OnboardingTown } from "@/components/game/OnboardingTown";
 import "../jobs/jobs.css";
