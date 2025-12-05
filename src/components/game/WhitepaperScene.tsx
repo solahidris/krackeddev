@@ -1044,950 +1044,431 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
                 isMobile ? 'max-h-[60vh] mb-20' : 'max-h-[80vh]'
               }`}>
                 <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-2xl text-purple-400 font-bold">REWARDS & PROGRESSION SYSTEM</h2>
+                  <h2 className="text-2xl text-purple-400 font-bold">GLOBAL GAME SYSTEMS SPEC</h2>
                 </div>
                 <div className="prose prose-invert max-w-none">
                   <div className="text-white space-y-4 md:space-y-6">
                     <div>
-                      <h1 className="text-2xl md:text-3xl font-bold text-purple-400 mb-2 md:mb-4">KRACKED DEVS - REWARDS & PROGRESSION SYSTEM</h1>
-                      <p className="text-gray-300 text-sm md:text-base mb-1">Complete Reference - Google Docs Ready</p>
-                      <p className="text-gray-300 text-sm md:text-base mb-1">For: Google Docs, PDF, Discord, Website</p>
-                      <p className="text-gray-300 text-sm md:text-base mb-1">Status: Ready to Copy-Paste</p>
-                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6">Format: Clean tables, elegant layout</p>
+                      <h1 className="text-2xl md:text-3xl font-bold text-purple-400 mb-2 md:mb-4">KRACKED DEVS - GLOBAL GAME SYSTEMS SPEC (REVISED)</h1>
+                      <p className="text-gray-300 text-sm md:text-base mb-1"><strong className="text-purple-300">Game Mechanics + GitResume + Bootcamp Funnel</strong></p>
+                      <p className="text-gray-300 text-sm md:text-base mb-1"><strong className="text-purple-300">Purpose:</strong> Game keeps players engaged daily. GitResume auto-generates portfolios. Bootcamp is separate, paid, high-ROI pathway.</p>
+                      <p className="text-gray-300 text-sm md:text-base mb-1"><strong className="text-purple-300">Status:</strong> Ready for Development</p>
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6"><strong className="text-purple-300">For:</strong> Development team, product, engagement leads</p>
                     </div>
 
                     <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">📊 TABLE OF CONTENTS</h2>
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">1. XP & LEVELING SYSTEM (Global Spine)</h2>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Core Rule: Flat 100 XP Per Level</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Every level always requires exactly 100 XP to progress. No exceptions.</p>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-1">Level 1 → 100 XP → Level 2</p>
+                        <p className="text-gray-300 mb-1">Level 2 → 100 XP → Level 3</p>
+                        <p className="text-gray-300 mb-1">Level 20 → 100 XP → Level 21</p>
+                        <p className="text-gray-300 mb-1">Level 50 → 100 XP → Level 51</p>
+                        <p className="text-gray-300">(Infinite progression, no level cap)</p>
+                      </div>
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6"><strong className="text-purple-300">Why flat:</strong> Simple mental math, predictable, fair across all levels.</p>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">XP Source Breakdown</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Players earn XP from multiple sources (not just daily quests):</p>
+                      
+                      <div className="mb-4 md:mb-6">
+                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Daily Quests (Primary Loop)</h4>
+                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
+                          <li className="text-gray-300 text-sm md:text-base">Easy quests (0–3 min): 10–15 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">Medium quests (5–8 min): 20–30 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">Hard quests (10–12 min): 40–50 XP</li>
+                        </ul>
+                      </div>
+
+                      <div className="mb-4 md:mb-6">
+                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Community Engagement</h4>
+                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
+                          <li className="text-gray-300 text-sm md:text-base">Help-desk response: 10–20 XP (quality-based)</li>
+                          <li className="text-gray-300 text-sm md:text-base">Community comment/post: 5–10 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">Resource shared: 10–20 XP</li>
+                        </ul>
+                      </div>
+
+                      <div className="mb-4 md:mb-6">
+                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Projects & Real Work</h4>
+                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
+                          <li className="text-gray-300 text-sm md:text-base">Build project: 40–80 XP (based on complexity)</li>
+                          <li className="text-gray-300 text-sm md:text-base">Project review/feedback: 15–25 XP</li>
+                        </ul>
+                      </div>
+
+                      <div className="mb-4 md:mb-6">
+                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Mentoring</h4>
+                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
+                          <li className="text-gray-300 text-sm md:text-base">Quick help (Discord): 5 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">Code review (15–30 min): 10 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">1:1 session (1 hour): 25 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">Create learning resource: 40 XP</li>
+                        </ul>
+                      </div>
+
+                      <div className="mb-4 md:mb-6">
+                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Social & Referrals</h4>
+                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
+                          <li className="text-gray-300 text-sm md:text-base">Invite friend: 10 XP</li>
+                          <li className="text-gray-300 text-sm md:text-base">Friend joins: +50 XP bonus (both parties)</li>
+                          <li className="text-gray-300 text-sm md:text-base">Job application via board: +5 XP</li>
+                        </ul>
+                      </div>
+
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6"><strong className="text-purple-300">Key:</strong> Daily quests are the habit driver, but diverse XP sources prevent fatigue and reward all behaviors.</p>
+                    </div>
+
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">2. STREAK SYSTEM (Habit Engine)</h2>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">How Streaks Work</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">A <strong className="text-purple-300">streak</strong> = consecutive days completing at least ONE daily quest.</p>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-1">Day 1: Complete any quest → Streak: 1</p>
+                        <p className="text-gray-300 mb-1">Day 2: Complete any quest → Streak: 2</p>
+                        <p className="text-gray-300 mb-1">Day 3: Skip → Streak: FROZEN (24-hour grace period)</p>
+                        <p className="text-gray-300 mb-1">Day 4: Complete any quest → Streak: 3 (grace period used)</p>
+                        <p className="text-gray-300 mb-1">Day 5: Skip → Streak: RESET to 0, Highest Streak = 3</p>
+                        <p className="text-gray-300">Day 6: Complete any quest → Streak: 1 (new chain starts)</p>
+                      </div>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Streak XP Bonus (Scaling Multiplier)</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Bonus applies ONLY to daily quest XP.</p>
+                      <div className="overflow-x-auto mb-4 md:mb-6">
+                        <table className="w-full text-xs md:text-sm border-collapse">
+                          <thead>
+                            <tr className="border-b border-purple-500/30">
+                              <th className="text-left text-purple-300 p-2">Streak Days</th>
+                              <th className="text-left text-purple-300 p-2">Bonus Applied</th>
+                              <th className="text-left text-purple-300 p-2">Example</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">1–3 days</td>
+                              <td className="text-gray-300 p-2">No bonus</td>
+                              <td className="text-gray-300 p-2">15 XP quest = 15 XP</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">4–7 days</td>
+                              <td className="text-gray-300 p-2">+10%</td>
+                              <td className="text-gray-300 p-2">20 XP quest = 22 XP</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">8–14 days</td>
+                              <td className="text-gray-300 p-2">+20%</td>
+                              <td className="text-gray-300 p-2">25 XP quest = 30 XP</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">15–30 days</td>
+                              <td className="text-gray-300 p-2">+30%</td>
+                              <td className="text-gray-300 p-2">30 XP quest = 39 XP</td>
+                            </tr>
+                            <tr>
+                              <td className="text-gray-300 p-2">31+ days</td>
+                              <td className="text-gray-300 p-2">+30% (capped)</td>
+                              <td className="text-gray-300 p-2">40 XP quest = 52 XP</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6"><strong className="text-purple-300">Comeback Bonus:</strong> Reset to 0? Next 3 quests get +10% bonus.</p>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Streak Visibility & Rewards</h3>
+                      <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Displayed Everywhere:</h4>
+                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
+                        <li className="text-gray-300 text-sm md:text-base">Player profile: "🔥 15-Day Streak"</li>
+                        <li className="text-gray-300 text-sm md:text-base">Leaderboard: Sorted by longest active streak</li>
+                        <li className="text-gray-300 text-sm md:text-base">Daily quest notification: "Keep your 7-day streak alive! 🔥"</li>
+                        <li className="text-gray-300 text-sm md:text-base">Login screen: Streak counter is first thing they see</li>
+                      </ul>
+
+                      <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Streak Milestones (Every 7 Days):</h4>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-1">Day 7   → Badge: "7-Day Warrior" + 25 XP bonus</p>
+                        <p className="text-gray-300 mb-1">Day 14  → Badge: "Committed" + 50 XP bonus</p>
+                        <p className="text-gray-300 mb-1">Day 30  → Badge: "Legendary Streak" + 100 XP bonus</p>
+                        <p className="text-gray-300">Day 60  → Badge: "Unstoppable 🔥" + 150 XP bonus</p>
+                      </div>
+                    </div>
+
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">3. BADGE & TITLE PROGRESSION (Prestige & Identity)</h2>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Badges: Every 2 Levels</h3>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-1">Level 2  → "Social Butterfly"</p>
+                        <p className="text-gray-300 mb-1">Level 4  → "Dev Setup Complete"</p>
+                        <p className="text-gray-300 mb-1">Level 6  → "Community Helper"</p>
+                        <p className="text-gray-300 mb-1">Level 8  → "Portfolio Builder"</p>
+                        <p className="text-gray-300 mb-1">Level 10 → "Community Champion" ⭐</p>
+                        <p className="text-gray-300 mb-1">Level 12 → "Code Master"</p>
+                        <p className="text-gray-300 mb-1">...</p>
+                        <p className="text-gray-300">Level 50 → "Kracked Legend"</p>
+                      </div>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Titles: Every 10 Levels</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Titles appear next to player name everywhere in the game.</p>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-1">Level 10  → "Community Champion"</p>
+                        <p className="text-gray-300 mb-1">           (Shown as: "Ahmed • Community Champion")</p>
+                        <p className="text-gray-300 mb-1">Level 20  → "Senior Developer"</p>
+                        <p className="text-gray-300 mb-1">           (Shown as: "Ahmed • Senior Developer")</p>
+                        <p className="text-gray-300 mb-1">Level 30  → "Mentor"</p>
+                        <p className="text-gray-300 mb-1">           (Shown as: "Ahmed • Mentor")</p>
+                        <p className="text-gray-300 mb-1">Level 40  → "Community Leader"</p>
+                        <p className="text-gray-300 mb-1">           (Shown as: "Ahmed • Community Leader")</p>
+                        <p className="text-gray-300 mb-1">Level 50  → "Kracked Legend"</p>
+                        <p className="text-gray-300">           (Shown as: "Ahmed • Kracked Legend 👑")</p>
+                      </div>
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6">Players can choose which title to display if they've earned multiple.</p>
+                    </div>
+
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">4. GITRESUME: AUTOMATIC PORTFOLIO GENERATION</h2>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4"><strong className="text-purple-300">GitResume</strong> is a FREE in-game feature that auto-generates beautiful, shareable portfolio resumes from GitHub.</p>
+                      
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">How It Works</h3>
                       <ol className="list-decimal list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
-                        <li className="text-gray-300 text-sm md:text-base">Progression Rewards by Level Bracket</li>
-                        <li className="text-gray-300 text-sm md:text-base">Loot Chest System (RNG)</li>
-                        <li className="text-gray-300 text-sm md:text-base">Mentoring System & Income</li>
-                        <li className="text-gray-300 text-sm md:text-base">Projects Hub & Real Income</li>
-                        <li className="text-gray-300 text-sm md:text-base">Leveling Velocity & Engagement Loop</li>
-                        <li className="text-gray-300 text-sm md:text-base">Alumni & Legend System</li>
-                        <li className="text-gray-300 text-sm md:text-base">Leaderboard & Competition</li>
-                        <li className="text-gray-300 text-sm md:text-base">XP Value Quick Reference</li>
-                        <li className="text-gray-300 text-sm md:text-base">Implementation Checklist</li>
-                        <li className="text-gray-300 text-sm md:text-base">Retention Projections</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">One-Time OAuth Connection:</strong> Player links GitHub account</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Daily Auto-Sync:</strong> Portfolio updates as player commits code</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Beautiful Output:</strong> AI-powered resume + portfolio website</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Shareable Link:</strong> gitresume.me/username</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">ATS-Friendly:</strong> Optimized for recruiter scanning</li>
                       </ol>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">GitResume In-Game Display</h3>
+                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
+                        <li className="text-gray-300 text-sm md:text-base">Embedded portfolio preview on player profile</li>
+                        <li className="text-gray-300 text-sm md:text-base">Portfolio card: top projects, contribution stats, tech stack</li>
+                        <li className="text-gray-300 text-sm md:text-base">"View My Portfolio" button (links to gitresume.me)</li>
+                        <li className="text-gray-300 text-sm md:text-base">Portfolio quality score (helps players see what recruiters see)</li>
+                        <li className="text-gray-300 text-sm md:text-base">Portfolio link auto-updated in game profile + Discord</li>
+                      </ul>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Why This Matters</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6"><strong className="text-purple-300">Players see their code automatically become a hireable portfolio.</strong> No friction. Daily commits = daily portfolio improvements. This natural progression makes bootcamp enrollment feel like the logical next step.</p>
                     </div>
 
                     <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">PROGRESSION REWARDS BY LEVEL BRACKET</h2>
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">5. BOOTCAMP: SEPARATE PAID PATHWAY</h2>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4"><strong className="text-purple-300">The bootcamp is intentionally SEPARATE from the game.</strong></p>
                       
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Levels 1-5: Onboarding Phase</h3>
-                        <div className="overflow-x-auto mb-3 md:mb-4">
-                          <table className="w-full text-xs md:text-sm border-collapse">
-                            <thead>
-                              <tr className="border-b border-purple-500/30">
-                                <th className="text-left text-purple-300 p-2">Reward Type</th>
-                                <th className="text-left text-purple-300 p-2">Frequency</th>
-                                <th className="text-left text-purple-300 p-2">Examples</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Badges</td>
-                                <td className="text-gray-300 p-2">Each level</td>
-                                <td className="text-gray-300 p-2">Fresh Dev → Social Butterfly → Dev Setup Complete</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Cosmetics</td>
-                                <td className="text-gray-300 p-2">Levels 2, 3, 4</td>
-                                <td className="text-gray-300 p-2">Hat cosmetic, Shoes cosmetic, Hair style unlock</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Feature Unlocks</td>
-                                <td className="text-gray-300 p-2">Each level</td>
-                                <td className="text-gray-300 p-2">New zones, systems, features unlock</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Loot Chest</td>
-                                <td className="text-gray-300 p-2">Level 5 ONLY</td>
-                                <td className="text-gray-300 p-2">🎁 MAJOR MILESTONE - First RNG reward (Bronze Chest)</td>
-                              </tr>
-                              <tr>
-                                <td className="text-gray-300 p-2">Titles/Flair</td>
-                                <td className="text-gray-300 p-2">Level 5</td>
-                                <td className="text-gray-300 p-2">"[Fresh Dev]" flair next to name</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Levels 6-10: Beginner Bootcamp Phase</h3>
-                        <div className="overflow-x-auto mb-3 md:mb-4">
-                          <table className="w-full text-xs md:text-sm border-collapse">
-                            <thead>
-                              <tr className="border-b border-purple-500/30">
-                                <th className="text-left text-purple-300 p-2">Reward Type</th>
-                                <th className="text-left text-purple-300 p-2">Frequency</th>
-                                <th className="text-left text-purple-300 p-2">Examples</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Badges</td>
-                                <td className="text-gray-300 p-2">Level 10</td>
-                                <td className="text-gray-300 p-2">"Bootcamp Graduate" badge (permanent)</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Cosmetics</td>
-                                <td className="text-gray-300 p-2">Every 2 levels</td>
-                                <td className="text-gray-300 p-2">Avatar clothing, pet skins, accessories</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Pet Customization</td>
-                                <td className="text-gray-300 p-2">Level 8</td>
-                                <td className="text-gray-300 p-2">Unlock full pet appearance customization</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Title/Flair</td>
-                                <td className="text-gray-300 p-2">Level 10</td>
-                                <td className="text-gray-300 p-2">"[Web Dev in Training]" title next to name</td>
-                              </tr>
-                              <tr>
-                                <td className="text-gray-300 p-2">Loot Chest</td>
-                                <td className="text-gray-300 p-2">Level 10</td>
-                                <td className="text-gray-300 p-2">Silver Chest (better cosmetics + more gold)</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Levels 11-20: Intermediate Development Phase</h3>
-                        <div className="overflow-x-auto mb-3 md:mb-4">
-                          <table className="w-full text-xs md:text-sm border-collapse">
-                            <thead>
-                              <tr className="border-b border-purple-500/30">
-                                <th className="text-left text-purple-300 p-2">Reward Type</th>
-                                <th className="text-left text-purple-300 p-2">Frequency</th>
-                                <th className="text-left text-purple-300 p-2">Examples</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Specialization Badge</td>
-                                <td className="text-gray-300 p-2">Level 15</td>
-                                <td className="text-gray-300 p-2">"Frontend Specialist" or "Full-Stack Dev" permanent badge</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Cosmetics</td>
-                                <td className="text-gray-300 p-2">Every level</td>
-                                <td className="text-gray-300 p-2">Rare/unique outfits, exclusive pet skins</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Title Upgrade</td>
-                                <td className="text-gray-300 p-2">Level 20</td>
-                                <td className="text-gray-300 p-2">"[Intermediate Developer]" title</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Loot Chests</td>
-                                <td className="text-gray-300 p-2">Levels 15, 20</td>
-                                <td className="text-gray-300 p-2">Higher rarity items (Rare → Epic)</td>
-                              </tr>
-                              <tr>
-                                <td className="text-gray-300 p-2">Real Reward Preview</td>
-                                <td className="text-gray-300 p-2">Level 20</td>
-                                <td className="text-gray-300 p-2">"You're hire-ready! Start applying!" notification</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Levels 21-30: Advanced & Specialization Phase</h3>
-                        <div className="overflow-x-auto mb-3 md:mb-4">
-                          <table className="w-full text-xs md:text-sm border-collapse">
-                            <thead>
-                              <tr className="border-b border-purple-500/30">
-                                <th className="text-left text-purple-300 p-2">Reward Type</th>
-                                <th className="text-left text-purple-300 p-2">Frequency</th>
-                                <th className="text-left text-purple-300 p-2">Examples</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Mentor Badge Application</td>
-                                <td className="text-gray-300 p-2">Level 25</td>
-                                <td className="text-gray-300 p-2">Can now apply to become official mentor</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Legendary Cosmetics</td>
-                                <td className="text-gray-300 p-2">Every 2-3 levels</td>
-                                <td className="text-gray-300 p-2">Ultra-rare skins with visual effects</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">In-Game Currency</td>
-                                <td className="text-gray-300 p-2">Levels 25, 30+</td>
-                                <td className="text-gray-300 p-2">Gold coins (10-50 coins per unlock)</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Real Currency (Projects)</td>
-                                <td className="text-gray-300 p-2">Variable</td>
-                                <td className="text-gray-300 p-2">See Projects Hub section below</td>
-                              </tr>
-                              <tr>
-                                <td className="text-gray-300 p-2">Community Recognition</td>
-                                <td className="text-gray-300 p-2">Level 30+</td>
-                                <td className="text-gray-300 p-2">Monthly leaderboard, hall of fame features</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Levels 31+: Mastery & Leadership Phase</h3>
-                        <div className="overflow-x-auto mb-3 md:mb-4">
-                          <table className="w-full text-xs md:text-sm border-collapse">
-                            <thead>
-                              <tr className="border-b border-purple-500/30">
-                                <th className="text-left text-purple-300 p-2">Reward Type</th>
-                                <th className="text-left text-purple-300 p-2">Frequency</th>
-                                <th className="text-left text-purple-300 p-2">Examples</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Legendary Cosmetics</td>
-                                <td className="text-gray-300 p-2">Every level</td>
-                                <td className="text-gray-300 p-2">Ultra-rare skins, exclusive effects</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Leadership Titles</td>
-                                <td className="text-gray-300 p-2">Level 35, 40, 50+</td>
-                                <td className="text-gray-300 p-2">"Senior Mentor", "Mentor Lead", "Kracked Legend"</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Monthly Stipend</td>
-                                <td className="text-gray-300 p-2">Level 35+</td>
-                                <td className="text-gray-300 p-2">RM500/month senior mentor stipend</td>
-                              </tr>
-                              <tr className="border-b border-purple-500/20">
-                                <td className="text-gray-300 p-2">Hall of Fame Features</td>
-                                <td className="text-gray-300 p-2">Level 40, 50+</td>
-                                <td className="text-gray-300 p-2">Featured on homepage, Twitter, case studies</td>
-                              </tr>
-                              <tr>
-                                <td className="text-gray-300 p-2">Employment Offers</td>
-                                <td className="text-gray-300 p-2">Level 50+</td>
-                                <td className="text-gray-300 p-2">Potential Kracked Devs team position</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">LOOT CHEST SYSTEM (RNG Rewards)</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Chest Tier Breakdown</h3>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Game vs Bootcamp (Clear Separation)</h3>
                       <div className="overflow-x-auto mb-4 md:mb-6">
                         <table className="w-full text-xs md:text-sm border-collapse">
                           <thead>
                             <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Chest Type</th>
-                              <th className="text-left text-purple-300 p-2">When Unlocked</th>
-                              <th className="text-left text-purple-300 p-2">Rarity Pool</th>
-                              <th className="text-left text-purple-300 p-2">Contents</th>
+                              <th className="text-left text-purple-300 p-2">GAME (Free, Community-Focused)</th>
+                              <th className="text-left text-purple-300 p-2">BOOTCAMP (Paid, Outcomes-Focused)</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Bronze</td>
-                              <td className="text-gray-300 p-2">Level 5</td>
-                              <td className="text-gray-300 p-2">Common, Uncommon</td>
-                              <td className="text-gray-300 p-2">Basic cosmetics, 2-5 gold coins, XP boost items</td>
+                              <td className="text-gray-300 p-2">Build daily habits</td>
+                              <td className="text-gray-300 p-2">4-week intensive learning</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Silver</td>
-                              <td className="text-gray-300 p-2">Level 10, 15</td>
-                              <td className="text-gray-300 p-2">Uncommon, Rare</td>
-                              <td className="text-gray-300 p-2">Outfit pieces, pet skins, 5-15 gold coins</td>
+                              <td className="text-gray-300 p-2">Learn soft skills (vibe code)</td>
+                              <td className="text-gray-300 p-2">Industry mentorship + mentors</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Gold</td>
-                              <td className="text-gray-300 p-2">Level 20, 25, 30</td>
-                              <td className="text-gray-300 p-2">Rare, Epic</td>
-                              <td className="text-gray-300 p-2">Legendary cosmetics, 20-50 gold coins, title flair</td>
+                              <td className="text-gray-300 p-2">Build small projects</td>
+                              <td className="text-gray-300 p-2">Professional portfolio enhancement</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Community + competition</td>
+                              <td className="text-gray-300 p-2">Cohort + job placement support</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-300 p-2">Platinum</td>
-                              <td className="text-gray-300 p-2">Level 35, 40, 50+</td>
-                              <td className="text-gray-300 p-2">Epic, Legendary</td>
-                              <td className="text-gray-300 p-2">Ultra-rare skins, exclusive titles, special effects</td>
+                              <td className="text-gray-300 p-2">Auto-generated GitResume</td>
+                              <td className="text-gray-300 p-2">Career coaching</td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
 
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Example Drop Tables</h3>
-                      
-                      <div className="mb-4 md:mb-6">
-                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Bronze Chest (Level 5)</h4>
-                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
-                          <li className="text-gray-300 text-sm md:text-base">40% — Common avatar clothing item</li>
-                          <li className="text-gray-300 text-sm md:text-base">30% — Pet accessory</li>
-                          <li className="text-gray-300 text-sm md:text-base">20% — 5 gold coins</li>
-                          <li className="text-gray-300 text-sm md:text-base">10% — 1-hour 1.5x XP boost</li>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Why Separate</h3>
+                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Free game = low friction</strong> (discover Kracked Devs)</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Paid bootcamp = high commitment</strong> (serious about hiring)</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Game attracts Malaysia</strong>, bootcamp focuses on <strong className="text-purple-300">Kracked community</strong> who've proven engagement</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Game is discovery</strong>, bootcamp is <strong className="text-purple-300">acceleration + outcomes</strong></li>
+                      </ul>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Bootcamp Marketing Path (Within Game)</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Players who reach Level 15–20 see:</p>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded">
+                        <p className="text-gray-300 text-sm md:text-base mb-2">"Your portfolio is growing! 📈"</p>
+                        <p className="text-gray-300 text-sm md:text-base mb-2">Your GitResume portfolio shows strong fundamentals.</p>
+                        <p className="text-gray-300 text-sm md:text-base mb-2">Ready to accelerate your career?</p>
+                        <p className="text-gray-300 text-sm md:text-base mb-2">Kracked Devs Bootcamp (4 weeks):</p>
+                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-2">
+                          <li className="text-gray-300 text-sm md:text-base">Industry mentors + hiring partners</li>
+                          <li className="text-gray-300 text-sm md:text-base">Portfolio-building projects</li>
+                          <li className="text-gray-300 text-sm md:text-base">Interview prep + job placement</li>
+                          <li className="text-gray-300 text-sm md:text-base">Success: Ahmed joined at Level 20 → Hired at Shopee</li>
                         </ul>
+                        <p className="text-gray-300 text-sm md:text-base">Enrollment: Limited cohorts, starts next month</p>
                       </div>
 
-                      <div className="mb-4 md:mb-6">
-                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Silver Chest (Level 10)</h4>
-                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
-                          <li className="text-gray-300 text-sm md:text-base">25% — Rare avatar outfit</li>
-                          <li className="text-gray-300 text-sm md:text-base">25% — Unique pet skin</li>
-                          <li className="text-gray-300 text-sm md:text-base">30% — 10 gold coins</li>
-                          <li className="text-gray-300 text-sm md:text-base">15% — 2-hour 1.5x XP boost</li>
-                          <li className="text-gray-300 text-sm md:text-base">5% — Exclusive title: "[Bootcamp Graduate]"</li>
-                        </ul>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Bootcamp Funnel Path</h3>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-1">Level 0–5: Discover Kracked Devs (free game)</p>
+                        <p className="text-gray-300 mb-1">Level 6–10: Build first projects + GitResume shows possibilities</p>
+                        <p className="text-gray-300 mb-1">Level 11–20: Portfolio gains quality + bootcamp ads appear</p>
+                        <p className="text-gray-300 mb-1">Decision Point: Pay for bootcamp or continue climbing levels</p>
+                        <p className="text-gray-300 mb-1">Level 21+: Mentoring income + community building (no bootcamp needed)</p>
+                        <p className="text-gray-300 mb-1">Bootcamp Enroll:</p>
+                        <p className="text-gray-300 mb-1">• 4-week intensive</p>
+                        <p className="text-gray-300 mb-1">• 3–5 cohort projects</p>
+                        <p className="text-gray-300 mb-1">• Job placement within 8 weeks</p>
+                        <p className="text-gray-300">• Post-bootcamp: Hired or continue as senior mentor</p>
                       </div>
+                    </div>
 
-                      <div className="mb-4 md:mb-6">
-                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Gold Chest (Level 20)</h4>
-                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
-                          <li className="text-gray-300 text-sm md:text-base">20% — Legendary avatar appearance</li>
-                          <li className="text-gray-300 text-sm md:text-base">20% — Epic pet skin with visual effects</li>
-                          <li className="text-gray-300 text-sm md:text-base">30% — 30 gold coins</li>
-                          <li className="text-gray-300 text-sm md:text-base">20% — Skill-specific cosmetic (Frontend/Backend/etc.)</li>
-                          <li className="text-gray-300 text-sm md:text-base">10% — "Hire-Ready" banner for profile</li>
-                        </ul>
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">6. INTEGRATION WITH TOWN AREAS (Quest Funnel)</h2>
+                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Daily quests touch all game features:</p>
+                      <div className="overflow-x-auto mb-4 md:mb-6">
+                        <table className="w-full text-xs md:text-sm border-collapse">
+                          <thead>
+                            <tr className="border-b border-purple-500/30">
+                              <th className="text-left text-purple-300 p-2">AREA</th>
+                              <th className="text-left text-purple-300 p-2">QUEST TYPE</th>
+                              <th className="text-left text-purple-300 p-2">EXAMPLE</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Job Board</td>
+                              <td className="text-gray-300 p-2">Q4, Q12</td>
+                              <td className="text-gray-300 p-2">Browse jobs, learn companies</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Learning Café</td>
+                              <td className="text-gray-300 p-2">Q5, Q14</td>
+                              <td className="text-gray-300 p-2">Watch videos, share resources</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Code Zones</td>
+                              <td className="text-gray-300 p-2">Q1–Q3, Q9, Q11, Q16</td>
+                              <td className="text-gray-300 p-2">Coding challenges + skill practice</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Community Hub</td>
+                              <td className="text-gray-300 p-2">Q7, Q10, Q13, Q15</td>
+                              <td className="text-gray-300 p-2">Chat, polls, celebrate streaks</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Projects Board</td>
+                              <td className="text-gray-300 p-2">Future quests</td>
+                              <td className="text-gray-300 p-2">Submit work, get reviews</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">GitResume Hub</td>
+                              <td className="text-gray-300 p-2">Portfolio view (NEW FEATURE)</td>
+                              <td className="text-gray-300 p-2">See auto-generated portfolio, Link to gitresume.me</td>
+                            </tr>
+                            <tr className="border-b border-purple-500/20">
+                              <td className="text-gray-300 p-2">Developer Profile</td>
+                              <td className="text-gray-300 p-2">Q18</td>
+                              <td className="text-gray-300 p-2">Update bio, showcase work</td>
+                            </tr>
+                            <tr>
+                              <td className="text-gray-300 p-2">Leaderboards</td>
+                              <td className="text-gray-300 p-2">Streaks, Level, XP</td>
+                              <td className="text-gray-300 p-2">Beat friends, social competition</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
+                    </div>
 
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">RNG Design Principles</h3>
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">7. IMPLEMENTATION CHECKLIST (Dev Priority)</h2>
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Backend (Database + Logic)</h3>
                       <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
-                        <li className="text-gray-300 text-sm md:text-base">✅ No Pure Duplicates — Second time getting same item = upgrade (better colors/effects)</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Duplicate Mitigation — Rare drops increase odds of legendary items next time</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Cosmetic-Only — NO pay-to-win mechanics (all chests = cosmetics + currency)</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Excitement Moments — Legendary drops trigger animations + social notifications (shareable on Discord)</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] XP tracking system (per source)</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Streak mechanics (freeze, comeback, milestones)</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Badge/title auto-unlock system</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Daily quest engine + replay prevention</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] <strong className="text-purple-300">GitResume integration</strong> (GitHub OAuth + API calls)</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Leaderboard calculations</li>
+                      </ul>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Frontend (UI/UX)</h3>
+                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Player profile (level, badges, titles, streak)</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Leaderboards (level, streak, monthly sprint, mentoring)</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Daily quest notifications</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] <strong className="text-purple-300">GitResume embed</strong> on profile + "View Portfolio" button</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] XP display + floating rewards</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Bootcamp ad placement (triggered at Level 15+)</li>
+                      </ul>
+
+                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Analytics & Monitoring</h3>
+                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
+                        <li className="text-gray-300 text-sm md:text-base">[ ] DAU completing quests</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Average streak length</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Level distribution</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] GitResume adoption rate</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Bootcamp ad click-through rate</li>
+                        <li className="text-gray-300 text-sm md:text-base">[ ] Bootcamp enrollment conversion rate</li>
                       </ul>
                     </div>
 
                     <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">MENTORING SYSTEM & INCOME</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Becoming a Mentor (Level 25+)</h3>
-                      <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Application Requirements</h4>
-                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
-                        <li className="text-gray-300 text-sm md:text-base">✓ Reach Level 25+ (proven progression)</li>
-                        <li className="text-gray-300 text-sm md:text-base">✓ Complete "Mentor Training" bootcamp (10 hours)</li>
-                        <li className="text-gray-300 text-sm md:text-base">✓ Submit 2 mentor application essays</li>
-                        <li className="text-gray-300 text-sm md:text-base">✓ Background check</li>
-                        <li className="text-gray-300 text-sm md:text-base">✓ Approved by Kracked Devs team</li>
-                      </ul>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Mentor Tiers & Income</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Tier</th>
-                              <th className="text-left text-purple-300 p-2">Min Level</th>
-                              <th className="text-left text-purple-300 p-2">Requirements</th>
-                              <th className="text-left text-purple-300 p-2">Income Potential</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Apprentice Mentor</td>
-                              <td className="text-gray-300 p-2">20</td>
-                              <td className="text-gray-300 p-2">Completed bootcamp</td>
-                              <td className="text-gray-300 p-2">RM30-50 per 1:1</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Certified Mentor</td>
-                              <td className="text-gray-300 p-2">25</td>
-                              <td className="text-gray-300 p-2">Pass mentor training</td>
-                              <td className="text-gray-300 p-2">RM50-100 per session</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Senior Mentor</td>
-                              <td className="text-gray-300 p-2">35</td>
-                              <td className="text-gray-300 p-2">50+ mentees helped</td>
-                              <td className="text-gray-300 p-2">RM500/month stipend</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">Mentor Lead</td>
-                              <td className="text-gray-300 p-2">50</td>
-                              <td className="text-gray-300 p-2">200+ mentees, created module</td>
-                              <td className="text-gray-300 p-2">Potential employment offer</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Mentoring XP Breakdown</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Activity</th>
-                              <th className="text-left text-purple-300 p-2">Duration</th>
-                              <th className="text-left text-purple-300 p-2">XP Per Session</th>
-                              <th className="text-left text-purple-300 p-2">Income Potential</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Quick help (Discord)</td>
-                              <td className="text-gray-300 p-2">5-15 min</td>
-                              <td className="text-gray-300 p-2">5-10 XP</td>
-                              <td className="text-gray-300 p-2">Unpaid (community)</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Code review</td>
-                              <td className="text-gray-300 p-2">15-30 min</td>
-                              <td className="text-gray-300 p-2">15-25 XP</td>
-                              <td className="text-gray-300 p-2">RM30-50 per 1:1</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">1:1 session</td>
-                              <td className="text-gray-300 p-2">1 hour</td>
-                              <td className="text-gray-300 p-2">30-50 XP</td>
-                              <td className="text-gray-300 p-2">RM50-100 per session</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Bootcamp group teaching</td>
-                              <td className="text-gray-300 p-2">2+ hours</td>
-                              <td className="text-gray-300 p-2">50+ XP</td>
-                              <td className="text-gray-300 p-2">Potential employment offer</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Create learning resource</td>
-                              <td className="text-gray-300 p-2">Variable</td>
-                              <td className="text-gray-300 p-2">40 XP</td>
-                              <td className="text-gray-300 p-2">—</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">Mentee hired (bonus)</td>
-                              <td className="text-gray-300 p-2">(referral)</td>
-                              <td className="text-gray-300 p-2">100 XP</td>
-                              <td className="text-gray-300 p-2">—</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">PROJECTS HUB & REAL INCOME</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">How It Works</h3>
-                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Kracked Devs Project Board:</p>
-                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
-                        <li className="text-gray-300 text-sm md:text-base">Kracked Devs team + partner companies post projects</li>
-                        <li className="text-gray-300 text-sm md:text-base">Members solo or team up to apply</li>
-                        <li className="text-gray-300 text-sm md:text-base">Contribution-based rewards (in-game + real RM currency)</li>
-                        <li className="text-gray-300 text-sm md:text-base">Final submission judged by hiring managers / team leads</li>
-                      </ul>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Project Tier System</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Project Type</th>
-                              <th className="text-left text-purple-300 p-2">Scope</th>
-                              <th className="text-left text-purple-300 p-2">Reward Type</th>
-                              <th className="text-left text-purple-300 p-2">XP</th>
-                              <th className="text-left text-purple-300 p-2">Real Currency</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Learning</td>
-                              <td className="text-gray-300 p-2">Build feature from spec</td>
-                              <td className="text-gray-300 p-2">In-game cosmetics</td>
-                              <td className="text-gray-300 p-2">50-100</td>
-                              <td className="text-gray-300 p-2">None</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Portfolio</td>
-                              <td className="text-gray-300 p-2">Full web app MVP</td>
-                              <td className="text-gray-300 p-2">Cosmetics + gold coins</td>
-                              <td className="text-gray-300 p-2">100-200</td>
-                              <td className="text-gray-300 p-2">None</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Contract</td>
-                              <td className="text-gray-300 p-2">Real work for companies</td>
-                              <td className="text-gray-300 p-2">Cosmetics + gold coins</td>
-                              <td className="text-gray-300 p-2">200+</td>
-                              <td className="text-gray-300 p-2">RM50-500</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">Internship Track</td>
-                              <td className="text-gray-300 p-2">Ongoing role</td>
-                              <td className="text-gray-300 p-2">Cosmetics + gold coins</td>
-                              <td className="text-gray-300 p-2">500+</td>
-                              <td className="text-gray-300 p-2">RM800-2000/month</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Example Project Cards</h3>
-                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded">
-                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">🏆 Build Todo App with AI</h4>
-                        <div className="space-y-1 md:space-y-2 text-sm md:text-base">
-                          <p className="text-gray-300"><strong className="text-purple-300">Level:</strong> 6-10 (Learning)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Duration:</strong> 3 days</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Team Size:</strong> Solo or 2 people</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Reward:</strong> 50 XP + Rare cosmetic</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Description:</strong> Build todo list app using vibe coding with ChatGPT</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Requirements:</strong> GitHub repo, deployed link, README documentation</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Submission:</strong> Link to GitHub + working demo</p>
-                        </div>
-                      </div>
-
-                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded">
-                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">💼 E-Commerce Product Filter Feature</h4>
-                        <div className="space-y-1 md:space-y-2 text-sm md:text-base">
-                          <p className="text-gray-300"><strong className="text-purple-300">Level:</strong> 16-20 (Portfolio)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Duration:</strong> 1 week</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Team Size:</strong> 1-2 people</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Reward:</strong> 150 XP + 20 gold coins</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Description:</strong> Real project for local startup. Build product filtering system.</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Tech Stack:</strong> React, Node, MongoDB (or equivalent)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Submission:</strong> Code review + demo + live deployment</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Contact:</strong> [Hiring manager email]</p>
-                        </div>
-                      </div>
-
-                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded">
-                        <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">💰 Custom CRM Module Development</h4>
-                        <div className="space-y-1 md:space-y-2 text-sm md:text-base">
-                          <p className="text-gray-300"><strong className="text-purple-300">Level:</strong> 25+ (Contract)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Duration:</strong> 2 weeks</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Team Size:</strong> 2-3 people</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Reward:</strong> 300 XP + 50 gold coins + RM800</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Description:</strong> Build custom module for CRM tool (real company, real product)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Tech Stack:</strong> Full-stack (your choice)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Payment:</strong> RM800 split among team (prorated by hours)</p>
-                          <p className="text-gray-300"><strong className="text-purple-300">Contact:</strong> [Company contact]</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">LEVELING VELOCITY & ENGAGEMENT LOOP</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Expected Progression Timeline</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Levels</th>
-                              <th className="text-left text-purple-300 p-2">Duration</th>
-                              <th className="text-left text-purple-300 p-2">Playstyle</th>
-                              <th className="text-left text-purple-300 p-2">XP/Day Estimate</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">1-5</td>
-                              <td className="text-gray-300 p-2">1-2 days</td>
-                              <td className="text-gray-300 p-2">Casual (30 min/day)</td>
-                              <td className="text-gray-300 p-2">50-100 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">6-10</td>
-                              <td className="text-gray-300 p-2">1-2 weeks</td>
-                              <td className="text-gray-300 p-2">Engaged (1-2 hrs/day)</td>
-                              <td className="text-gray-300 p-2">100-200 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">11-20</td>
-                              <td className="text-gray-300 p-2">3-4 weeks</td>
-                              <td className="text-gray-300 p-2">Committed (2-3 hrs/day)</td>
-                              <td className="text-gray-300 p-2">200-300 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">21-30</td>
-                              <td className="text-gray-300 p-2">4-6 weeks</td>
-                              <td className="text-gray-300 p-2">Dedicated (3+ hrs/day)</td>
-                              <td className="text-gray-300 p-2">300-400 XP</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">31-50+</td>
-                              <td className="text-gray-300 p-2">Ongoing</td>
-                              <td className="text-gray-300 p-2">Hardcore / Mentor</td>
-                              <td className="text-gray-300 p-2">500+ XP/week</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Daily Engagement Loop (For Level 6+)</h3>
-                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded">
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">🎮 USER OPENS KRACKED DEVS</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">↓</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">💬 CHECK: Daily login (5-10 XP) + Discord notifications</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">↓</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">🎯 CHOOSE ACTIVITY:</p>
-                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-2 text-sm md:text-base">
-                          <li className="text-gray-300">→ Option A: Complete daily challenge (25 XP)</li>
-                          <li className="text-gray-300">→ Option B: Work on bootcamp module (30-40 XP/hr)</li>
-                          <li className="text-gray-300">→ Option C: Help someone in Discord (10-20 XP)</li>
-                          <li className="text-gray-300">→ Option D: Apply to project (100-300 XP if completed)</li>
-                        </ul>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">↓</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">🏆 EARN XP → Progress bar fills</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">↓</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">📊 LEVEL UP?</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">YES: Loot chest? Badge? Celebration animation</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">NO: Show "X XP to next level"</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono mb-2">↓</p>
-                        <p className="text-gray-300 text-sm md:text-base font-mono">🔄 REPEAT NEXT DAY</p>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Anti-Burnout Mechanisms</h3>
-                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
-                        <li className="text-gray-300 text-sm md:text-base">✅ Difficulty Gates — Every 10 levels, bootcamp sessions slow progression (prevent burnout)</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Multiple Task Types — Coding fatigue? Switch to community engagement</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Mentor Support — Stuck? Get help from mentors without losing progress</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Seasonal Resets — Leaderboards reset monthly (fresh competitive motivation)</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Real Rewards — XP → cosmetics + real income keeps motivation high</li>
-                        <li className="text-gray-300 text-sm md:text-base">✅ Community Dependency — Can't progress alone; need social engagement (creates accountability)</li>
-                      </ul>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">XP VALUE QUICK REFERENCE</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Complete Task XP Table</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Task Category</th>
-                              <th className="text-left text-purple-300 p-2">Low</th>
-                              <th className="text-left text-purple-300 p-2">Mid</th>
-                              <th className="text-left text-purple-300 p-2">High</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Onboarding</td>
-                              <td className="text-gray-300 p-2">5 XP</td>
-                              <td className="text-gray-300 p-2">15 XP</td>
-                              <td className="text-gray-300 p-2">25 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Daily Activity</td>
-                              <td className="text-gray-300 p-2">5 XP</td>
-                              <td className="text-gray-300 p-2">10 XP</td>
-                              <td className="text-gray-300 p-2">20 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Community Help</td>
-                              <td className="text-gray-300 p-2">5 XP</td>
-                              <td className="text-gray-300 p-2">15 XP</td>
-                              <td className="text-gray-300 p-2">30 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Learning Module</td>
-                              <td className="text-gray-300 p-2">20 XP</td>
-                              <td className="text-gray-300 p-2">40 XP</td>
-                              <td className="text-gray-300 p-2">60 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Coding Project</td>
-                              <td className="text-gray-300 p-2">30 XP</td>
-                              <td className="text-gray-300 p-2">75 XP</td>
-                              <td className="text-gray-300 p-2">150 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Mentoring</td>
-                              <td className="text-gray-300 p-2">5 XP</td>
-                              <td className="text-gray-300 p-2">25 XP</td>
-                              <td className="text-gray-300 p-2">50 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Resource Creation</td>
-                              <td className="text-gray-300 p-2">20 XP</td>
-                              <td className="text-gray-300 p-2">50 XP</td>
-                              <td className="text-gray-300 p-2">100 XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Project Contribution</td>
-                              <td className="text-gray-300 p-2">50 XP</td>
-                              <td className="text-gray-300 p-2">150 XP</td>
-                              <td className="text-gray-300 p-2">500 XP</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">Referral Bonus</td>
-                              <td className="text-gray-300 p-2">25 XP</td>
-                              <td className="text-gray-300 p-2">50 XP</td>
-                              <td className="text-gray-300 p-2">100 XP</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">RETENTION PROJECTIONS</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">User Retention Estimates</h3>
-                      <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">Based on similar gamified platforms (Duolingo, Codecademy, Discord communities):</p>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Stage</th>
-                              <th className="text-left text-purple-300 p-2">Expected Retention</th>
-                              <th className="text-left text-purple-300 p-2">Key Retention Driver</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Day 1 → Day 7</td>
-                              <td className="text-gray-300 p-2">40-50%</td>
-                              <td className="text-gray-300 p-2">Loot chests + avatar customization</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Week 1 → Week 4</td>
-                              <td className="text-gray-300 p-2">25-35%</td>
-                              <td className="text-gray-300 p-2">Bootcamp progression + community friendships</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Month 1 → Month 3</td>
-                              <td className="text-gray-300 p-2">15-20%</td>
-                              <td className="text-gray-300 p-2">Portfolio building + mentorship relationships</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Month 3 → Month 6</td>
-                              <td className="text-gray-300 p-2">10-15%</td>
-                              <td className="text-gray-300 p-2">Projects + real income potential + alumni success stories</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">Month 6+</td>
-                              <td className="text-gray-300 p-2">8-12%</td>
-                              <td className="text-gray-300 p-2">Mentorship income + community leadership + hired members return</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Estimated Lifetime Value (Per User)</h3>
-                      <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
-                        <li className="text-gray-300 text-sm md:text-base">Average stay: 3-6 months</li>
-                        <li className="text-gray-300 text-sm md:text-base">If 1 in 50 gets hired: RM300 recruitment commission per hire</li>
-                        <li className="text-gray-300 text-sm md:text-base">If 10% become mentors earning RM500/month: ~RM1500 per mentor annually</li>
-                        <li className="text-gray-300 text-sm md:text-base">Platform revenue: Job ad fees (RM500-2000 per company) + % of mentorship fees</li>
-                      </ul>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">ALUMNI & LEGEND SYSTEM</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Getting Hired = New Game Mode</h3>
-                      <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">Alumni Badge (Upon Hiring)</h4>
-                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded">
-                        <p className="text-gray-300 text-sm md:text-base font-semibold mb-2">🏆 KRACKED LEGEND: [Name]</p>
-                        <p className="text-gray-300 text-sm md:text-base mb-1">━━━━━━━━━━━━━━━━━━━━━━━━━━━</p>
-                        <p className="text-gray-300 text-sm md:text-base mb-1">Hired at: [Company Name]</p>
-                        <p className="text-gray-300 text-sm md:text-base mb-1">Position: [Job Title]</p>
-                        <p className="text-gray-300 text-sm md:text-base mb-1">Salary: [Optional - if they share]</p>
-                        <p className="text-gray-300 text-sm md:text-base mb-1">Time in Kracked Devs: [X months]</p>
-                        <p className="text-gray-300 text-sm md:text-base mb-1">Mentees Helped: [X]</p>
-                        <p className="text-gray-300 text-sm md:text-base">Projects Completed: [X]</p>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Alumni Privileges</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Privilege</th>
-                              <th className="text-left text-purple-300 p-2">Benefit</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ Special "Alumni" badge</td>
-                              <td className="text-gray-300 p-2">Permanent profile badge + prestige</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ Alumni leaderboard</td>
-                              <td className="text-gray-300 p-2">Separate from main (all-time earnings tracked)</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ Automatic "Mentor" qualification</td>
-                              <td className="text-gray-300 p-2">No application needed, skip to Certified Mentor tier</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ 50% bonus XP</td>
-                              <td className="text-gray-300 p-2">All mentoring activities earn 50% more XP</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ Monthly "Alumni Spotlight"</td>
-                              <td className="text-gray-300 p-2">Featured on Twitter + website</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ Exclusive alumni Discord channel</td>
-                              <td className="text-gray-300 p-2">Private space for success stories + networking</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">✅ First access to senior projects</td>
-                              <td className="text-gray-300 p-2">Leadership roles, high-paying contracts</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">✅ Referral program</td>
-                              <td className="text-gray-300 p-2">Earn RM if you hire other Kracked members</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Alumni Incentive Tier (Levels 51-100: "Ascended")</h3>
-                      <div className="overflow-x-auto mb-4 md:mb-6">
-                        <table className="w-full text-xs md:text-sm border-collapse">
-                          <thead>
-                            <tr className="border-b border-purple-500/30">
-                              <th className="text-left text-purple-300 p-2">Milestone</th>
-                              <th className="text-left text-purple-300 p-2">Reward Incentive</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Hired + 3 months</td>
-                              <td className="text-gray-300 p-2">10% XP bonus (all activities) - Continued engagement</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Hire 1 Kracked member</td>
-                              <td className="text-gray-300 p-2">RM100 referral bonus - Advocacy</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Hire 3+ Kracked members</td>
-                              <td className="text-gray-300 p-2">RM1000 total + "Talent Scout" title - Community building</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Mentor 50+ members</td>
-                              <td className="text-gray-300 p-2">"Senior Mentor" promotion + RM500/month stipend - Sustainable income</td>
-                            </tr>
-                            <tr>
-                              <td className="text-gray-300 p-2">Create bootcamp module</td>
-                              <td className="text-gray-300 p-2">"Course Creator" title + RM2000 one-time - Content creation</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">LEADERBOARD & COMPETITION</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Leaderboard Types</h3>
-                      <div className="space-y-4 md:space-y-6 mb-4 md:mb-6">
-                        <div>
-                          <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">1. Experience Points (XP)</h4>
-                          <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4">
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Metric:</strong> Global ranking by total XP</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Resets:</strong> Never (all-time)</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Bracket:</strong> All levels together</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Reward:</strong> Monthly top 10 get cosmetics + gold coins</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">2. Monthly XP Sprint</h4>
-                          <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4">
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Metric:</strong> Racing for most XP in current month</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Resets:</strong> 1st of each month</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Bracket:</strong> By level bracket (1-10, 11-20, 21-30+) for fairness</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Reward:</strong> Top 3 per bracket get exclusive cosmetics</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">3. Mentorship Impact</h4>
-                          <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4">
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Metric:</strong> Ranked by # mentees helped</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Resets:</strong> Quarterly</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Bracket:</strong> Mentor tier only</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Reward:</strong> Top mentors get real RM bonuses</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">4. Project Completion</h4>
-                          <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4">
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Metric:</strong> Ranked by # projects completed</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Resets:</strong> Monthly</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Bracket:</strong> By project tier (learning vs contract)</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Reward:</strong> Top performers featured on jobs board</li>
-                          </ul>
-                        </div>
-                        <div>
-                          <h4 className="text-base md:text-lg font-semibold text-purple-300 mb-2 md:mb-3">5. Community Score</h4>
-                          <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4">
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Metric:</strong> Blend of: help responses + Discord messages + referrals + resources</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Resets:</strong> Monthly</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Bracket:</strong> All</li>
-                            <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Reward:</strong> Top 20 get recognition + early access to new projects</li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">METRICS & SUCCESS INDICATORS</h2>
-                      <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-3 md:mb-4">Key Metrics to Track</h3>
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">8. SUCCESS METRICS</h2>
                       <div className="overflow-x-auto mb-4 md:mb-6">
                         <table className="w-full text-xs md:text-sm border-collapse">
                           <thead>
                             <tr className="border-b border-purple-500/30">
                               <th className="text-left text-purple-300 p-2">Metric</th>
                               <th className="text-left text-purple-300 p-2">Target</th>
-                              <th className="text-left text-purple-300 p-2">Frequency</th>
+                              <th className="text-left text-purple-300 p-2">Why It Matters</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">% reaching Level 5</td>
-                              <td className="text-gray-300 p-2">&gt;60%</td>
-                              <td className="text-gray-300 p-2">Weekly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Daily Active Users (DAU)</strong></td>
+                              <td className="text-gray-300 p-2">40–50% of registered</td>
+                              <td className="text-gray-300 p-2">Streak engagement</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">% reaching Level 10</td>
-                              <td className="text-gray-300 p-2">&gt;40%</td>
-                              <td className="text-gray-300 p-2">Weekly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Avg Streak Length</strong></td>
+                              <td className="text-gray-300 p-2">7–14 days</td>
+                              <td className="text-gray-300 p-2">Habit formation working</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">% reaching Level 25</td>
-                              <td className="text-gray-300 p-2">&gt;20%</td>
-                              <td className="text-gray-300 p-2">Monthly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Quest Completion Rate</strong></td>
+                              <td className="text-gray-300 p-2">60%+ of DAU</td>
+                              <td className="text-gray-300 p-2">Daily engagement health</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">% reaching Level 30+</td>
-                              <td className="text-gray-300 p-2">&gt;10%</td>
-                              <td className="text-gray-300 p-2">Monthly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">GitResume Adoption</strong></td>
+                              <td className="text-gray-300 p-2">70%+ of active players</td>
+                              <td className="text-gray-300 p-2">Portfolio visibility drives bootcamp interest</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">% actually hired within 6 months</td>
-                              <td className="text-gray-300 p-2">&gt;5-10%</td>
-                              <td className="text-gray-300 p-2">Monthly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Bootcamp Ad CTR</strong></td>
+                              <td className="text-gray-300 p-2">15–20%</td>
+                              <td className="text-gray-300 p-2">Ad placement effectiveness</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Average time to Level 10</td>
-                              <td className="text-gray-300 p-2">4-6 weeks</td>
-                              <td className="text-gray-300 p-2">Monthly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Bootcamp Conversion</strong></td>
+                              <td className="text-gray-300 p-2">5–10% of engaged players</td>
+                              <td className="text-gray-300 p-2">Paid funnel working</td>
                             </tr>
                             <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Mentee satisfaction score</td>
-                              <td className="text-gray-300 p-2">&gt;4.5/5</td>
-                              <td className="text-gray-300 p-2">Monthly</td>
-                            </tr>
-                            <tr className="border-b border-purple-500/20">
-                              <td className="text-gray-300 p-2">Monthly churn rate</td>
-                              <td className="text-gray-300 p-2">&lt;5%</td>
-                              <td className="text-gray-300 p-2">Weekly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Bootcamp Grad Hiring</strong></td>
+                              <td className="text-gray-300 p-2">60%+ within 3 months</td>
+                              <td className="text-gray-300 p-2">Bootcamp ROI for students</td>
                             </tr>
                             <tr>
-                              <td className="text-gray-300 p-2">Referral conversion</td>
-                              <td className="text-gray-300 p-2">&gt;15%</td>
-                              <td className="text-gray-300 p-2">Monthly</td>
+                              <td className="text-gray-300 p-2"><strong className="text-purple-300">Mentorship Uptake</strong></td>
+                              <td className="text-gray-300 p-2">10% reaching Level 25</td>
+                              <td className="text-gray-300 p-2">Senior player engagement</td>
                             </tr>
                           </tbody>
                         </table>
@@ -1995,77 +1476,77 @@ export const WhitepaperScene: React.FC<WhitepaperSceneProps> = ({ onBack }) => {
                     </div>
 
                     <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">NOTES & CONSIDERATIONS</h2>
-                      
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Difficulty Tuning</h3>
-                        <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">
-                          These XP values should be tested with closed beta. Adjust if users level too fast/slow.
-                        </p>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Seasonality</h3>
-                        <p className="text-gray-300 text-sm md:text-base mb-2 md:mb-3">Consider seasonal projects:</p>
-                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
-                          <li className="text-gray-300 text-sm md:text-base">October: "Hacktober" (GitHub contributions)</li>
-                          <li className="text-gray-300 text-sm md:text-base">January: "New Year Bootcamp" (fresh cohorts)</li>
-                          <li className="text-gray-300 text-sm md:text-base">July: "Hiring Season" (job application blitz)</li>
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">9. EXAMPLE: LEVEL 18 PLAYER DAY</h2>
+                      <div className="mb-4 md:mb-6 p-4 bg-gray-800 border border-purple-500/30 rounded font-mono text-xs md:text-sm">
+                        <p className="text-gray-300 mb-2"><strong className="text-purple-300">MORNING (7 AM)</strong></p>
+                        <p className="text-gray-300 mb-1">Logs in → Sees:</p>
+                        <ul className="list-disc list-inside space-y-1 ml-2 mb-2">
+                          <li className="text-gray-300">Level: 18 (72/100 XP toward Level 19)</li>
+                          <li className="text-gray-300">Streak: 🔥 11 days (+20% bonus active)</li>
+                          <li className="text-gray-300">TODAY'S QUEST: "Algorithm Sprint" (base 40 XP)</li>
+                          <li className="text-gray-300">GitResume Alert: "Your portfolio has 15 commits this week! ⭐"</li>
+                        </ul>
+                        <p className="text-gray-300 mb-2 mt-2">Completes Algorithm Sprint</p>
+                        <ul className="list-disc list-inside space-y-1 ml-2 mb-2">
+                          <li className="text-gray-300">Base XP: 40</li>
+                          <li className="text-gray-300">Streak bonus: +20% = 8 XP</li>
+                          <li className="text-gray-300">Total: 48 XP</li>
+                          <li className="text-gray-300">New total: 120 XP → Level 19! ✅</li>
+                        </ul>
+                        <p className="text-gray-300 mb-2 mt-2"><strong className="text-purple-300">Level 19 Reward:</strong></p>
+                        <ul className="list-disc list-inside space-y-1 ml-2 mb-2">
+                          <li className="text-gray-300">Badge: "Intermediate Achiever" unlocked</li>
+                          <li className="text-gray-300">XP toward 20: 20/100</li>
+                          <li className="text-gray-300">Title now: "Senior Developer"</li>
+                        </ul>
+                        <p className="text-gray-300 mb-2 mt-2"><strong className="text-purple-300">BOOTCAMP AD APPEARS:</strong></p>
+                        <p className="text-gray-300 mb-1">"Your GitResume portfolio is impressive!</p>
+                        <p className="text-gray-300 mb-1">Ready for next level? Bootcamp cohort starts in 2 weeks."</p>
+                        <p className="text-gray-300 mb-1">[LEARN MORE] [DISMISS]</p>
+                        <p className="text-gray-300 mb-2 mt-2"><strong className="text-purple-300">END OF DAY</strong></p>
+                        <ul className="list-disc list-inside space-y-1 ml-2">
+                          <li className="text-gray-300">Level: 19</li>
+                          <li className="text-gray-300">Streak: 🔥 12 days</li>
+                          <li className="text-gray-300">GitResume portfolio updated: 16 commits</li>
+                          <li className="text-gray-300">Portfolio link: gitresume.me/username (auto-updated)</li>
                         </ul>
                       </div>
+                    </div>
 
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">International Expansion</h3>
-                        <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">
-                          Current system assumes Malaysia focus. Scale regional leaderboards when expanding to Singapore, Thailand, etc.
-                        </p>
-                      </div>
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <h2 className="text-xl md:text-2xl font-bold text-purple-400 mb-3 md:mb-4">10. NEXT STEPS (Dev Team Order)</h2>
+                      <ol className="list-decimal list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-4 md:mb-6">
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Week 1:</strong> XP tracking + level system</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Week 2:</strong> Streak mechanics + milestones</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Week 3:</strong> Badge/title unlock + leaderboards</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Week 4:</strong> <strong className="text-purple-300">GitResume OAuth integration + auto-sync</strong></li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Week 5:</strong> Profile UI + GitResume embed + portfolio button</li>
+                        <li className="text-gray-300 text-sm md:text-base"><strong className="text-purple-300">Week 6:</strong> Bootcamp ad system + analytics</li>
+                      </ol>
+                    </div>
 
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">API Integration</h3>
-                        <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">
-                          GitHub, Twitter, Instagram verifications should be automated for smooth onboarding.
-                        </p>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Bootcamp Partners</h3>
-                        <p className="text-gray-300 text-sm md:text-base mb-3 md:mb-4">
-                          Identify 3-5 "vibe coding veterans" to lead Level 5, 10, 15, 20 checkpoint sessions.
-                        </p>
-                      </div>
-
-                      <div className="mb-4 md:mb-6">
-                        <h3 className="text-lg md:text-xl font-semibold text-purple-300 mb-2 md:mb-3">Community Building</h3>
-                        <ul className="list-disc list-inside space-y-1 md:space-y-2 ml-2 md:ml-4 mb-3 md:mb-4">
-                          <li className="text-gray-300 text-sm md:text-base">Pair Level 5+ mentees with Level 25+ mentors</li>
-                          <li className="text-gray-300 text-sm md:text-base">Create accountability groups (small Discord channels, 4-5 people)</li>
-                          <li className="text-gray-300 text-sm md:text-base">Weekly "wins" celebrations in #wins channel</li>
-                        </ul>
-                      </div>
-
-                      <div className="border-t border-purple-500/30 pt-4 md:pt-6">
-                        <p className="text-gray-300 text-sm md:text-base mb-2">
-                          <strong className="text-purple-300">Total Document Length:</strong> Complete rewards + progression system
-                        </p>
-                        <p className="text-gray-300 text-sm md:text-base mb-2">
-                          <strong className="text-purple-300">Ready to:</strong> Copy, paste, print, share, embed
-                        </p>
-                        <p className="text-gray-300 text-sm md:text-base mb-2">
-                          <strong className="text-purple-300">Last Updated:</strong> December 2, 2025
-                        </p>
-                        <p className="text-gray-300 text-sm md:text-base mb-2">
-                          <strong className="text-purple-300">Version:</strong> 1.0 (Elegant Format - Google Docs Ready)
-                        </p>
-                        <p className="text-purple-300 font-semibold text-sm md:text-base mt-4 md:mt-6">
-                          🎮 Kracked Devs - Complete Rewards & Progression System 🎮
-                        </p>
-                      </div>
+                    <div className="border-t border-purple-500/30 pt-4 md:pt-6">
+                      <p className="text-gray-300 text-sm md:text-base mb-2">
+                        <strong className="text-purple-300">Version:</strong> 2.0 (Bootcamp Separate + GitResume)
+                      </p>
+                      <p className="text-gray-300 text-sm md:text-base mb-2">
+                        <strong className="text-purple-300">Date:</strong> December 4, 2025
+                      </p>
+                      <p className="text-gray-300 text-sm md:text-base mb-2">
+                        <strong className="text-purple-300">Status:</strong> LOCKED - Ready for Development
+                      </p>
+                      <p className="text-gray-300 text-sm md:text-base mb-4 md:mb-6">
+                        <strong className="text-purple-300">Next:</strong> Database schema, UI mockups, GitResume API integration details
+                      </p>
+                      <p className="text-purple-300 font-semibold text-sm md:text-base mt-4 md:mt-6">
+                        🎮 Kracked Devs - Global Game Systems Spec 🎮
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
         </>
       )}
 
