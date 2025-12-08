@@ -1,6 +1,7 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+// Use the same Supabase URL as krackeddevs-widget
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://nxukkhyjasusqbzhkqdv.supabase.co";
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
 
 let supabaseInstance: SupabaseClient | null = null;
@@ -11,16 +12,16 @@ function getSupabaseClient(): SupabaseClient | null {
     return supabaseInstance;
   }
 
-  // Check if we have the env vars
-  if (!supabaseUrl || !supabaseAnonKey) {
+  // Check if we have the anon key (URL has default value)
+  if (!supabaseAnonKey) {
     // During build time or when env vars are missing, return null
     if (typeof window === "undefined") {
       console.warn(
-        "Supabase environment variables not available during build time"
+        "Supabase anon key not available during build time"
       );
     } else {
       console.warn(
-        "Supabase environment variables are missing. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY"
+        "Supabase anon key is missing. Please set NEXT_PUBLIC_SUPABASE_ANON_KEY in your .env.local file"
       );
     }
     return null;

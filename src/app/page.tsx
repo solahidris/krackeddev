@@ -4,12 +4,10 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import SplitTextAnimation from "./components/SplitTextAnimation";
 import { LandingTown } from "@/components/game/LandingTown";
-import { useGitResume } from "@/app/context/GitResumeContext";
 import "./jobs/jobs.css";
 
 export default function Home() {
   const router = useRouter();
-  const { isAuthenticated, isLoading, openLoginModal } = useGitResume();
   const [showAnimation, setShowAnimation] = useState(true);
   const [audioUnlocked, setAudioUnlocked] = useState(false);
   const [animationDone, setAnimationDone] = useState(false);
@@ -48,16 +46,6 @@ export default function Home() {
     }
   }, []);
 
-  // Auto-open login modal when animation is done and user is not authenticated
-  useEffect(() => {
-    if (animationDone && !isLoading && !isAuthenticated) {
-      // Small delay to let the town render first
-      const timer = setTimeout(() => {
-        openLoginModal();
-      }, 500);
-      return () => clearTimeout(timer);
-    }
-  }, [animationDone, isLoading, isAuthenticated, openLoginModal]);
 
   const handleAnimationComplete = () => {
     // Save the current timestamp when animation completes

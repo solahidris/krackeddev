@@ -1,14 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useGitResume } from "@/app/context/GitResumeContext";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 import { Suspense } from "react";
 
 function CallbackContent() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const { setUserFromCallback } = useGitResume();
   const [status, setStatus] = useState<"loading" | "success" | "error">(
     "loading"
   );
@@ -16,39 +14,45 @@ function CallbackContent() {
 
   useEffect(() => {
     const handleCallback = async () => {
-      const username = searchParams.get("username");
-      const error = searchParams.get("error");
+      try {
+        if (!supabase) {
+          setStatus("error");
+          setErrorMessage("Supabase not initialized");
+          return;
+        }
 
-      if (error) {
-        setStatus("error");
-        setErrorMessage(error);
-        return;
-      }
+        // Supabase handles the OAuth callback automatically
+        // Check if we have a session
+        const {
+          data: { session },
+          error,
+        } = await supabase.auth.getSession();
 
-      if (username) {
-        try {
-          // Store the username in context and Supabase
-          await setUserFromCallback(username);
+        if (error) {
+          setStatus("error");
+          setErrorMessage(error.message);
+          return;
+        }
+
+        if (session) {
           setStatus("success");
-
           // Redirect to home after a brief delay
-
           setTimeout(() => {
             router.push("/");
           }, 1500);
-        } catch (err) {
-          console.error("Error saving user:", err);
+        } else {
           setStatus("error");
-          setErrorMessage("Failed to save your profile. Please try again.");
+          setErrorMessage("No session found. Please try again.");
         }
-      } else {
+      } catch (err) {
+        console.error("Error handling callback:", err);
         setStatus("error");
-        setErrorMessage("No username received from GitResu.me");
+        setErrorMessage("Failed to authenticate. Please try again.");
       }
     };
 
     handleCallback();
-  }, [searchParams, setUserFromCallback, router]);
+  }, [router]);
 
   return (
     <main className="min-h-screen flex items-center justify-center bg-[--background]">

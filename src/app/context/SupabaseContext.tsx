@@ -22,6 +22,7 @@ interface SupabaseContextType {
   loading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string) => Promise<void>;
+  signInWithGitHub: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -94,6 +95,17 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
     if (error) throw error;
   };
 
+  const signInWithGitHub = async () => {
+    if (!supabase) throw new Error("Supabase not initialized");
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "github",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    if (error) throw error;
+  };
+
   const signOut = async () => {
     if (!supabase) throw new Error("Supabase not initialized");
     const { error } = await supabase.auth.signOut();
@@ -109,6 +121,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
         loading,
         signIn,
         signUp,
+        signInWithGitHub,
         signOut,
       }}
     >

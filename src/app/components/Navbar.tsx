@@ -3,8 +3,11 @@
 import React from 'react';
 import Link from 'next/link';
 import PrayerWidget from './PrayerWidget';
+import { useSupabase } from '@/app/context/SupabaseContext';
 
 const Navbar = () => {
+  const { user, loading, signOut } = useSupabase();
+
   return (
     <div className="navbar bg-base-100 sticky top-0 z-50 shadow-sm border-b border-base-200/50 backdrop-blur-md bg-base-100/80">
       <div className="navbar-start">
@@ -32,6 +35,19 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end gap-2">
+        {!loading && user && (
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground hidden sm:inline">
+              {user.user_metadata?.user_name || user.user_metadata?.preferred_username || user.email}
+            </span>
+            <button
+              onClick={() => signOut()}
+              className="btn btn-ghost btn-sm"
+            >
+              Sign Out
+            </button>
+          </div>
+        )}
         <PrayerWidget />
       </div>
     </div>
