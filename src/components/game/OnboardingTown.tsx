@@ -6,6 +6,7 @@ import { TILE_EMPTY, TILE_WALL, TILE_NPC, MAP_WIDTH, MAP_HEIGHT } from '@/lib/ga
 import { BuildingConfig } from '@/lib/game/types';
 import { addGroundVariety, addTrees, connectBuildingsWithRoads } from '@/lib/game/mapHelpers';
 import { loadSprite } from '@/lib/game/sprites';
+import { ProfileHeatmap } from './ProfileHeatmap';
 import {
   getLevelById,
   getNextLevel,
@@ -34,6 +35,7 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
   const [currentTaskIndex, setCurrentTaskIndex] = useState<number>(0);
   const [showCelebration, setShowCelebration] = useState<boolean>(false);
   const [celebrationTask, setCelebrationTask] = useState<{ title: string; xp: number } | null>(null);
+  const [showHeatmapPopup, setShowHeatmapPopup] = useState(false);
 
   // Generate confetti data with pseudo-random positioning (single color)
   const confettiData = useMemo(() => {
@@ -159,10 +161,20 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
     newMap[npcY + 1][centerX - 1] = TILE_NPC;
     newMap[npcY + 1][centerX] = TILE_NPC;
 
-    // Connect NPC with roads
+    // Place profile-heatmap building (bottom-left)
+    const heatmapX = 2;
+    const heatmapY = MAP_HEIGHT - 3;
+    newMap[heatmapY][heatmapX] = TILE_EMPTY;
+    newMap[heatmapY][heatmapX + 1] = TILE_EMPTY;
+    newMap[heatmapY + 1][heatmapX] = TILE_EMPTY;
+    newMap[heatmapY + 1][heatmapX + 1] = TILE_EMPTY;
+
+    // Connect buildings with roads
     const buildingPositions = [
       [{ x: centerX - 1, y: npcY }, { x: centerX, y: npcY },
-       { x: centerX - 1, y: npcY + 1 }, { x: centerX, y: npcY + 1 }]
+       { x: centerX - 1, y: npcY + 1 }, { x: centerX, y: npcY + 1 }],
+      [{ x: heatmapX, y: heatmapY }, { x: heatmapX + 1, y: heatmapY },
+       { x: heatmapX, y: heatmapY + 1 }, { x: heatmapX + 1, y: heatmapY + 1 }]
     ];
     connectBuildingsWithRoads(newMap, buildingPositions);
 
@@ -170,13 +182,15 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
     addGroundVariety(newMap);
     addTrees(newMap, [
       { x: centerX - 1, y: npcY }, { x: centerX, y: npcY },
-      { x: centerX - 1, y: npcY + 1 }, { x: centerX, y: npcY + 1 }
+      { x: centerX - 1, y: npcY + 1 }, { x: centerX, y: npcY + 1 },
+      { x: heatmapX, y: heatmapY }, { x: heatmapX + 1, y: heatmapY },
+      { x: heatmapX, y: heatmapY + 1 }, { x: heatmapX + 1, y: heatmapY + 1 }
     ]);
 
     return newMap;
   }, []);
 
-  // Define NPC building configuration
+  // Define building configurations
   const buildings: BuildingConfig[] = useMemo(() => [
     {
       id: 'npc-guide',
@@ -192,6 +206,22 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
       route: 'npc-dialog',
       color: '#06b6d4',
       colorDark: '#0891b2',
+      imagePath: '/houses/HOUSE1.png',
+    },
+    {
+      id: 'profile-heatmap',
+      tileType: TILE_EMPTY,
+      positions: [
+        { x: 2, y: MAP_HEIGHT - 3 },
+        { x: 3, y: MAP_HEIGHT - 3 },
+        { x: 2, y: MAP_HEIGHT - 2 },
+        { x: 3, y: MAP_HEIGHT - 2 },
+      ],
+      label: 'PROFILE\nHEATMAP',
+      description: 'View your contribution activity',
+      route: 'profile-heatmap',
+      color: '#22c55e',
+      colorDark: '#16a34a',
       imagePath: '/houses/HOUSE1.png',
     },
   ], []);
@@ -238,6 +268,8 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
         );
         setCurrentTaskIndex(nextIncompleteIndex !== -1 ? nextIncompleteIndex : 0);
       }
+    } else if (route === 'profile-heatmap') {
+      setShowHeatmapPopup(true);
     } else {
       onBuildingEnter(route);
     }
@@ -354,14 +386,17 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
           setShowDialog(false);
           setShowGreeting(true);
         }
+        if (showHeatmapPopup) {
+          setShowHeatmapPopup(false);
+        }
       }
     };
 
-    if (showDialog) {
+    if (showDialog || showHeatmapPopup) {
       window.addEventListener('keydown', handleKeyDown);
       return () => window.removeEventListener('keydown', handleKeyDown);
     }
-  }, [showDialog, isMobile]);
+  }, [showDialog, showHeatmapPopup, isMobile]);
 
   return (
     <div className="relative w-full h-full">
@@ -375,8 +410,11 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
           if (showDialog) {
             setShowDialog(false);
           }
+          if (showHeatmapPopup) {
+            setShowHeatmapPopup(false);
+          }
         }}
-        canCloseDialog={showDialog}
+        canCloseDialog={showDialog || showHeatmapPopup}
       />
 
       {/* Level up message */}
@@ -723,6 +761,34 @@ export const OnboardingTown: React.FC<OnboardingTownProps> = ({ onBuildingEnter 
                       </>
                     )}
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* Profile Heatmap Popup */}
+      {showHeatmapPopup && (
+        <>
+          {/* Backdrop - Desktop only */}
+          {!isMobile && <div className="fixed inset-0 bg-black/50 z-30" />}
+          <div className="absolute inset-0 bg-transparent z-40 flex items-center justify-center p-2 md:p-4 pointer-events-none">
+            <div className="pointer-events-auto">
+              <div className={`bg-gray-900 border-4 border-green-500 max-w-4xl w-full overflow-y-auto p-4 md:p-6 ${
+                isMobile ? 'max-h-[60vh] mb-20' : 'max-h-[80vh]'
+              }`}>
+                <div className="flex justify-between items-center mb-4">
+                  <h2 className="text-2xl text-green-400 font-bold">PROFILE HEATMAP</h2>
+                  <button
+                    onClick={() => setShowHeatmapPopup(false)}
+                    className="text-green-400 hover:text-green-300 text-2xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="prose prose-invert max-w-none">
+                  <ProfileHeatmap />
                 </div>
               </div>
             </div>

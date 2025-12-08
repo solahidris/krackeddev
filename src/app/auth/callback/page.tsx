@@ -32,6 +32,7 @@ function CallbackContent() {
           setStatus("success");
 
           // Redirect to home after a brief delay
+
           setTimeout(() => {
             router.push("/");
           }, 1500);
@@ -143,3 +144,4 @@ export default function AuthCallbackPage() {
     </Suspense>
   );
 }
+
