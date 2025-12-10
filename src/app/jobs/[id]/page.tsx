@@ -1,5 +1,7 @@
 import JobDetailClient from "./job-detail-client";
 
+export const runtime = "edge";
+
 export default async function JobDetailPage({
   params,
 }: {
