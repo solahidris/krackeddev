@@ -1,6 +1,6 @@
 "use client";
 
-import { useSupabase } from "@/app/context/SupabaseContext";
+import { useSupabase } from "@/context/SupabaseContext";
 import { X, ExternalLink, LogOut } from "lucide-react";
 import { useEffect, useCallback } from "react";
 

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { DirectoryScene } from '@/components/directory/DirectoryScene';
-import '../jobs/jobs.css';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { DirectoryScene } from "@/components/directory/DirectoryScene";
+import "@/styles/jobs.css";
 
 export default function DirectoryPage() {
   const router = useRouter();
@@ -14,24 +14,34 @@ export default function DirectoryPage() {
     const handleFirstInteraction = () => {
       if (!audioUnlocked) {
         setAudioUnlocked(true);
-        window.dispatchEvent(new CustomEvent('unlockAudio'));
+        window.dispatchEvent(new CustomEvent("unlockAudio"));
       }
     };
 
-    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'mousemove', 'touchmove'];
-    events.forEach(event => {
-      window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    const events = [
+      "click",
+      "touchstart",
+      "mousedown",
+      "keydown",
+      "mousemove",
+      "touchmove",
+    ];
+    events.forEach((event) => {
+      window.addEventListener(event, handleFirstInteraction, {
+        once: true,
+        passive: true,
+      });
     });
 
     return () => {
-      events.forEach(event => {
+      events.forEach((event) => {
         window.removeEventListener(event, handleFirstInteraction);
       });
     };
   }, [audioUnlocked]);
 
   const handleBack = () => {
-    router.push('/');
+    router.push("/");
   };
 
   return (

@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { BuildingPlaygroundScene } from '@/components/game/BuildingPlaygroundScene';
-import '../jobs/jobs.css';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { BuildingPlaygroundScene } from "@/components/game/BuildingPlaygroundScene";
+import "@/styles/jobs.css";
 
 export default function BuildingPage() {
   const router = useRouter();
@@ -14,33 +14,42 @@ export default function BuildingPage() {
     const handleFirstInteraction = () => {
       if (!audioUnlocked) {
         setAudioUnlocked(true);
-        window.dispatchEvent(new CustomEvent('unlockAudio'));
+        window.dispatchEvent(new CustomEvent("unlockAudio"));
       }
     };
 
-    const events = ['click', 'touchstart', 'mousedown', 'keydown', 'mousemove', 'touchmove'];
-    events.forEach(event => {
-      window.addEventListener(event, handleFirstInteraction, { once: true, passive: true });
+    const events = [
+      "click",
+      "touchstart",
+      "mousedown",
+      "keydown",
+      "mousemove",
+      "touchmove",
+    ];
+    events.forEach((event) => {
+      window.addEventListener(event, handleFirstInteraction, {
+        once: true,
+        passive: true,
+      });
     });
 
     return () => {
-      events.forEach(event => {
+      events.forEach((event) => {
         window.removeEventListener(event, handleFirstInteraction);
       });
     };
   }, [audioUnlocked]);
 
   const handleBuildingEnter = (route: string) => {
-    if (route === '/') {
-      router.push('/');
+    if (route === "/") {
+      router.push("/");
     }
   };
 
   return (
     <main className="min-h-screen w-full bg-gray-900 relative">
       <div className="scanlines fixed inset-0 pointer-events-none z-50"></div>
-      <BuildingPlaygroundScene onBack={() => router.push('/')} />
+      <BuildingPlaygroundScene onBack={() => router.push("/")} />
     </main>
   );
 }
-

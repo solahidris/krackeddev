@@ -1,8 +1,8 @@
 "use client";
 
-import React from 'react';
-import { States } from '@/components/States';
-import '../jobs/jobs.css';
+import React from "react";
+import { States } from "@/components/States";
+import "@/styles/jobs.css";
 
 export default function StatesPage() {
   return (
@@ -13,4 +13,3 @@ export default function StatesPage() {
     </main>
   );
 }
-

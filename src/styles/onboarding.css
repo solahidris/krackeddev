@@ -1,21 +1,25 @@
 /* Celebration Popup Animations */
 @keyframes fade-in {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .animate-fade-in {
   animation: fade-in 0.3s ease-out forwards;
 }
 
 @keyframes scale-in {
-  0% { 
+  0% {
     opacity: 0;
     transform: scale(0.5) translateY(-20px);
   }
   50% {
     transform: scale(1.05) translateY(0);
   }
-  100% { 
+  100% {
     opacity: 1;
     transform: scale(1) translateY(0);
   }
@@ -51,10 +55,21 @@
 }
 
 /* Define colors for confetti */
-.confetti-blue { background-color: #3b82f6; }
-.confetti-red { background-color: #ef4444; }
-.confetti-green { background-color: #22c55e; }
-.confetti-yellow { background-color: #eab308; }
-.confetti-purple { background-color: #a855f7; }
-.confetti-pink { background-color: #ec4899; }
-
+.confetti-blue {
+  background-color: #3b82f6;
+}
+.confetti-red {
+  background-color: #ef4444;
+}
+.confetti-green {
+  background-color: #22c55e;
+}
+.confetti-yellow {
+  background-color: #eab308;
+}
+.confetti-purple {
+  background-color: #a855f7;
+}
+.confetti-pink {
+  background-color: #ec4899;
+}

@@ -153,9 +153,14 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
   const signInWithOAuth = async (provider: Provider) => {
     if (!supabase) throw new Error("Supabase not initialized");
 
-    // Always use the production site URL for OAuth redirects
-    const siteUrl =
-      process.env.NEXT_PUBLIC_SITE_URL || "https://krackeddevs.com";
+    // Detect current origin (works for both localhost and production)
+    const currentOrigin =
+      typeof window !== "undefined"
+        ? window.location.origin
+        : process.env.NEXT_PUBLIC_SITE_URL || "https://krackeddevs.com";
+
+    // Remove trailing slash if present
+    const siteUrl = currentOrigin.replace(/\/$/, "");
     const redirectTo = `${siteUrl}/auth/callback`;
 
     const { error } = await supabase.auth.signInWithOAuth({

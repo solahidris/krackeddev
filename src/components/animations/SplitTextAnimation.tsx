@@ -15,11 +15,11 @@ export default function SplitTextAnimation({
   const [isVisible, setIsVisible] = useState(true);
   const [isExiting, setIsExiting] = useState(false);
   const characters = text.split("");
-  
+
   // Find the position of "Kracked" in the text
   const krackedStartIndex = text.toLowerCase().indexOf("kracked");
   const krackedEndIndex = krackedStartIndex + "kracked".length;
-  
+
   const isKrackedChar = (index: number) => {
     return index >= krackedStartIndex && index < krackedEndIndex;
   };
@@ -55,15 +55,15 @@ export default function SplitTextAnimation({
   useEffect(() => {
     const handleInteraction = () => {
       // Dispatch event to unlock audio
-      window.dispatchEvent(new CustomEvent('unlockAudio'));
+      window.dispatchEvent(new CustomEvent("unlockAudio"));
     };
 
-    window.addEventListener('click', handleInteraction, { once: true });
-    window.addEventListener('touchstart', handleInteraction, { once: true });
-    
+    window.addEventListener("click", handleInteraction, { once: true });
+    window.addEventListener("touchstart", handleInteraction, { once: true });
+
     return () => {
-      window.removeEventListener('click', handleInteraction);
-      window.removeEventListener('touchstart', handleInteraction);
+      window.removeEventListener("click", handleInteraction);
+      window.removeEventListener("touchstart", handleInteraction);
     };
   }, []);
 
@@ -73,7 +73,7 @@ export default function SplitTextAnimation({
       initial={{ opacity: 1 }}
       animate={{ opacity: isVisible ? 1 : 0 }}
       transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-      onClick={() => window.dispatchEvent(new CustomEvent('unlockAudio'))}
+      onClick={() => window.dispatchEvent(new CustomEvent("unlockAudio"))}
     >
       <motion.div
         className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight"
@@ -141,4 +141,3 @@ export default function SplitTextAnimation({
     </motion.div>
   );
 }
-

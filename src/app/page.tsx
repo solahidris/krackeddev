@@ -2,10 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import SplitTextAnimation from "./components/SplitTextAnimation";
+import SplitTextAnimation from "@/components/animations/SplitTextAnimation";
 import { LandingTown } from "@/components/game/LandingTown";
-import { useSupabase } from "@/app/context/SupabaseContext";
-import "./jobs/jobs.css";
+import { useSupabase } from "@/context/SupabaseContext";
+import "@/styles/jobs.css";
 
 export default function Home() {
   const router = useRouter();

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { cn } from "@/lib/utils";
-import { SupabaseProvider } from "./context/SupabaseContext";
+import { SupabaseProvider } from "@/context/SupabaseContext";
 import { LoginModal } from "@/components/LoginModal";
 import { Toaster } from "sonner";
 import { MusicPlayer } from "@/components/game/MusicPlayer";

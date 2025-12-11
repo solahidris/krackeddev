@@ -2,17 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import { OnboardingTown } from "@/components/game/OnboardingTown";
-import "../jobs/jobs.css";
-import "./onboarding.css";
+import "@/styles/jobs.css";
+import "@/styles/onboarding.css";
 
 export default function OnboardingPage() {
   const router = useRouter();
 
   const handleBuildingEnter = (route: string) => {
     // Check if route is an external URL
-    if (route.startsWith('http://') || route.startsWith('https://')) {
-      window.open(route, '_blank', 'noopener,noreferrer');
-    } else if (route !== 'npc-dialog') {
+    if (route.startsWith("http://") || route.startsWith("https://")) {
+      window.open(route, "_blank", "noopener,noreferrer");
+    } else if (route !== "npc-dialog") {
       router.push(route);
     }
   };
@@ -25,4 +25,3 @@ export default function OnboardingPage() {
     </main>
   );
 }
-

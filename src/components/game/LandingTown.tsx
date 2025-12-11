@@ -23,7 +23,7 @@ import {
 } from "@/lib/game/mapHelpers";
 import { EscapeButton } from "./EscapeButton";
 import { loadSprite } from "@/lib/game/sprites";
-import { useSupabase } from "@/app/context/SupabaseContext";
+import { useSupabase } from "@/context/SupabaseContext";
 import { LogOut, Eye } from "lucide-react";
 
 interface LandingTownProps {

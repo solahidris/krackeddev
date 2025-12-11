@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 interface Badge {
   id: string;
@@ -40,29 +40,97 @@ interface JobBoardContextType {
   updateDailyStreak: () => void;
 }
 
-const JobBoardContext = createContext<JobBoardContextType | undefined>(undefined);
+const JobBoardContext = createContext<JobBoardContextType | undefined>(
+  undefined
+);
 
 const INITIAL_BADGES: Badge[] = [
-  { id: 'first_view', name: 'First Look', description: 'Viewed your first job', icon: '👁️', unlocked: false },
-  { id: 'job_hunter', name: 'Job Hunter', description: 'Viewed 10 jobs', icon: '🔍', unlocked: false },
-  { id: 'applied', name: 'Applied', description: 'Applied to your first job', icon: '📝', unlocked: false },
-  { id: 'streak_3', name: 'On Fire', description: '3 day streak', icon: '🔥', unlocked: false },
-  { id: 'streak_7', name: 'Dedicated', description: '7 day streak', icon: '💪', unlocked: false },
-  { id: 'level_5', name: 'Rising Star', description: 'Reached level 5', icon: '⭐', unlocked: false },
-  { id: 'level_10', name: 'Elite', description: 'Reached level 10', icon: '🌟', unlocked: false },
+  {
+    id: "first_view",
+    name: "First Look",
+    description: "Viewed your first job",
+    icon: "👁️",
+    unlocked: false,
+  },
+  {
+    id: "job_hunter",
+    name: "Job Hunter",
+    description: "Viewed 10 jobs",
+    icon: "🔍",
+    unlocked: false,
+  },
+  {
+    id: "applied",
+    name: "Applied",
+    description: "Applied to your first job",
+    icon: "📝",
+    unlocked: false,
+  },
+  {
+    id: "streak_3",
+    name: "On Fire",
+    description: "3 day streak",
+    icon: "🔥",
+    unlocked: false,
+  },
+  {
+    id: "streak_7",
+    name: "Dedicated",
+    description: "7 day streak",
+    icon: "💪",
+    unlocked: false,
+  },
+  {
+    id: "level_5",
+    name: "Rising Star",
+    description: "Reached level 5",
+    icon: "⭐",
+    unlocked: false,
+  },
+  {
+    id: "level_10",
+    name: "Elite",
+    description: "Reached level 10",
+    icon: "🌟",
+    unlocked: false,
+  },
 ];
 
 const INITIAL_ACHIEVEMENTS: Achievement[] = [
-  { id: 'view_5', name: 'Explorer', description: 'View 5 jobs', xpReward: 50, unlocked: false },
-  { id: 'view_25', name: 'Researcher', description: 'View 25 jobs', xpReward: 200, unlocked: false },
-  { id: 'apply_1', name: 'First Step', description: 'Apply to 1 job', xpReward: 100, unlocked: false },
-  { id: 'apply_5', name: 'Go Getter', description: 'Apply to 5 jobs', xpReward: 500, unlocked: false },
+  {
+    id: "view_5",
+    name: "Explorer",
+    description: "View 5 jobs",
+    xpReward: 50,
+    unlocked: false,
+  },
+  {
+    id: "view_25",
+    name: "Researcher",
+    description: "View 25 jobs",
+    xpReward: 200,
+    unlocked: false,
+  },
+  {
+    id: "apply_1",
+    name: "First Step",
+    description: "Apply to 1 job",
+    xpReward: 100,
+    unlocked: false,
+  },
+  {
+    id: "apply_5",
+    name: "Go Getter",
+    description: "Apply to 5 jobs",
+    xpReward: 500,
+    unlocked: false,
+  },
 ];
 
 export function JobBoardProvider({ children }: { children: React.ReactNode }) {
   const [stats, setStats] = useState<UserStats>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('jobBoardStats');
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("jobBoardStats");
       if (saved) {
         return JSON.parse(saved);
       }
@@ -81,8 +149,8 @@ export function JobBoardProvider({ children }: { children: React.ReactNode }) {
   });
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('jobBoardStats', JSON.stringify(stats));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("jobBoardStats", JSON.stringify(stats));
     }
   }, [stats]);
 
@@ -95,7 +163,7 @@ export function JobBoardProvider({ children }: { children: React.ReactNode }) {
       const newXP = prev.xp + amount;
       const newLevel = calculateLevel(newXP);
       const levelUp = newLevel > prev.level;
-      
+
       return {
         ...prev,
         xp: newXP,
@@ -134,16 +202,16 @@ export function JobBoardProvider({ children }: { children: React.ReactNode }) {
       if (prev.lastActiveDate === today) {
         return prev;
       }
-      
+
       const yesterday = new Date();
       yesterday.setDate(yesterday.getDate() - 1);
       const isConsecutive = prev.lastActiveDate === yesterday.toDateString();
-      
+
       const newStreak = isConsecutive ? prev.currentStreak + 1 : 1;
       const newLongestStreak = Math.max(newStreak, prev.longestStreak);
-      
+
       addXP(isConsecutive ? 20 : 10);
-      
+
       return {
         ...prev,
         currentStreak: newStreak,
@@ -160,56 +228,77 @@ export function JobBoardProvider({ children }: { children: React.ReactNode }) {
       let xpGained = 0;
 
       // Check badge unlocks
-      if (prev.jobsViewed >= 1 && !updatedBadges.find(b => b.id === 'first_view')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'first_view');
+      if (
+        prev.jobsViewed >= 1 &&
+        !updatedBadges.find((b) => b.id === "first_view")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "first_view");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
           xpGained += 25;
         }
       }
-      if (prev.jobsViewed >= 10 && !updatedBadges.find(b => b.id === 'job_hunter')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'job_hunter');
+      if (
+        prev.jobsViewed >= 10 &&
+        !updatedBadges.find((b) => b.id === "job_hunter")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "job_hunter");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
           xpGained += 50;
         }
       }
-      if (prev.jobsApplied >= 1 && !updatedBadges.find(b => b.id === 'applied')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'applied');
+      if (
+        prev.jobsApplied >= 1 &&
+        !updatedBadges.find((b) => b.id === "applied")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "applied");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
           xpGained += 75;
         }
       }
-      if (prev.currentStreak >= 3 && !updatedBadges.find(b => b.id === 'streak_3')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'streak_3');
+      if (
+        prev.currentStreak >= 3 &&
+        !updatedBadges.find((b) => b.id === "streak_3")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "streak_3");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
           xpGained += 100;
         }
       }
-      if (prev.currentStreak >= 7 && !updatedBadges.find(b => b.id === 'streak_7')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'streak_7');
+      if (
+        prev.currentStreak >= 7 &&
+        !updatedBadges.find((b) => b.id === "streak_7")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "streak_7");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
           xpGained += 200;
         }
       }
-      if (prev.level >= 5 && !updatedBadges.find(b => b.id === 'level_5')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'level_5');
+      if (
+        prev.level >= 5 &&
+        !updatedBadges.find((b) => b.id === "level_5")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "level_5");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
           xpGained += 150;
         }
       }
-      if (prev.level >= 10 && !updatedBadges.find(b => b.id === 'level_10')?.unlocked) {
-        const badge = updatedBadges.find(b => b.id === 'level_10');
+      if (
+        prev.level >= 10 &&
+        !updatedBadges.find((b) => b.id === "level_10")?.unlocked
+      ) {
+        const badge = updatedBadges.find((b) => b.id === "level_10");
         if (badge) {
           badge.unlocked = true;
           badge.unlockedAt = new Date();
@@ -218,29 +307,41 @@ export function JobBoardProvider({ children }: { children: React.ReactNode }) {
       }
 
       // Check achievement unlocks
-      if (prev.jobsViewed >= 5 && !updatedAchievements.find(a => a.id === 'view_5')?.unlocked) {
-        const achievement = updatedAchievements.find(a => a.id === 'view_5');
+      if (
+        prev.jobsViewed >= 5 &&
+        !updatedAchievements.find((a) => a.id === "view_5")?.unlocked
+      ) {
+        const achievement = updatedAchievements.find((a) => a.id === "view_5");
         if (achievement) {
           achievement.unlocked = true;
           xpGained += achievement.xpReward;
         }
       }
-      if (prev.jobsViewed >= 25 && !updatedAchievements.find(a => a.id === 'view_25')?.unlocked) {
-        const achievement = updatedAchievements.find(a => a.id === 'view_25');
+      if (
+        prev.jobsViewed >= 25 &&
+        !updatedAchievements.find((a) => a.id === "view_25")?.unlocked
+      ) {
+        const achievement = updatedAchievements.find((a) => a.id === "view_25");
         if (achievement) {
           achievement.unlocked = true;
           xpGained += achievement.xpReward;
         }
       }
-      if (prev.jobsApplied >= 1 && !updatedAchievements.find(a => a.id === 'apply_1')?.unlocked) {
-        const achievement = updatedAchievements.find(a => a.id === 'apply_1');
+      if (
+        prev.jobsApplied >= 1 &&
+        !updatedAchievements.find((a) => a.id === "apply_1")?.unlocked
+      ) {
+        const achievement = updatedAchievements.find((a) => a.id === "apply_1");
         if (achievement) {
           achievement.unlocked = true;
           xpGained += achievement.xpReward;
         }
       }
-      if (prev.jobsApplied >= 5 && !updatedAchievements.find(a => a.id === 'apply_5')?.unlocked) {
-        const achievement = updatedAchievements.find(a => a.id === 'apply_5');
+      if (
+        prev.jobsApplied >= 5 &&
+        !updatedAchievements.find((a) => a.id === "apply_5")?.unlocked
+      ) {
+        const achievement = updatedAchievements.find((a) => a.id === "apply_5");
         if (achievement) {
           achievement.unlocked = true;
           xpGained += achievement.xpReward;
@@ -290,8 +391,7 @@ export function JobBoardProvider({ children }: { children: React.ReactNode }) {
 export function useJobBoard() {
   const context = useContext(JobBoardContext);
   if (context === undefined) {
-    throw new Error('useJobBoard must be used within a JobBoardProvider');
+    throw new Error("useJobBoard must be used within a JobBoardProvider");
   }
   return context;
 }
-
