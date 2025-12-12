@@ -168,6 +168,81 @@ Reply to the bounty post with:
     },
     submissions: [],
   },
+  {
+    id: "4",
+    slug: "viral-food-directory-map",
+    title: "Viral Food Directory (Map Edition)",
+    description:
+      "Build a map-first web app to discover viral food spots, powered by reviews from Google plus one other source.",
+    longDescription: `## Bounty Description
+
+Create a map-first web app to discover viral food spots, powered by reviews from Google plus one other source (e.g. Yelp, TripAdvisor, Foursquare).
+
+## Must-Have Features
+
+### Map & List View
+- Interactive map with pins for food spots
+- Synced list view that updates with map interactions
+
+### Place Page
+Each place should display:
+- Name and address
+- Tags/categories
+- Must-try item recommendation
+- Operating hours
+- Price range
+- Photos
+
+### Search & Filters
+- "Near me" location-based search
+- "Open now" filter
+- Category filters (e.g., cafe, restaurant, street food)
+- Price range filter
+
+### Discovery Features
+- Show distance from user
+- Simple "Trending" sort algorithm
+- Aggregate rating combining Google + one extra review source
+
+## Technical Requirements
+
+- Build a functional web app (any stack welcome)
+- Integrate Google Places/Maps API
+- Integrate at least one additional review source API
+- Mobile-responsive design
+
+## How to Submit
+
+1. Deploy a live demo
+2. Create a public repository with clear README
+3. Reply to the bounty post on X with your links
+4. Tag @KrackedDevs
+
+## Judging Criteria
+
+- Functionality and feature completeness
+- UI/UX design quality
+- Code quality and documentation
+- Creative implementation of "Trending" algorithm
+- Overall polish and attention to detail`,
+    reward: 200,
+    difficulty: "advanced",
+    status: "active",
+    tags: ["maps", "api", "food", "fullstack", "google-places", "react"],
+    requirements: [
+      "Map with pins + synced list view",
+      "Place page with name, address, tags, must-try item, hours, price, and photo",
+      "Search and filters (near me, open now, category, price)",
+      "Show distance and simple 'Trending' sort",
+      "Aggregate rating using Google + one extra review source",
+      "Live demo + public repo + short README",
+    ],
+    repositoryUrl: "https://github.com/solahidris/krackeddev",
+    bountyPostUrl: "https://x.com/KrackedDevs",
+    createdAt: "2025-12-12T10:00:00+08:00",
+    deadline: "2025-12-17T23:59:00+08:00",
+    submissions: [],
+  },
 ];
 
 export function getBountyBySlug(slug: string): Bounty | undefined {
