@@ -1,57 +1,52 @@
-# Story 1.2: Authentication Refactor (Feature-Sliced)
+# Story 1.2: Authentication Refactor (Feature-Sliced & SSR Migration)
 
 Status: ready-for-dev
 
 ## Story
 
-As a User,
-I want to sign up and login using Email or GitHub,
-So that I can access the platform securely with my identity verification.
+As a Developer,
+I want to migrate the authentication system to `@supabase/ssr` and refactor the UI into feature-sliced components,
+So that the application is secure (Admin routes protected) and maintainable.
 
 ## Acceptance Criteria
 
-1. **Given** I am on the Login page
-2. **When** I click "Login with GitHub"
-3. **Then** I should be redirected to GitHub and authenticated back to the app (FR1)
-4. **And** my user record should be created in `auth.users`
-5. **And** the changes/audit should confirm the logic resides in `src/features/auth`
-
-6. **Given** I am on the Login/Signup page
-7. **When** I enter a valid email and password
-8. **Then** I should be authenticated successfully (FR2)
-9. **And** I must have consented to PDPA (FR4)
+1. **Given** the current legacy auth implementation
+2. **When** I refactor the codebase
+3. **Then** `@supabase/ssr` must be installed and used for all Auth logic
+4. **And** `src/lib/supabase.ts` must be REPLACED with standard `utils/supabase/client.ts`, `server.ts`, and `middleware.ts`
+5. **And** `LoginModal.tsx` (250+ lines) must be decomposed into `src/features/auth/components/login-form.tsx` and `auth-dialog.tsx`
+6. **And** the legacy `SupabaseContext` should be simplified or removed in favor of `utils/supabase/server` for server components
 
 ## Technical Requirements
 
 - **Module**: `src/features/auth`
-- **Auth Provider**: Supabase Auth (GitHub OAuth + Email/Password)
-- **State Management**: React Query (Server) + Supabase Client
-- **Security**: PDPA Consent (Checkbox required before "Sign Up" button enable)
+- **Dependencies**:
+    - [INSTALL] `@supabase/ssr`
+    - [REMOVE] Direct usage of `createClient` from `@supabase/supabase-js` in client components (use browser client builder).
+- **Middleware**: Implement `src/middleware.ts` to refresh sessions and protect `/admin/*` routes.
+- **Refactor Targets**:
+    - `src/components/LoginModal.tsx` -> `src/features/auth/components/*`
+    - `src/lib/supabase.ts` -> `src/lib/supabase/client.ts` & `src/lib/supabase/server.ts`
 
 ## Architecture Compliance
 
 - **File Structure**:
-    - `src/features/auth/components/login-form.tsx`
-    - `src/features/auth/actions.ts` (if any server-side logic needed, though Supabase Auth is mostly client/middleware)
-    - `src/features/auth/types.ts`
-- **Naming**: `kebab-case` filenames.
-- **Barrel Files**: Ensure `index.ts` exists in `src/features/auth` and exports public components.
-- **Type Safety**: Use generated Supabase types from `src/types/supabase.ts`.
-- **Dependencies**: Use `@supabase/auth-helpers-nextjs` or `@supabase/ssr` (as per `package.json` - verify installed).
+    - `src/features/auth/components/login-form.tsx` (Business Logic)
+    - `src/features/auth/components/auth-modal.tsx` (UI Wrapper)
+    - `src/features/auth/actions.ts` (Login/Logout Server Actions)
+- **Pattern**:
+    - Use **Server Actions** for Login/Signup execution.
+    - Use **Middleware** for Route Protection.
+- **Type Safety**: Use generated Supabase types.
 
 ## Dev Notes
 
-- **Refactor Scope**: There is likely existing Auth logic in `src/app/(auth)` or components. Move the *business logic* and *components* to `src/features/auth`.
-- **Routes**: Keep the route handlers in `src/app/(auth)/login/page.tsx` but make them simple wrappers around feature components.
-- **PDPA**: Ensure the "I agree to Privacy Policy" checkbox is checked before form submission.
+> [!WARNING]
+> **Technical Debt Alert**: The current `LoginModal` mixes UI, State, and Logic.
+> 1. Extract the "Login with GitHub/Google" logic to `src/features/auth/actions.ts` or a custom hook `useAuth`.
+> 2. Ensure `src/middleware.ts` is configured to `updateSession` (handling cookie refresh) or the app will log out users unexpectedly.
 
 ### References
 
+- [Supabase SSR Guide](https://supabase.com/docs/guides/auth/server-side/nextjs)
 - [FR1: GitHub OAuth](docs/prd.md#functional-requirements)
-- [FR4: PDPA Consent](docs/prd.md#functional-requirements)
-
-## Dev Agent Record
-
-### Agent Model Used
-
-Antigravity (System Generated)
