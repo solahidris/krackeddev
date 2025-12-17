@@ -54,7 +54,7 @@ export function EditProfileForm({ initialData, onCancel }: EditProfileFormProps)
         resolver: zodResolver(editProfileSchema),
         defaultValues: {
             username: initialData.username || "",
-            developerRole: initialData.role || "",
+            developerRole: initialData.developer_role || "",
             stack: initialData.stack || [],
             location: initialData.location || "",
             bio: initialData.bio || "",

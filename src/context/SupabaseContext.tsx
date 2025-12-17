@@ -156,6 +156,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
       provider,
       options: {
         redirectTo,
+        scopes: provider === "github" ? "read:user" : undefined,
       },
     });
     if (error) throw error;
@@ -176,6 +177,7 @@ export const SupabaseProvider = ({ children }: { children: ReactNode }) => {
     if (error) throw error;
     setProfile(null);
     closeLoginModal();
+    window.location.href = "/"; // Force redirect to home
   };
 
   // Update user profile

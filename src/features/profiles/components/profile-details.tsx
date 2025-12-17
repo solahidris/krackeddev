@@ -1,18 +1,21 @@
 "use client";
 
 import { ProfileData } from "../actions";
+import { GithubStats } from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Terminal, Code2, User } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { GithubGraph } from "./github-graph";
+import { TopLanguages } from "./top-languages";
 
 interface ProfileDetailsProps {
     profile: ProfileData;
+    githubStats?: GithubStats;
     onEdit: () => void;
 }
 
-export function ProfileDetails({ profile, onEdit }: ProfileDetailsProps) {
+export function ProfileDetails({ profile, githubStats, onEdit }: ProfileDetailsProps) {
     return (
         <div className="max-w-4xl mx-auto p-4 space-y-8 animate-in fade-in duration-500">
             {/* Header Section */}
@@ -38,20 +41,29 @@ export function ProfileDetails({ profile, onEdit }: ProfileDetailsProps) {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Main Info Card */}
-                <Card className="col-span-1 md:col-span-2 bg-black/40 border-white/10 backdrop-blur-md">
-                    <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-neon-primary font-mono text-sm uppercase tracking-widest">
-                            <Terminal className="w-4 h-4" />
-                            Bio / Lore
-                        </CardTitle>
-                    </CardHeader>
-                    <CardContent>
-                        <p className="text-zinc-300 leading-relaxed font-mono text-sm">
-                            {profile.bio || "No lore data available for this user."}
-                        </p>
-                    </CardContent>
-                </Card>
+                {/* Main Info Column */}
+                <div className="col-span-1 md:col-span-2 space-y-6">
+                    <Card className="bg-black/40 border-white/10 backdrop-blur-md">
+                        <CardHeader>
+                            <CardTitle className="flex items-center gap-2 text-neon-primary font-mono text-sm uppercase tracking-widest">
+                                <Terminal className="w-4 h-4" />
+                                Bio / Lore
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-zinc-300 leading-relaxed font-mono text-sm">
+                                {profile.bio || "No lore data available for this user."}
+                            </p>
+                        </CardContent>
+                    </Card>
+
+                    {githubStats && (
+                        <GithubGraph
+                            data={githubStats.contributionCalendar}
+                            totalContributions={githubStats.totalContributions}
+                        />
+                    )}
+                </div>
 
                 {/* Stats / Attributes Column */}
                 <div className="space-y-6">
@@ -96,6 +108,10 @@ export function ProfileDetails({ profile, onEdit }: ProfileDetailsProps) {
                             </div>
                         </CardContent>
                     </Card>
+
+                    {githubStats && (
+                        <TopLanguages languages={githubStats.topLanguages} />
+                    )}
                 </div>
             </div>
         </div>

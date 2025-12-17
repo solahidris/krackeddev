@@ -1,4 +1,4 @@
-import { getProfile } from "@/features/profiles/actions";
+import { getProfile, fetchGithubStats } from "@/features/profiles/actions";
 import { ProfilePageClient } from "@/features/profiles/components/profile-page-client";
 import { redirect } from "next/navigation";
 
@@ -6,6 +6,7 @@ export const dynamic = "force-dynamic";
 
 export default async function ProfileViewPage() {
     const { data: profile, error } = await getProfile();
+    const { data: githubStats } = await fetchGithubStats();
 
     if (error === "Not authenticated") {
         redirect("/");
@@ -34,7 +35,7 @@ export default async function ProfileViewPage() {
             </div>
 
             <div className="relative z-10 w-full">
-                <ProfilePageClient initialData={profile} />
+                <ProfilePageClient initialData={profile} githubStats={githubStats} />
             </div>
         </div>
     );
