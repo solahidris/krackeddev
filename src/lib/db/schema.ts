@@ -17,6 +17,7 @@ export const profiles = pgTable(
     bio: text(),
     level: integer().default(1),
     xp: integer().default(0),
+    role: text().default('user').notNull(), // 'user' | 'admin'
     createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
     updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow(),
   },

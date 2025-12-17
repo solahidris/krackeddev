@@ -13,6 +13,7 @@
     "db:push": "drizzle-kit push",
     "db:pull": "drizzle-kit pull",
     "db:studio": "drizzle-kit studio",
+    "db:setup": "node --env-file=.env.local --import tsx scripts/setup-db.ts",
     "import-jobs": "node --env-file=.env --import tsx scripts/import-jobs.ts"
   },
   "dependencies": {
@@ -51,6 +52,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
+    "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.8",
     "eslint": "^9",
     "eslint-config-next": "16.0.4",

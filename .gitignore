@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# bmad agent tools
+/_bmad/
+/_bmad-output/
+/.agent/
+/.claude/

@@ -1,0 +1,72 @@
+# generated: 2025-12-12
+# project: Kracked Devs
+# project_key: krackeddevs-docs
+# tracking_system: file-system
+# story_location: "docs/stories"
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - drafted: Story file created in stories folder
+#   - ready-for-dev: Draft approved + story context created
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - completed: Retrospective has been done
+#
+
+generated: 2025-12-12
+project: Kracked Devs
+project_key: krackeddevs-docs
+tracking_system: file-system
+story_location: "docs/stories"
+
+development_status:
+  epic-0: backlog
+  0-1-game-hero-section-integration: backlog
+  0-2-live-platform-statistics: backlog
+  0-3-navigation-call-to-actions: backlog
+  0-4-job-openings-preview: backlog
+  epic-0-retrospective: optional
+
+  epic-1: backlog
+  1-1-github-authentication: ready-for-dev
+  1-2-email-password-authentication: backlog
+  1-3-new-user-onboarding-wizard: backlog
+  1-4-privacy-policy-consent: backlog
+  epic-1-retrospective: optional
+
+  epic-2: backlog
+  2-1-developer-dashboard-stats: backlog
+  2-2-public-developer-profile: backlog
+  2-3-enhanced-github-portfolio-display: backlog
+  epic-2-retrospective: optional
+
+  epic-3: backlog
+  3-1-public-bounty-board-list-view: backlog
+  3-2-bounty-details-gating: backlog
+  3-3-solution-submission: backlog
+  3-4-my-submissions-tracking: backlog
+  epic-3-retrospective: optional
+
+  epic-4: backlog
+  4-1-bounty-management-crud: backlog
+  4-2-submission-review-feedback: backlog
+  4-3-manual-payment-recording: backlog
+  4-4-user-management-ban-suspend: backlog
+  epic-4-retrospective: optional
+
+  epic-5: backlog
+  5-1-game-container-access: backlog
+  5-2-game-authentication-bridge: backlog
+  5-3-syncing-game-progress: backlog
+  epic-5-retrospective: optional
