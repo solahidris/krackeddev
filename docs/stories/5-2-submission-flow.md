@@ -15,6 +15,7 @@ So that I can claim the bounty.
 3. **Then** I should see a form requiring a valid URL
 4. **And** submitting it should create a record in `bounty_submissions` (FR11)
 5. **And** I should see my submission status change to "Submitted" (FR12)
+6. **And** if I attempt to submit again for the same bounty, I should see an error message (MVP Constraint: 1 submission max)
 
 ## Technical Requirements
 
@@ -30,7 +31,9 @@ So that I can claim the bounty.
 
 ## Dev Notes
 
-- **One Submission Per Bounty?**: Likely yes per user. Add a unique constraint check.
+- **Submission Limit**: STRICTLY 1 submission per user per bounty (MVP Constraint).
+   - If user attempts a second submission, show error: "You have already submitted a solution for this bounty."
+   - **Future Context**: PM decision is to stick to 1:1 for MVP. Post-launch, we will gather feedback to see if users need multiple submissions.
 
 ### References
 
