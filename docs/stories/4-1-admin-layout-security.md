@@ -26,6 +26,8 @@ So that I can perform sensitive operations safely.
 
 ## Architecture Compliance
 
+> **Reference:** [Architecture Decision Document](docs/architecture.md) - Section: Component Boundaries & Feature Mapping
+
 - **File Structure**:
     - `src/features/admin-dashboard/components/admin-sidebar.tsx`
 
@@ -43,6 +45,15 @@ So that I can perform sensitive operations safely.
 ### References
 
 - [FR-ADM-02: Admin Access](docs/prd.md#functional-requirements)
+
+## Tasks
+
+- [x] Create `src/features/admin-dashboard/components/admin-sidebar.tsx` <!-- id: 1 -->
+- [x] Create `src/features/admin-dashboard/layouts/admin-layout.tsx` <!-- id: 2 -->
+- [x] Export components from `src/features/admin-dashboard/index.ts` <!-- id: 3 -->
+- [x] Create `src/app/(admin)/layout.tsx` using `AdminLayout` <!-- id: 4 -->
+- [x] Create `src/app/(admin)/dashboard/page.tsx` <!-- id: 5 -->
+- [x] Verify middleware protection for `/admin` routes (Manual Verification) <!-- id: 6 -->
 
 ## Dev Agent Record
 

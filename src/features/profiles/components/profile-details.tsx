@@ -5,10 +5,11 @@ import { GithubStats } from "../types";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Terminal, Code2, User } from "lucide-react";
+import { MapPin, Terminal, Code2, User, Github } from "lucide-react";
 import { GithubGraph } from "./github-graph";
 import { TopLanguages } from "./top-languages";
 import { BountyStats } from "./bounty-stats";
+import { createClient } from "@/lib/supabase/client";
 
 interface ProfileDetailsProps {
     profile: ProfileData;
@@ -18,6 +19,16 @@ interface ProfileDetailsProps {
 }
 
 export function ProfileDetails({ profile, githubStats, bountyStats, onEdit }: ProfileDetailsProps) {
+    const handleLinkGithub = () => {
+        const supabase = createClient();
+        supabase.auth.signInWithOAuth({
+            provider: 'github',
+            options: {
+                redirectTo: `${window.location.origin}/auth/callback?next=/profile/view`
+            }
+        });
+    };
+
     return (
         <div className="max-w-4xl mx-auto p-4 space-y-8 animate-in fade-in duration-500">
             {/* Header Section */}
@@ -115,11 +126,34 @@ export function ProfileDetails({ profile, githubStats, bountyStats, onEdit }: Pr
                         </CardContent>
                     </Card>
 
-                    {githubStats && (
+                    {githubStats ? (
                         <TopLanguages languages={githubStats.topLanguages} />
+                    ) : (
+                        <Card className="bg-black/40 border-white/10 backdrop-blur-md">
+                            <CardHeader>
+                                <CardTitle className="flex items-center gap-2 text-zinc-400 font-mono text-sm uppercase tracking-widest">
+                                    <Github className="w-4 h-4" />
+                                    GitHub Sync
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-4">
+                                <p className="text-xs text-muted-foreground font-mono">
+                                    Link your GitHub account to display your contribution graph and top languages.
+                                </p>
+                                <Button
+                                    variant="outline"
+                                    className="w-full border-white/20 hover:bg-white/10 text-zinc-300 font-mono text-xs"
+                                    onClick={handleLinkGithub}
+                                >
+                                    Connect GitHub
+                                </Button>
+                            </CardContent>
+                        </Card>
                     )}
                 </div>
             </div>
         </div>
     );
 }
+
+

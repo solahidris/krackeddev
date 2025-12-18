@@ -66,9 +66,13 @@ import { GithubStats, GithubLanguage } from "./types";
 export async function fetchGithubStats(): Promise<{ data?: GithubStats; error?: string }> {
     const supabase = await createClient();
     const { data: { session } } = await supabase.auth.getSession();
+    const { data: { user } } = await supabase.auth.getUser();
 
-    if (!session?.provider_token) {
-        return { error: "No GitHub token found. Please sign in with GitHub." };
+    const isGithubUser = user?.app_metadata?.provider === 'github' ||
+        user?.identities?.some(id => id.provider === 'github');
+
+    if (!session?.provider_token || !isGithubUser) {
+        return { error: "No GitHub token found or user not connected to GitHub." };
     }
 
     try {
@@ -116,11 +120,21 @@ export async function fetchGithubStats(): Promise<{ data?: GithubStats; error?: 
             next: { revalidate: 3600 }, // Cache for 1 hour
         });
 
+        if (!response.ok) {
+            console.error("GitHub API Error Status:", response.status);
+            return { error: "Failed to connect to GitHub API" };
+        }
+
         const json = await response.json();
 
         if (json.errors) {
             console.error("GitHub API Errors:", json.errors);
             return { error: "Failed to fetch GitHub stats" };
+        }
+
+        if (!json.data || !json.data.viewer) {
+            console.error("GitHub API: No viewer data returned", json);
+            return { error: "No GitHub data available" };
         }
 
         const data = json.data.viewer;
