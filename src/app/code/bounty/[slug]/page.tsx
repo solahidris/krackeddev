@@ -1,6 +1,6 @@
 "use client";
 
-export const runtime = "edge";
+
 
 import React, { useEffect, useState, use } from "react";
 import Link from "next/link";
@@ -16,13 +16,11 @@ import {
   AlertCircle,
   Send,
   Github,
-  Twitter,
-  Calendar,
-  User,
   LogOut,
 } from "lucide-react";
 import { getBountyBySlug } from "@/lib/bounty";
 import {
+  Bounty,
   BountyDifficulty,
   BountyStatus,
   BountySubmission,
@@ -104,8 +102,10 @@ export default function BountyDetailPage({
 }) {
   const { slug } = use(params);
   const router = useRouter();
-  const bounty = getBountyBySlug(slug);
   const { supabase, user, profile, openLoginModal, signOut } = useSupabase();
+
+  const [bounty, setBounty] = useState<Bounty | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const [prUrl, setPrUrl] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -114,15 +114,87 @@ export default function BountyDetailPage({
   const [showSignOutConfirm, setShowSignOutConfirm] = useState(false);
   const [submissions, setSubmissions] = useState<BountySubmission[]>([]);
 
+  // 1. Fetch Bounty Data (Static Fallback + DB)
   useEffect(() => {
-    // Always seed from local/static data so the UI isn't empty
-    setSubmissions(bounty?.submissions ?? []);
+    let cancelled = false;
 
+    const fetchBounty = async () => {
+      // First try static data
+      const staticBounty = getBountyBySlug(slug);
+      if (staticBounty) {
+        if (!cancelled) {
+          setBounty(staticBounty);
+          setLoading(false);
+        }
+        return;
+      }
+
+      // Fallback to Database
+      if (!supabase) return;
+
+      const { data: rawData, error } = await supabase
+        .from("bounties")
+        .select("*")
+        .eq("slug", slug)
+        .single();
+
+      const data = rawData as any;
+
+      if (cancelled) return;
+
+      if (error || !data) {
+        console.error("Bounty not found in DB:", error);
+        setLoading(false);
+        return;
+      }
+
+      // Map DB data to Bounty interface
+      const dbBounty: Bounty = {
+        id: data.id,
+        slug: data.slug,
+        title: data.title,
+        description: data.description || "",
+        longDescription: data.long_description || data.description || "",
+        reward: data.reward_amount,
+        difficulty: (data.difficulty as any) || "intermediate",
+        status: (data.status === "open" ? "active" : data.status) as any, // Map 'open' to 'active'
+        tags: data.skills || [],
+        requirements: data.requirements || [],
+        repositoryUrl: data.repository_url || "",
+        bountyPostUrl: "", // Not yet in DB
+        submissionPostUrl: "",
+        createdAt: data.created_at,
+        deadline: data.deadline || new Date().toISOString(),
+        submissions: [],
+        // Winner mapping would go here if we had it in DB
+      };
+
+      setBounty(dbBounty);
+      setLoading(false);
+    };
+
+    fetchBounty();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [slug, supabase]);
+
+
+  // 2. Fetch Submissions
+  useEffect(() => {
     if (!supabase || !bounty) return;
+
+    // Use static submissions if it's a static bounty
+    setSubmissions(bounty.submissions ?? []);
+
+    // If it's a DB bounty or we want to show real submissions for static ones too (if hybrid)
+    // currently static bounties have mock submissions in data.ts which is fine.
+    // We only fetch DB submissions for now.
 
     let cancelled = false;
 
-    const load = async () => {
+    const loadSubmissions = async () => {
       const { data, error } = await supabase
         .from("bounty_submissions")
         .select(
@@ -157,15 +229,22 @@ export default function BountyDetailPage({
         };
       });
 
+      // Merge with static if needed, or just replace
       setSubmissions(mapped);
     };
 
-    load();
+    loadSubmissions();
+    return () => { cancelled = true; };
 
-    return () => {
-      cancelled = true;
-    };
   }, [bounty, slug, supabase]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <div className="w-16 h-16 border-4 border-cyan-500 border-t-transparent animate-spin rounded-full"></div>
+      </main>
+    )
+  }
 
   if (!bounty) {
     return (
@@ -271,6 +350,8 @@ export default function BountyDetailPage({
 
   const formatDeadline = (deadline: string) => {
     const date = new Date(deadline);
+    if (isNaN(date.getTime())) return "No Deadline";
+
     return date.toLocaleDateString("en-MY", {
       weekday: "long",
       year: "numeric",
@@ -360,7 +441,7 @@ export default function BountyDetailPage({
           {/* Bounty Number & Status */}
           <div className="flex items-center gap-3 mb-4">
             <span className="text-gray-500 font-mono text-sm">
-              BOUNTY #{bounty.id}
+              BOUNTY #{bounty.id.slice(0, 8)}
             </span>
             <span
               className={`px-3 py-1 text-xs font-mono border ${statusColors[bounty.status]
@@ -511,35 +592,40 @@ export default function BountyDetailPage({
         </div>
 
         {/* Requirements */}
-        <div className="mb-8">
-          <h2 className="text-lg font-mono text-white mb-4">REQUIREMENTS</h2>
-          <div className="bg-gray-800/30 border border-gray-700 p-6 space-y-3">
-            {bounty.requirements.map((req, index) => (
-              <div key={index} className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-mono text-xs shrink-0">
-                  {index + 1}
+        {bounty.requirements.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg font-mono text-white mb-4">REQUIREMENTS</h2>
+            <div className="bg-gray-800/30 border border-gray-700 p-6 space-y-3">
+              {bounty.requirements.map((req, index) => (
+                <div key={index} className="flex items-start gap-3">
+                  <div className="w-6 h-6 bg-cyan-500/20 border border-cyan-500/50 flex items-center justify-center text-cyan-400 font-mono text-xs shrink-0">
+                    {index + 1}
+                  </div>
+                  <span className="text-gray-300">{req}</span>
                 </div>
-                <span className="text-gray-300">{req}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
+        )}
+
 
         {/* Links */}
         <div className="mb-8">
           <h2 className="text-lg font-mono text-white mb-4">LINKS</h2>
           <div className="flex flex-wrap gap-4">
             {/* Bounty Post on X */}
-            <a
-              href={bounty.bountyPostUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 px-4 py-2 text-white hover:bg-gray-700 transition-colors font-mono text-sm"
-            >
-              <XIcon className="w-4 h-4" />
-              View Bounty Post
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            {bounty.bountyPostUrl && (
+              <a
+                href={bounty.bountyPostUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 px-4 py-2 text-white hover:bg-gray-700 transition-colors font-mono text-sm"
+              >
+                <XIcon className="w-4 h-4" />
+                View Bounty Post
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
 
             {/* Submission/Winner Post on X */}
             {bounty.submissionPostUrl && (
@@ -556,16 +642,22 @@ export default function BountyDetailPage({
             )}
 
             {/* Repository */}
-            <a
-              href={bounty.repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 px-4 py-2 text-white hover:bg-gray-700 transition-colors font-mono text-sm"
-            >
-              <Github className="w-4 h-4" />
-              View Repository
-              <ExternalLink className="w-3 h-3" />
-            </a>
+            {bounty.repositoryUrl && (
+              <a
+                href={bounty.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 px-4 py-2 text-white hover:bg-gray-700 transition-colors font-mono text-sm"
+              >
+                <Github className="w-4 h-4" />
+                View Repository
+                <ExternalLink className="w-3 h-3" />
+              </a>
+            )}
+
+            {!bounty.repositoryUrl && !bounty.bountyPostUrl && (
+              <p className="text-gray-500 text-sm font-mono">No links available for this bounty.</p>
+            )}
           </div>
         </div>
 

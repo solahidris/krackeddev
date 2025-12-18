@@ -12,25 +12,46 @@ So that I can protect the platform from bad actors.
 
 1. **Given** I am on the User Management page
 2. **When** I click "Ban" on a user
-3. **Then** their account status should be updated to 'banned' (FR-ADM-01)
-4. **And** they should be prevented from logging in
+3. **Then** I must see a confirmation dialog warning of the consequences
+4. **When** I confirm the action
+5. **Then** their account status should be updated to 'banned' (FR-ADM-01)
+6. **And** they should be prevented from logging in
+7. **And** the UI should visually reflect their BANNED status (e.g., Red Badge)
+8. **Given** I am on a mobile device
+9. **Then** the user list should appear as a stack of cards, not a squashed table
 
 ## Technical Requirements
 
 - **Module**: `src/features/admin-dashboard`
-- **Components**: `UserTable` with actions.
-- **Back-end**: Update `auth.users.banned_until` (Supabase Admin API) OR a `status` column in `public.users`.
-    - Preference: use `public.users.status` or `is_banned` flag, checked by Middleware/RLS.
+- **Components**: 
+    - `UserTable`: Responsive table (hidden on mobile).
+    - `UserListCards`: Card view (visible on mobile).
+    - `BanDialog`: Warning modal.
+- **Back-end**: Update `public.profiles.status` column.
+    - Status enum: 'active' | 'banned'.
 
 ## Architecture Compliance
 
-- **Server Actions**: `fetchUsers()`, `banUser(userId)`.
-- **Barrel Files**: Ensure `index.ts` exists in `src/features/admin-dashboard` and exports public components.
-- **Type Safety**: Use generated Supabase types from `src/types/supabase.ts`.
+- **Server Actions**: `fetchUsers()`, `toggleUserBan(userId)`.
+- **Barrel Files**: Ensure `index.ts` exists in `src/features/admin-dashboard`.
+- **Type Safety**: Use generated Supabase types.
+
+## Tasks
+
+- [ ] Create migration to add `status` column (enum: active, banned) to `profiles` table.
+- [ ] Update `Profile` type definition in `src/types/database.ts`.
+- [ ] Implement `fetchUsers` server action (with pagination support).
+- [ ] Implement `toggleUserBan` server action.
+- [ ] Create `UserTable` component (Desktop view).
+- [ ] Create `UserCard` component (Mobile view).
+- [ ] Implement `BanConfirmationDialog`.
+- [ ] Create Admin User Management Page at `src/app/(admin)/admin/users/page.tsx` handling responsive switching.
+- [ ] Update Middleware (`src/lib/supabase/middleware.ts`) to deny access to banned users.
 
 ## Dev Notes
 
-- **Admin API**: `banUser` might require `supabaseAdmin` client (service role key) if modifying `auth.users`. Keep this logic secure in an action only accessible to admins.
+- **Responsiveness**: Use `hidden md:table` for table and `block md:hidden` for card list.
+- **Admin API**: Ensure `toggleUserBan` checks for admin role strictly.
 
 ### References
 

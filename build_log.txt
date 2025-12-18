@@ -1,0 +1,52 @@
+
+> kracked-dev@0.1.0 build
+> next build
+
+ ⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /Users/fadlikhalid/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /Users/fadlikhalid/Documents/Work/krackeddev/repo/krackeddev/package-lock.json
+
+   ▲ Next.js 16.0.10 (Turbopack)
+   - Environments: .env.local
+
+ ⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+   Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build failed with 1 errors:
+./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/layouts/admin-layout.tsx:1:21
+Ecmascript file had an error
+[0m[31m[1m>[22m[39m[90m 1 |[39m [36mimport[39m { [33mReactNode[39m[33m,[39m useState } [36mfrom[39m [32m'react'[39m[33m;[39m
+ [90m   |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 2 |[39m [36mimport[39m { [33mAdminSidebar[39m[33m,[39m [33mAdminSidebarContent[39m } [36mfrom[39m [32m'../components/admin-sidebar'[39m[33m;[39m
+ [90m 3 |[39m [36mimport[39m { [33mSheet[39m[33m,[39m [33mSheetContent[39m[33m,[39m [33mSheetTrigger[39m } [36mfrom[39m [32m'@/components/ui/sheet'[39m[33m;[39m
+ [90m 4 |[39m [36mimport[39m { [33mMenu[39m } [36mfrom[39m [32m'lucide-react'[39m[33m;[39m[0m
+
+You're importing a component that needs `useState`. This React Hook only works in a Client Component. To fix, mark the file (or its parent) with the `"use client"` directive.
+
+ Learn more: https://nextjs.org/docs/app/api-reference/directives/use-client
+
+
+
+Import traces:
+  Server Component:
+    ./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/layouts/admin-layout.tsx
+    ./Documents/Work/krackeddev/repo/krackeddev/src/app/(admin)/layout.tsx
+
+  Client Component Browser:
+    ./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/layouts/admin-layout.tsx [Client Component Browser]
+    ./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/index.ts [Client Component Browser]
+    ./Documents/Work/krackeddev/repo/krackeddev/src/app/(admin)/admin/bounties/[id]/edit/page.tsx [Client Component Browser]
+    ./Documents/Work/krackeddev/repo/krackeddev/src/app/(admin)/admin/bounties/[id]/edit/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/layouts/admin-layout.tsx [Client Component SSR]
+    ./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/index.ts [Client Component SSR]
+    ./Documents/Work/krackeddev/repo/krackeddev/src/app/(admin)/admin/bounties/[id]/edit/page.tsx [Client Component SSR]
+    ./Documents/Work/krackeddev/repo/krackeddev/src/app/(admin)/admin/bounties/[id]/edit/page.tsx [Server Component]
+
+
+    at <unknown> (./Documents/Work/krackeddev/repo/krackeddev/src/features/admin-dashboard/layouts/admin-layout.tsx:1:21)

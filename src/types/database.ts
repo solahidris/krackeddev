@@ -20,6 +20,7 @@ export interface Profile {
   stack: string[] | null;
   location: string | null;
   onboarding_completed: boolean;
+  status: 'active' | 'banned';
   created_at: string;
   updated_at: string;
 }

@@ -63,21 +63,32 @@ export async function updateSession(request: NextRequest) {
 
     // Redirect to onboarding if user is authenticated but hasn't completed onboarding
     // Skip for auth routes, onboarding routes, and API routes only
-    const isOnboardingExempt =
+    // Redirect to onboarding if user is authenticated but hasn't completed onboarding
+    // Skip for auth routes, onboarding routes, and API routes only
+    const isExempt =
         request.nextUrl.pathname.startsWith('/auth') ||
         request.nextUrl.pathname.startsWith('/onboarding') ||
-        request.nextUrl.pathname.startsWith('/api');
+        request.nextUrl.pathname.startsWith('/api') ||
+        request.nextUrl.pathname.startsWith('/banned');
 
-    if (user && !isOnboardingExempt) {
+    if (user && !isExempt) {
         const { data: profile } = await supabase
             .from('profiles')
-            .select('onboarding_completed')
+            .select('onboarding_completed, status')
             .eq('id', user.id)
             .single();
 
-        const onboardingCompleted = (profile as { onboarding_completed: boolean } | null)?.onboarding_completed;
+        const userProfile = profile as { onboarding_completed: boolean; status: string } | null;
 
-        if (!onboardingCompleted) {
+        // Check for ban status first
+        if (userProfile?.status === 'banned') {
+            const url = request.nextUrl.clone();
+            url.pathname = '/banned';
+            return NextResponse.redirect(url);
+        }
+
+        // Check for onboarding completion
+        if (userProfile && !userProfile.onboarding_completed) {
             const url = request.nextUrl.clone();
             url.pathname = '/onboarding/form';
             return NextResponse.redirect(url);

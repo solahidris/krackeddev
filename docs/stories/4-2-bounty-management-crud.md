@@ -25,10 +25,21 @@ So that I can keep the marketplace up to date.
 
 ## Architecture Compliance
 
-- **Server Actions**: `createBounty(data)`, `updateBounty(id, data)`, `deleteBounty(id)`.
+- **Server Actions**: `createBounty(data)`, `updateBounty(id, data)`, `deleteBounty(id)`. MUST use the `ActionResult<T>` wrapper pattern.
 - **Validation**: Zod schema for Bounty inputs.
 - **Barrel Files**: Ensure `index.ts` exists in `src/features/admin-dashboard` and exports public components.
 - **Type Safety**: Use generated Supabase types from `src/types/supabase.ts`.
+
+## UX/UI Requirements
+
+- **Empty States**: `BountyTable` must show a clear "No bounties found" message with a CTA to create one if the list is empty.
+- **Feedback**: Use `sonner` toasts for success (e.g., "Bounty created") and error messages.
+- **Safety**: "Delete Bounty" action must trigger a Confirmation Dialog (`AlertDialog`) before execution.
+- **Loading States**: Disable buttons and show loading spinners during Form submission.
+- **Navigation**: Include Breadcrumbs (e.g., Admin > Bounties > Create) for easier navigation.
+- **Inputs**: 
+    - `reward_amount`: Number input with currency prefix.
+    - `status`: Select dropdown (Draft, Open, Pending, Completed).
 
 ## Dev Notes
 
@@ -37,6 +48,18 @@ So that I can keep the marketplace up to date.
 ### References
 
 - [FR13: Bounty CRUD](docs/prd.md#functional-requirements)
+
+## Tasks
+
+- [ ] Create Zod schema for Bounty (Create/Update) in `src/features/admin-dashboard/schemas.ts` <!-- id: 1 -->
+- [ ] Implement Server Actions in `src/features/admin-dashboard/actions.ts`: `createBounty`, `updateBounty`, `deleteBounty` <!-- id: 2 -->
+- [ ] Create `BountyForm` component in `src/features/admin-dashboard/components/bounty-form.tsx` <!-- id: 3 -->
+- [ ] Create `BountyTable` component in `src/features/admin-dashboard/components/bounty-table.tsx` <!-- id: 4 -->
+- [ ] Create Admin Page: `src/app/(admin)/admin/bounties/page.tsx` (List) <!-- id: 5 -->
+- [ ] Create Admin Page: `src/app/(admin)/admin/bounties/create/page.tsx` (Create) <!-- id: 6 -->
+- [ ] Create Admin Page: `src/app/(admin)/admin/bounties/[id]/edit/page.tsx` (Edit) <!-- id: 7 -->
+- [ ] Add "Bounties" link to `AdminSidebar` <!-- id: 8 -->
+- [ ] Run Tests (`npm test src/features/admin-dashboard`) <!-- id: 9 -->
 
 ## Dev Agent Record
 
